@@ -73,7 +73,7 @@
     <Compile Include="DAO\Usuario.cs">
       <DependentUpon>EventoDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="PN\pnEventos.cs" />
+    <Compile Include="PN\pnUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
