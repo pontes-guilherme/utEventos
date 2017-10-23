@@ -51,5 +51,35 @@ namespace Desk
             }
 
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            Usuario u = new Usuario();
+
+            u.email = txtEmail.Text;
+            u.nome = txtNome.Text;
+            u.senha = txtSenha.Text;
+            u.data_nascimento = DateTime.Parse(mtxtNascimento.Text);
+
+            if (MessageBox.Show("Confirma a exclusão?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+            {
+                pnUsuarios.Excluir(u);
+            }
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            Usuario u = new Usuario();
+
+            u.email = txtEmail.Text;
+            u.nome = txtNome.Text;
+            u.senha = txtSenha.Text;
+            u.data_nascimento = DateTime.Parse(mtxtNascimento.Text);
+            
+            if (!pnUsuarios.Alterar(u))
+            {
+                MessageBox.Show("Erro ao alterar usuário!");
+            }
+        }
     }
 }

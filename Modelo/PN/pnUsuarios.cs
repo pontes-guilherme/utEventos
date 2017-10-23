@@ -48,15 +48,36 @@ namespace Modelo.PN
             }
         }
 
+        //PROBLEMA
         public static Usuario Pesquisar(string email)
         {
             try
             {
                 dbEventosEntities db = new dbEventosEntities();
                 Usuario u = new Usuario();
+                //u.email = email;
 
                 u = db.Usuarios.Find(email);
                 return u;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static bool Excluir(Usuario u)
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                Usuario user = new Usuario();
+
+                user = db.Usuarios.Find(u.email);
+                db.Usuarios.Remove(user);
+                db.SaveChanges();
+
+                return true;
             }
             catch (Exception)
             {
