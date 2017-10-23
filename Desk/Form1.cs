@@ -7,14 +7,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Modelo.DAO;
+using Modelo.PN;
 
 namespace Desk
 {
-    public partial class Form1 : Form
+    public partial class frmUsuario : Form
     {
-        public Form1()
+        public frmUsuario()
         {
             InitializeComponent();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Usuario u = new Usuario();
+
+            u.email = txtEmail.Text;
+            u.nome = txtNome.Text;
+            u.senha = txtSenha.Text;
+            u.data_nascimento = DateTime.Parse(mtxtNascimento.Text);
+
+            if (!pnUsuarios.Inserir(u))
+            {
+                MessageBox.Show("Problema na inserção de usuário!");
+            }
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            Usuario u = new Usuario();
+
+            u = pnUsuarios.Pesquisar(txtEmail.Text);
+
+            if (u != null)
+            {
+                txtNome.Text = u.nome;
+                txtSenha.Text = u.senha;
+                mtxtNascimento.Text = u.data_nascimento.ToString();
+            }
+            else {
+                MessageBox.Show("E-mail não existente");
+            }
+
         }
     }
 }

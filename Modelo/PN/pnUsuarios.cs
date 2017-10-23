@@ -47,5 +47,22 @@ namespace Modelo.PN
                 throw;
             }
         }
+
+        public static Usuario Pesquisar(string email)
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                Usuario u = new Usuario();
+
+                u = db.Usuarios.Find(email);
+                return u;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
