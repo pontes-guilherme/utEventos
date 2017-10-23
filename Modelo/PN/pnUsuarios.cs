@@ -85,5 +85,18 @@ namespace Modelo.PN
             }
         }
 
+        public static List<Usuario> Listar()
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                return (db.Usuarios.ToList());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
