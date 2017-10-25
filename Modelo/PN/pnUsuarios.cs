@@ -54,11 +54,11 @@ namespace Modelo.PN
             try
             {
                 dbEventosEntities db = new dbEventosEntities();
-                Usuario u = new Usuario();
+                Usuario user = new Usuario();
                 //u.email = email;
 
-                u = db.Usuarios.Find(email);
-                return u;
+                user = db.Usuarios.Find(email);
+                return user;
             }
             catch (Exception)
             {

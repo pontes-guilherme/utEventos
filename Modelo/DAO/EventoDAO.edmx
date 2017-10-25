@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbEventosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbEventosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Evento">
           <Key>
             <PropertyRef Name="Id" />
@@ -16,11 +16,10 @@
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="email" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="senha" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="data_nascimento" Type="date" />
         </EntityType>
@@ -28,8 +27,7 @@
           <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbEventosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -44,11 +42,10 @@
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="email" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="senha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="data_nascimento" Type="DateTime" Precision="0" />
         </EntityType>
@@ -75,7 +72,6 @@
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="dbEventosModel.Usuario">
               <MappingFragment StoreEntitySet="Usuarios">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="nome" ColumnName="nome" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="senha" ColumnName="senha" />
