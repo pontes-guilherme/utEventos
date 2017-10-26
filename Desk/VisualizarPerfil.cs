@@ -7,25 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Modelo.DAO;
-using Modelo.PN;
-
 
 namespace Desk
 {
-    public partial class CadastroEventos : Form
+    public partial class VisualizarPerfil : Form
     {
-        Usuario currentUser;
-
-        public CadastroEventos(Usuario u)
+        public VisualizarPerfil()
         {
             InitializeComponent();
-            currentUser = u;
-        }
-
-        private void CadastroEventos_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
