@@ -18,5 +18,9 @@ namespace Modelo.DAO
         public string nome { get; set; }
         public System.DateTime data_inicio { get; set; }
         public Nullable<System.DateTime> data_fim { get; set; }
+        public string categoria { get; set; }
+        public string escopo { get; set; }
+        public Nullable<bool> importante { get; set; }
+        public Nullable<System.DateTime> data_criacao { get; set; }
     }
 }

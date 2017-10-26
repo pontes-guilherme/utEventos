@@ -18,5 +18,6 @@ namespace Modelo.DAO
         public string email { get; set; }
         public string senha { get; set; }
         public Nullable<System.DateTime> data_nascimento { get; set; }
+        public string tipo { get; set; }
     }
 }

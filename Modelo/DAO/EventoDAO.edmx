@@ -13,6 +13,10 @@
           <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="data_inicio" Type="date" Nullable="false" />
           <Property Name="data_fim" Type="date" />
+          <Property Name="categoria" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="escopo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="importante" Type="bit" />
+          <Property Name="data_criacao" Type="date" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -22,6 +26,7 @@
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="senha" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="data_nascimento" Type="date" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityContainer Name="dbEventosModelStoreContainer">
           <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
@@ -39,6 +44,10 @@
           <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="data_inicio" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="data_fim" Type="DateTime" Precision="0" />
+          <Property Name="categoria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="escopo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="importante" Type="Boolean" />
+          <Property Name="data_criacao" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -48,6 +57,7 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="senha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="data_nascimento" Type="DateTime" Precision="0" />
+          <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="dbEventosEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Eventoes" EntityType="Self.Evento" />
@@ -62,6 +72,10 @@
           <EntitySetMapping Name="Eventoes">
             <EntityTypeMapping TypeName="dbEventosModel.Evento">
               <MappingFragment StoreEntitySet="Evento">
+                <ScalarProperty Name="data_criacao" ColumnName="data_criacao" />
+                <ScalarProperty Name="importante" ColumnName="importante" />
+                <ScalarProperty Name="escopo" ColumnName="escopo" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="nome" ColumnName="nome" />
                 <ScalarProperty Name="data_inicio" ColumnName="data_inicio" />
@@ -72,6 +86,7 @@
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="dbEventosModel.Usuario">
               <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="nome" ColumnName="nome" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="senha" ColumnName="senha" />

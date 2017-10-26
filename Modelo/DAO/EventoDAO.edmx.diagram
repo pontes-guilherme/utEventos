@@ -7,6 +7,7 @@
       <Diagram DiagramId="c38cdfc5522c47f09f90a48e112d56fc" Name="Diagram1">
         <EntityTypeShape EntityType="dbEventosModel.Evento" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbEventosModel.Usuario" Width="1.5" PointX="3.875" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="dbEventosModel.FK_Evento_Usuarios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
