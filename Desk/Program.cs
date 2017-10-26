@@ -16,7 +16,7 @@ namespace Desk
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmUsuario());
+            Application.Run(new Login());
         }
     }
 }

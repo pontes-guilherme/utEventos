@@ -98,5 +98,30 @@ namespace Modelo.PN
             }
         }
 
+
+        public static bool Autenticar(string email, string senha)
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                Usuario user = new Usuario();
+
+                user = db.Usuarios.Find(email);
+                
+                if(user != null && user.senha == senha)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

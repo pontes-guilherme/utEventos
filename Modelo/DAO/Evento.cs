@@ -17,10 +17,13 @@ namespace Modelo.DAO
         public int Id { get; set; }
         public string nome { get; set; }
         public System.DateTime data_inicio { get; set; }
-        public Nullable<System.DateTime> data_fim { get; set; }
+        public System.DateTime data_fim { get; set; }
         public string categoria { get; set; }
         public string escopo { get; set; }
-        public Nullable<bool> importante { get; set; }
-        public Nullable<System.DateTime> data_criacao { get; set; }
+        public bool importante { get; set; }
+        public System.DateTime data_criacao { get; set; }
+        public string criador { get; set; }
+    
+        public virtual Usuario Usuario { get; set; }
     }
 }

@@ -12,11 +12,12 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="data_inicio" Type="date" Nullable="false" />
-          <Property Name="data_fim" Type="date" />
+          <Property Name="data_fim" Type="date" Nullable="false" />
           <Property Name="categoria" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="escopo" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="importante" Type="bit" />
-          <Property Name="data_criacao" Type="date" />
+          <Property Name="importante" Type="bit" Nullable="false" />
+          <Property Name="data_criacao" Type="date" Nullable="false" />
+          <Property Name="criador" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -26,11 +27,27 @@
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="senha" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="data_nascimento" Type="date" />
-          <Property Name="tipo" Type="nvarchar" MaxLength="20" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Evento_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="criador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="dbEventosModelStoreContainer">
           <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Evento_Usuarios" Association="Self.FK_Evento_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -43,11 +60,13 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="data_inicio" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="data_fim" Type="DateTime" Precision="0" />
+          <Property Name="data_fim" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="categoria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="escopo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="importante" Type="Boolean" />
-          <Property Name="data_criacao" Type="DateTime" Precision="0" />
+          <Property Name="importante" Type="Boolean" Nullable="false" />
+          <Property Name="data_criacao" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="criador" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Usuario" Relationship="dbEventosModel.FK_Evento_Usuarios" FromRole="Evento" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -57,12 +76,29 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="senha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="data_nascimento" Type="DateTime" Precision="0" />
-          <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Eventoes" Relationship="dbEventosModel.FK_Evento_Usuarios" FromRole="Usuario" ToRole="Evento" />
         </EntityType>
         <EntityContainer Name="dbEventosEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Eventoes" EntityType="Self.Evento" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Evento_Usuarios" Association="dbEventosModel.FK_Evento_Usuarios">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Evento" EntitySet="Eventoes" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Evento_Usuarios">
+          <End Type="dbEventosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="dbEventosModel.Evento" Role="Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="criador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -72,6 +108,7 @@
           <EntitySetMapping Name="Eventoes">
             <EntityTypeMapping TypeName="dbEventosModel.Evento">
               <MappingFragment StoreEntitySet="Evento">
+                <ScalarProperty Name="criador" ColumnName="criador" />
                 <ScalarProperty Name="data_criacao" ColumnName="data_criacao" />
                 <ScalarProperty Name="importante" ColumnName="importante" />
                 <ScalarProperty Name="escopo" ColumnName="escopo" />
