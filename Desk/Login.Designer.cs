@@ -36,6 +36,8 @@
             this.Registrar = new System.Windows.Forms.Button();
             this.RecuperarSenha = new System.Windows.Forms.LinkLabel();
             this.utEventos = new System.Windows.Forms.Label();
+            this.performanceCounter1 = new System.Diagnostics.PerformanceCounter();
+            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).BeginInit();
             this.SuspendLayout();
             // 
             // Email
@@ -61,14 +63,15 @@
             this.txtEmail.Location = new System.Drawing.Point(64, 48);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(266, 20);
-            this.txtEmail.TabIndex = 2;
+            this.txtEmail.TabIndex = 1;
             // 
             // txtSenha
             // 
             this.txtSenha.Location = new System.Drawing.Point(64, 74);
+            this.txtSenha.MaxLength = 50;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(266, 20);
-            this.txtSenha.TabIndex = 3;
+            this.txtSenha.TabIndex = 2;
             this.txtSenha.UseSystemPasswordChar = true;
             // 
             // Entrar
@@ -76,7 +79,7 @@
             this.Entrar.Location = new System.Drawing.Point(255, 100);
             this.Entrar.Name = "Entrar";
             this.Entrar.Size = new System.Drawing.Size(75, 23);
-            this.Entrar.TabIndex = 4;
+            this.Entrar.TabIndex = 3;
             this.Entrar.Text = "Entrar";
             this.Entrar.UseVisualStyleBackColor = true;
             this.Entrar.Click += new System.EventHandler(this.Entrar_Click);
@@ -86,7 +89,7 @@
             this.Registrar.Location = new System.Drawing.Point(174, 100);
             this.Registrar.Name = "Registrar";
             this.Registrar.Size = new System.Drawing.Size(75, 23);
-            this.Registrar.TabIndex = 5;
+            this.Registrar.TabIndex = 4;
             this.Registrar.Text = "Registrar";
             this.Registrar.UseVisualStyleBackColor = true;
             this.Registrar.Click += new System.EventHandler(this.Registrar_Click);
@@ -97,7 +100,7 @@
             this.RecuperarSenha.Location = new System.Drawing.Point(77, 105);
             this.RecuperarSenha.Name = "RecuperarSenha";
             this.RecuperarSenha.Size = new System.Drawing.Size(91, 13);
-            this.RecuperarSenha.TabIndex = 6;
+            this.RecuperarSenha.TabIndex = 5;
             this.RecuperarSenha.TabStop = true;
             this.RecuperarSenha.Text = "Recuperar Senha";
             // 
@@ -143,5 +146,6 @@
         private System.Windows.Forms.Button Registrar;
         private System.Windows.Forms.LinkLabel RecuperarSenha;
         private System.Windows.Forms.Label utEventos;
+        private System.Diagnostics.PerformanceCounter performanceCounter1;
     }
 }

@@ -34,9 +34,10 @@ namespace Desk
             {
                 if (pnUsuarios.Autenticar(txtEmail.Text, txtSenha.Text))
                 {
-                    MessageBox.Show("Login com sucesso!");
+                    Usuario u = pnUsuarios.Pesquisar(txtEmail.Text);
+
                     this.Hide();
-                    TelaPrincipal nextForm = new TelaPrincipal();
+                    TelaPrincipal nextForm = new TelaPrincipal(u);
                     nextForm.Closed += (s, args) => this.Close();
                     nextForm.Show();
                 }
@@ -48,7 +49,6 @@ namespace Desk
 
         }    
         
-
         private void Registrar_Click(object sender, EventArgs e)
         {
             this.Hide();
