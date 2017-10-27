@@ -1,8 +1,19 @@
-﻿using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
 using System.Web.Optimization;
 
 namespace Web
 {
+
+    public class AsIsBundleOrderer : IBundleOrderer
+    {
+        public IEnumerable<BundleFile> OrderFiles(BundleContext context, IEnumerable<BundleFile> files)
+        {
+            return files;
+        }
+    }
+
     public class BundleConfig
     {
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
@@ -26,6 +37,8 @@ namespace Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Modelo.DAO.Usuario>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuários";
 }
 
-<h2>Index</h2>
+<h2>Listar usuários</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar novo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -18,10 +18,10 @@
             @Html.DisplayNameFor(model => model.email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.senha)
+            @Html.DisplayNameFor(model => model.data_nascimento)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.data_nascimento)
+            @Html.DisplayNameFor(model => model.tipo)
         </th>
         <th></th>
     </tr>
@@ -35,15 +35,15 @@
             @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.senha)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.data_nascimento)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.DisplayFor(modelItem => item.tipo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.email + "/" } ) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.email + "/" }) |
+            @Html.ActionLink("Excluir", "Delete", new { id = item.email + "/" } )
         </td>
     </tr>
 }

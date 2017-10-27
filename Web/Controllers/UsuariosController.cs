@@ -22,7 +22,7 @@ namespace Web.Controllers
         }
 
         // GET: Usuarios/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -47,7 +47,7 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,nome,email,senha,data_nascimento")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "nome,email,senha,data_nascimento,tipo")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +60,7 @@ namespace Web.Controllers
         }
 
         // GET: Usuarios/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -79,7 +79,7 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,nome,email,senha,data_nascimento")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "nome,email,senha,data_nascimento,tipo")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +108,7 @@ namespace Web.Controllers
         // POST: Usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Usuario usuario = db.Usuarios.Find(id);
             db.Usuarios.Remove(usuario);

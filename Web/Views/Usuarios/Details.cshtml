@@ -1,10 +1,10 @@
 ﻿@model Modelo.DAO.Usuario
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
     <h4>Usuario</h4>
@@ -27,14 +27,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.senha)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.senha)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.data_nascimento)
         </dt>
 
@@ -42,9 +34,16 @@
             @Html.DisplayFor(model => model.data_nascimento)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.email + "/" }) |
+    @Html.ActionLink("Voltar para a listagem", "Index")
 </p>
