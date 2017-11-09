@@ -30,25 +30,25 @@
         {
             this.utEventos = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lnkVerPerfil = new System.Windows.Forms.LinkLabel();
-            this.lnkEditarPerfil = new System.Windows.Forms.LinkLabel();
-            this.lnkSair = new System.Windows.Forms.LinkLabel();
-            this.mainPanel = new System.Windows.Forms.Panel();
-            this.lnkEvenNovo = new System.Windows.Forms.LinkLabel();
-            this.lnkEvenDis = new System.Windows.Forms.LinkLabel();
-            this.lnkEvenPes = new System.Windows.Forms.LinkLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lnkCalSem = new System.Windows.Forms.LinkLabel();
             this.lnkCalMen = new System.Windows.Forms.LinkLabel();
             this.lnkCalDia = new System.Windows.Forms.LinkLabel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lnkEvenGlo = new System.Windows.Forms.LinkLabel();
+            this.lnkEvenPes = new System.Windows.Forms.LinkLabel();
+            this.lnkEvenDis = new System.Windows.Forms.LinkLabel();
+            this.lnkEvenNovo = new System.Windows.Forms.LinkLabel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lnkFeed = new System.Windows.Forms.LinkLabel();
+            this.lnkVerPerfil = new System.Windows.Forms.LinkLabel();
+            this.lnkEditarPerfil = new System.Windows.Forms.LinkLabel();
+            this.lnkSair = new System.Windows.Forms.LinkLabel();
+            this.mainPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // utEventos
@@ -56,7 +56,7 @@
             this.utEventos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.utEventos.AutoSize = true;
             this.utEventos.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.utEventos.Location = new System.Drawing.Point(36, 9);
+            this.utEventos.Location = new System.Drawing.Point(44, 9);
             this.utEventos.Name = "utEventos";
             this.utEventos.Size = new System.Drawing.Size(100, 23);
             this.utEventos.TabIndex = 9;
@@ -73,8 +73,59 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(177, 522);
+            this.panel1.Size = new System.Drawing.Size(193, 522);
             this.panel1.TabIndex = 10;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lnkCalSem);
+            this.groupBox3.Controls.Add(this.lnkCalMen);
+            this.groupBox3.Controls.Add(this.lnkCalDia);
+            this.groupBox3.Location = new System.Drawing.Point(5, 330);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(171, 100);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Calendário";
+            // 
+            // lnkCalSem
+            // 
+            this.lnkCalSem.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkCalSem.AutoSize = true;
+            this.lnkCalSem.LinkColor = System.Drawing.Color.Black;
+            this.lnkCalSem.Location = new System.Drawing.Point(20, 48);
+            this.lnkCalSem.Name = "lnkCalSem";
+            this.lnkCalSem.Size = new System.Drawing.Size(48, 13);
+            this.lnkCalSem.TabIndex = 9;
+            this.lnkCalSem.TabStop = true;
+            this.lnkCalSem.Text = "Semanal";
+            this.lnkCalSem.VisitedLinkColor = System.Drawing.Color.Black;
+            // 
+            // lnkCalMen
+            // 
+            this.lnkCalMen.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkCalMen.AutoSize = true;
+            this.lnkCalMen.LinkColor = System.Drawing.Color.Black;
+            this.lnkCalMen.Location = new System.Drawing.Point(20, 71);
+            this.lnkCalMen.Name = "lnkCalMen";
+            this.lnkCalMen.Size = new System.Drawing.Size(41, 13);
+            this.lnkCalMen.TabIndex = 10;
+            this.lnkCalMen.TabStop = true;
+            this.lnkCalMen.Text = "Mensal";
+            this.lnkCalMen.VisitedLinkColor = System.Drawing.Color.Black;
+            // 
+            // lnkCalDia
+            // 
+            this.lnkCalDia.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkCalDia.AutoSize = true;
+            this.lnkCalDia.LinkColor = System.Drawing.Color.Black;
+            this.lnkCalDia.Location = new System.Drawing.Point(20, 26);
+            this.lnkCalDia.Name = "lnkCalDia";
+            this.lnkCalDia.Size = new System.Drawing.Size(34, 13);
+            this.lnkCalDia.TabIndex = 8;
+            this.lnkCalDia.TabStop = true;
+            this.lnkCalDia.Text = "Diário";
+            this.lnkCalDia.VisitedLinkColor = System.Drawing.Color.Black;
             // 
             // groupBox2
             // 
@@ -89,6 +140,59 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Eventos";
             // 
+            // lnkEvenGlo
+            // 
+            this.lnkEvenGlo.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkEvenGlo.AutoSize = true;
+            this.lnkEvenGlo.LinkColor = System.Drawing.Color.Black;
+            this.lnkEvenGlo.Location = new System.Drawing.Point(20, 97);
+            this.lnkEvenGlo.Name = "lnkEvenGlo";
+            this.lnkEvenGlo.Size = new System.Drawing.Size(84, 13);
+            this.lnkEvenGlo.TabIndex = 7;
+            this.lnkEvenGlo.TabStop = true;
+            this.lnkEvenGlo.Text = "Eventos Globais";
+            this.lnkEvenGlo.VisitedLinkColor = System.Drawing.Color.Black;
+            // 
+            // lnkEvenPes
+            // 
+            this.lnkEvenPes.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkEvenPes.AutoSize = true;
+            this.lnkEvenPes.LinkColor = System.Drawing.Color.Black;
+            this.lnkEvenPes.Location = new System.Drawing.Point(20, 49);
+            this.lnkEvenPes.Name = "lnkEvenPes";
+            this.lnkEvenPes.Size = new System.Drawing.Size(75, 13);
+            this.lnkEvenPes.TabIndex = 5;
+            this.lnkEvenPes.TabStop = true;
+            this.lnkEvenPes.Text = "Meus Eventos";
+            this.lnkEvenPes.VisitedLinkColor = System.Drawing.Color.Black;
+            // 
+            // lnkEvenDis
+            // 
+            this.lnkEvenDis.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkEvenDis.AutoSize = true;
+            this.lnkEvenDis.LinkColor = System.Drawing.Color.Black;
+            this.lnkEvenDis.Location = new System.Drawing.Point(20, 73);
+            this.lnkEvenDis.Name = "lnkEvenDis";
+            this.lnkEvenDis.Size = new System.Drawing.Size(114, 13);
+            this.lnkEvenDis.TabIndex = 6;
+            this.lnkEvenDis.TabStop = true;
+            this.lnkEvenDis.Text = "Eventos de Disciplinas";
+            this.lnkEvenDis.VisitedLinkColor = System.Drawing.Color.Black;
+            // 
+            // lnkEvenNovo
+            // 
+            this.lnkEvenNovo.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkEvenNovo.AutoSize = true;
+            this.lnkEvenNovo.LinkColor = System.Drawing.Color.Black;
+            this.lnkEvenNovo.Location = new System.Drawing.Point(20, 26);
+            this.lnkEvenNovo.Name = "lnkEvenNovo";
+            this.lnkEvenNovo.Size = new System.Drawing.Size(89, 13);
+            this.lnkEvenNovo.TabIndex = 4;
+            this.lnkEvenNovo.TabStop = true;
+            this.lnkEvenNovo.Text = "Cria novo Evento";
+            this.lnkEvenNovo.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkEvenNovo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEvenNovo_LinkClicked);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lnkFeed);
@@ -102,6 +206,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Conta";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // lnkFeed
+            // 
+            this.lnkFeed.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkFeed.AutoSize = true;
+            this.lnkFeed.LinkColor = System.Drawing.Color.Black;
+            this.lnkFeed.Location = new System.Drawing.Point(20, 54);
+            this.lnkFeed.Name = "lnkFeed";
+            this.lnkFeed.Size = new System.Drawing.Size(31, 13);
+            this.lnkFeed.TabIndex = 1;
+            this.lnkFeed.TabStop = true;
+            this.lnkFeed.Text = "Feed";
+            this.lnkFeed.VisitedLinkColor = System.Drawing.Color.Black;
             // 
             // lnkVerPerfil
             // 
@@ -155,123 +272,6 @@
             this.mainPanel.TabIndex = 11;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
-            // lnkEvenNovo
-            // 
-            this.lnkEvenNovo.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkEvenNovo.AutoSize = true;
-            this.lnkEvenNovo.LinkColor = System.Drawing.Color.Black;
-            this.lnkEvenNovo.Location = new System.Drawing.Point(20, 26);
-            this.lnkEvenNovo.Name = "lnkEvenNovo";
-            this.lnkEvenNovo.Size = new System.Drawing.Size(89, 13);
-            this.lnkEvenNovo.TabIndex = 4;
-            this.lnkEvenNovo.TabStop = true;
-            this.lnkEvenNovo.Text = "Cria novo Evento";
-            this.lnkEvenNovo.VisitedLinkColor = System.Drawing.Color.Black;
-            this.lnkEvenNovo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEvenNovo_LinkClicked);
-            // 
-            // lnkEvenDis
-            // 
-            this.lnkEvenDis.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkEvenDis.AutoSize = true;
-            this.lnkEvenDis.LinkColor = System.Drawing.Color.Black;
-            this.lnkEvenDis.Location = new System.Drawing.Point(20, 73);
-            this.lnkEvenDis.Name = "lnkEvenDis";
-            this.lnkEvenDis.Size = new System.Drawing.Size(114, 13);
-            this.lnkEvenDis.TabIndex = 6;
-            this.lnkEvenDis.TabStop = true;
-            this.lnkEvenDis.Text = "Eventos de Disciplinas";
-            this.lnkEvenDis.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
-            // lnkEvenPes
-            // 
-            this.lnkEvenPes.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkEvenPes.AutoSize = true;
-            this.lnkEvenPes.LinkColor = System.Drawing.Color.Black;
-            this.lnkEvenPes.Location = new System.Drawing.Point(20, 49);
-            this.lnkEvenPes.Name = "lnkEvenPes";
-            this.lnkEvenPes.Size = new System.Drawing.Size(75, 13);
-            this.lnkEvenPes.TabIndex = 5;
-            this.lnkEvenPes.TabStop = true;
-            this.lnkEvenPes.Text = "Meus Eventos";
-            this.lnkEvenPes.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.lnkCalSem);
-            this.groupBox3.Controls.Add(this.lnkCalMen);
-            this.groupBox3.Controls.Add(this.lnkCalDia);
-            this.groupBox3.Location = new System.Drawing.Point(5, 330);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(171, 100);
-            this.groupBox3.TabIndex = 12;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Calendário";
-            // 
-            // lnkCalSem
-            // 
-            this.lnkCalSem.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkCalSem.AutoSize = true;
-            this.lnkCalSem.LinkColor = System.Drawing.Color.Black;
-            this.lnkCalSem.Location = new System.Drawing.Point(20, 48);
-            this.lnkCalSem.Name = "lnkCalSem";
-            this.lnkCalSem.Size = new System.Drawing.Size(48, 13);
-            this.lnkCalSem.TabIndex = 9;
-            this.lnkCalSem.TabStop = true;
-            this.lnkCalSem.Text = "Semanal";
-            this.lnkCalSem.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
-            // lnkCalMen
-            // 
-            this.lnkCalMen.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkCalMen.AutoSize = true;
-            this.lnkCalMen.LinkColor = System.Drawing.Color.Black;
-            this.lnkCalMen.Location = new System.Drawing.Point(20, 71);
-            this.lnkCalMen.Name = "lnkCalMen";
-            this.lnkCalMen.Size = new System.Drawing.Size(41, 13);
-            this.lnkCalMen.TabIndex = 10;
-            this.lnkCalMen.TabStop = true;
-            this.lnkCalMen.Text = "Mensal";
-            this.lnkCalMen.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
-            // lnkCalDia
-            // 
-            this.lnkCalDia.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkCalDia.AutoSize = true;
-            this.lnkCalDia.LinkColor = System.Drawing.Color.Black;
-            this.lnkCalDia.Location = new System.Drawing.Point(20, 26);
-            this.lnkCalDia.Name = "lnkCalDia";
-            this.lnkCalDia.Size = new System.Drawing.Size(34, 13);
-            this.lnkCalDia.TabIndex = 8;
-            this.lnkCalDia.TabStop = true;
-            this.lnkCalDia.Text = "Diário";
-            this.lnkCalDia.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
-            // lnkEvenGlo
-            // 
-            this.lnkEvenGlo.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkEvenGlo.AutoSize = true;
-            this.lnkEvenGlo.LinkColor = System.Drawing.Color.Black;
-            this.lnkEvenGlo.Location = new System.Drawing.Point(20, 97);
-            this.lnkEvenGlo.Name = "lnkEvenGlo";
-            this.lnkEvenGlo.Size = new System.Drawing.Size(84, 13);
-            this.lnkEvenGlo.TabIndex = 7;
-            this.lnkEvenGlo.TabStop = true;
-            this.lnkEvenGlo.Text = "Eventos Globais";
-            this.lnkEvenGlo.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
-            // lnkFeed
-            // 
-            this.lnkFeed.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkFeed.AutoSize = true;
-            this.lnkFeed.LinkColor = System.Drawing.Color.Black;
-            this.lnkFeed.Location = new System.Drawing.Point(20, 54);
-            this.lnkFeed.Name = "lnkFeed";
-            this.lnkFeed.Size = new System.Drawing.Size(31, 13);
-            this.lnkFeed.TabIndex = 1;
-            this.lnkFeed.TabStop = true;
-            this.lnkFeed.Text = "Feed";
-            this.lnkFeed.VisitedLinkColor = System.Drawing.Color.Black;
-            // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,6 +279,7 @@
             this.ClientSize = new System.Drawing.Size(893, 522);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "TelaPrincipal";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -287,12 +288,12 @@
             this.Load += new System.EventHandler(this.TelaPrincipal_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }

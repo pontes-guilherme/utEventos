@@ -56,7 +56,7 @@ namespace Desk
         {
             mainPanel.Controls.Remove(embeddedForm);
 
-            embeddedForm = new VisualizarPerfil();
+            embeddedForm = new VisualizarPerfil(currentUser);
             embeddedForm.TopLevel = false;
             embeddedForm.Visible = true;
             mainPanel.Controls.Add(embeddedForm);

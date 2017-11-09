@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelo.DAO;
 using Modelo.PN;
+using System.Security.Cryptography;
 
 namespace Desk
 {
@@ -32,6 +33,9 @@ namespace Desk
             }
             else
             {
+
+                //String passwordHash = pnUsuarios.CreateMD5(txtSenha.Text);
+
                 if (pnUsuarios.Autenticar(txtEmail.Text, txtSenha.Text))
                 {
                     Usuario u = pnUsuarios.Pesquisar(txtEmail.Text);
@@ -55,6 +59,22 @@ namespace Desk
             CadastroUsuario nextForm = new CadastroUsuario();
             nextForm.Closed += (s, args) => this.Close();
             nextForm.Show();
+        }
+
+        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Entrar_Click(this, new EventArgs());
+            }
+        }
+
+        private void txtSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Entrar_Click(this, new EventArgs());
+            }
         }
     }
 }

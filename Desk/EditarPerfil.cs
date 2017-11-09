@@ -65,5 +65,43 @@ namespace Desk
                 MessageBox.Show("Perfil alterado com sucesso.");
             }
         }
+
+        private void EditarPerfil_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Confirma a exclusão?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+            {
+                pnUsuarios.Excluir(currentUser);
+
+                MessageBox.Show("Conta encerrada.");
+                this.Hide();
+                Login nextForm = new Login();
+                nextForm.Closed += (s, args) => this.Close();
+                nextForm.Show();
+            }
+           
+        }
+
+        private void txtNascimento_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void txtNascimento_Leave(object sender, EventArgs e)
+        {
+            DateTime resultado = DateTime.MinValue;
+            if (DateTime.TryParse(this.txtNascimento.Text.Trim(), out resultado))
+            {
+                MessageBox.Show("Data Válida.");
+            }
+            else
+            {
+                MessageBox.Show("Data Inválida.");
+            }
+        }
     }
 }

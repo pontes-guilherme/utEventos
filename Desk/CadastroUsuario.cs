@@ -31,25 +31,32 @@ namespace Desk
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Usuario u = new Usuario();
-
-            u.email = txtEmail.Text;
-            u.nome = txtNome.Text;
-            u.senha = txtSenha.Text;
-            u.data_nascimento = DateTime.Parse(txtNascimento.Text);
-            u.tipo = "Estudante";
-
-            if (!pnUsuarios.Inserir(u))
+            try
             {
-                MessageBox.Show("Problema na inserção de usuário!");
+                Usuario u = new Usuario();
+
+                u.email = txtEmail.Text;
+                u.nome = txtNome.Text;
+                u.senha = txtSenha.Text;
+                u.data_nascimento = DateTime.Parse(txtNascimento.Text);
+                u.tipo = "Estudante";
+
+                if (!pnUsuarios.Inserir(u))
+                {
+                    MessageBox.Show("Problema na inserção de usuário!");
+                }
+                else
+                {
+                    MessageBox.Show("Cadastro realizado com sucesso.");
+                    this.Hide();
+                    Login nextForm = new Login();
+                    nextForm.Closed += (s, args) => this.Close();
+                    nextForm.Show();
+                }
             }
-            else
+            catch(Exception)
             {
-                MessageBox.Show("Cadastro realizado com sucesso.");
-                this.Hide();
-                Login nextForm = new Login();
-                nextForm.Closed += (s, args) => this.Close();
-                nextForm.Show();
+                MessageBox.Show("Erro ao registrar.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

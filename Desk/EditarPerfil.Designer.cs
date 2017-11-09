@@ -36,6 +36,7 @@
             this.txtNascimento = new System.Windows.Forms.MaskedTextBox();
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
+            this.btnExcluir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // title
@@ -93,7 +94,7 @@
             this.txtNascimento.Name = "txtNascimento";
             this.txtNascimento.Size = new System.Drawing.Size(100, 20);
             this.txtNascimento.TabIndex = 22;
-            this.txtNascimento.ValidatingType = typeof(System.DateTime);
+            this.txtNascimento.Leave += new System.EventHandler(this.txtNascimento_Leave);
             // 
             // txtSenha
             // 
@@ -110,11 +111,24 @@
             this.txtNome.Size = new System.Drawing.Size(267, 20);
             this.txtNome.TabIndex = 19;
             // 
+            // btnExcluir
+            // 
+            this.btnExcluir.BackColor = System.Drawing.Color.Red;
+            this.btnExcluir.ForeColor = System.Drawing.Color.White;
+            this.btnExcluir.Location = new System.Drawing.Point(278, 227);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 24;
+            this.btnExcluir.Text = "Excluir conta";
+            this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
             // EditarPerfil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 483);
+            this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.txtNascimento);
             this.Controls.Add(this.txtSenha);
@@ -126,6 +140,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EditarPerfil";
             this.Text = "EditarPerfil";
+            this.Load += new System.EventHandler(this.EditarPerfil_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,5 +156,6 @@
         private System.Windows.Forms.MaskedTextBox txtNascimento;
         private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.Button btnExcluir;
     }
 }

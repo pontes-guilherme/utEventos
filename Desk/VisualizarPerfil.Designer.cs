@@ -30,9 +30,13 @@
         {
             this.title = new System.Windows.Forms.Label();
             this.Nascimento = new System.Windows.Forms.Label();
-            this.Senha = new System.Windows.Forms.Label();
             this.Email = new System.Windows.Forms.Label();
             this.Nome = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblTipo = new System.Windows.Forms.Label();
+            this.lblNasc = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblNome = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // title
@@ -49,20 +53,11 @@
             // Nascimento
             // 
             this.Nascimento.AutoSize = true;
-            this.Nascimento.Location = new System.Drawing.Point(98, 210);
+            this.Nascimento.Location = new System.Drawing.Point(98, 181);
             this.Nascimento.Name = "Nascimento";
             this.Nascimento.Size = new System.Drawing.Size(63, 13);
             this.Nascimento.TabIndex = 17;
             this.Nascimento.Text = "Nascimento";
-            // 
-            // Senha
-            // 
-            this.Senha.AutoSize = true;
-            this.Senha.Location = new System.Drawing.Point(123, 184);
-            this.Senha.Name = "Senha";
-            this.Senha.Size = new System.Drawing.Size(38, 13);
-            this.Senha.TabIndex = 16;
-            this.Senha.Text = "Senha";
             // 
             // Email
             // 
@@ -82,19 +77,69 @@
             this.Nome.TabIndex = 14;
             this.Nome.Text = "Nome";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(126, 207);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Tipo";
+            // 
+            // lblTipo
+            // 
+            this.lblTipo.AutoSize = true;
+            this.lblTipo.Location = new System.Drawing.Point(167, 207);
+            this.lblTipo.Name = "lblTipo";
+            this.lblTipo.Size = new System.Drawing.Size(10, 13);
+            this.lblTipo.TabIndex = 30;
+            this.lblTipo.Text = " ";
+            // 
+            // lblNasc
+            // 
+            this.lblNasc.AutoSize = true;
+            this.lblNasc.Location = new System.Drawing.Point(167, 181);
+            this.lblNasc.Name = "lblNasc";
+            this.lblNasc.Size = new System.Drawing.Size(10, 13);
+            this.lblNasc.TabIndex = 29;
+            this.lblNasc.Text = " ";
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Location = new System.Drawing.Point(167, 155);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(10, 13);
+            this.lblEmail.TabIndex = 28;
+            this.lblEmail.Text = " ";
+            // 
+            // lblNome
+            // 
+            this.lblNome.AutoSize = true;
+            this.lblNome.Location = new System.Drawing.Point(167, 129);
+            this.lblNome.Name = "lblNome";
+            this.lblNome.Size = new System.Drawing.Size(10, 13);
+            this.lblNome.TabIndex = 27;
+            this.lblNome.Text = " ";
+            // 
             // VisualizarPerfil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 483);
+            this.Controls.Add(this.lblTipo);
+            this.Controls.Add(this.lblNasc);
+            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.lblNome);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Nascimento);
-            this.Controls.Add(this.Senha);
             this.Controls.Add(this.Email);
             this.Controls.Add(this.Nome);
             this.Controls.Add(this.title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "VisualizarPerfil";
             this.Text = "Visualizar";
+            this.Load += new System.EventHandler(this.VisualizarPerfil_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,8 +149,12 @@
 
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Label Nascimento;
-        private System.Windows.Forms.Label Senha;
         private System.Windows.Forms.Label Email;
         private System.Windows.Forms.Label Nome;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTipo;
+        private System.Windows.Forms.Label lblNasc;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblNome;
     }
 }

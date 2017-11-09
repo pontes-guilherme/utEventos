@@ -36,8 +36,6 @@
             this.Registrar = new System.Windows.Forms.Button();
             this.RecuperarSenha = new System.Windows.Forms.LinkLabel();
             this.utEventos = new System.Windows.Forms.Label();
-            this.performanceCounter1 = new System.Diagnostics.PerformanceCounter();
-            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).BeginInit();
             this.SuspendLayout();
             // 
             // Email
@@ -64,6 +62,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(266, 20);
             this.txtEmail.TabIndex = 1;
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
             // 
             // txtSenha
             // 
@@ -73,6 +72,7 @@
             this.txtSenha.Size = new System.Drawing.Size(266, 20);
             this.txtSenha.TabIndex = 2;
             this.txtSenha.UseSystemPasswordChar = true;
+            this.txtSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSenha_KeyDown);
             // 
             // Entrar
             // 
@@ -146,6 +146,5 @@
         private System.Windows.Forms.Button Registrar;
         private System.Windows.Forms.LinkLabel RecuperarSenha;
         private System.Windows.Forms.Label utEventos;
-        private System.Diagnostics.PerformanceCounter performanceCounter1;
     }
 }

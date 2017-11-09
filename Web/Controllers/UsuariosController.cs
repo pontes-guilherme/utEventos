@@ -51,9 +51,13 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Usuarios.Add(usuario);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Usuarios.Add(usuario);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+               catch (Exception) { }
             }
 
             return View(usuario);
@@ -91,7 +95,7 @@ namespace Web.Controllers
         }
 
         // GET: Usuarios/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
