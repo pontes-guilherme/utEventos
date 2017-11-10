@@ -81,6 +81,11 @@
     <Compile Include="CadastroEventos.Designer.cs">
       <DependentUpon>CadastroEventos.cs</DependentUpon>
     </Compile>
+    <Compile Include="dbEventosDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbEventosDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EditarPerfil.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +103,12 @@
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeusEventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MeusEventos.Designer.cs">
+      <DependentUpon>MeusEventos.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,6 +142,9 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MeusEventos.resx">
+      <DependentUpon>MeusEventos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -149,6 +163,17 @@
     <EmbeddedResource Include="VisualizarPerfil.resx">
       <DependentUpon>VisualizarPerfil.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="dbEventosDataSet.xsc">
+      <DependentUpon>dbEventosDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dbEventosDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbEventosDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbEventosDataSet.xss">
+      <DependentUpon>dbEventosDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

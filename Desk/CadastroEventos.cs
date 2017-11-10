@@ -16,15 +16,61 @@ namespace Desk
     public partial class CadastroEventos : Form
     {
         Usuario currentUser;
+        Evento evento;
 
         public CadastroEventos(Usuario u)
         {
             InitializeComponent();
             currentUser = u;
+            
         }
 
         private void CadastroEventos_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+
+            evento = new Evento();
+
+            DateTime data_inicio = DateTime.Parse(dtInicio.Text);
+            DateTime data_fim = DateTime.Parse(dtFim.Text);
+
+            if (data_inicio > data_fim)
+            {
+                MessageBox.Show("Data fim deve ser maior ou igual à data início!");
+                return;
+            }
+
+            try
+            {
+                evento.criador = currentUser.email;
+                evento.nome = txtNome.Text;
+                evento.data_inicio = DateTime.Parse(dtInicio.Text);
+                evento.data_fim = DateTime.Parse(dtFim.Text);
+                evento.importante = ckbImportante.Checked;
+                evento.categoria = cmbCategoria.Text;
+                //MODIFICAR ESCOPO
+                evento.escopo = currentUser.tipo;
+
+                if (!pnEventos.Inserir(evento))
+                {
+                    MessageBox.Show("Problema na inserção de evento!");
+                }
+                else
+                {
+                    MessageBox.Show("Cadastro realizado com sucesso.");
+                    this.Hide();
+                }
+            }
+
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show(ex.ToString());
+            }
 
         }
     }

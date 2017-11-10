@@ -82,5 +82,15 @@ namespace Desk
             mainPanel.Controls.Add(embeddedForm);
             this.Invalidate();
         }
+
+        private void lnkEvenPes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            mainPanel.Controls.Remove(embeddedForm);
+            embeddedForm = new MeusEventos(currentUser);
+            embeddedForm.TopLevel = false;
+            embeddedForm.Visible = true;
+            mainPanel.Controls.Add(embeddedForm);
+            this.Invalidate();
+        }
     }
 }

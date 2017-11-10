@@ -165,6 +165,7 @@
             this.lnkEvenPes.TabStop = true;
             this.lnkEvenPes.Text = "Meus Eventos";
             this.lnkEvenPes.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkEvenPes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEvenPes_LinkClicked);
             // 
             // lnkEvenDis
             // 
