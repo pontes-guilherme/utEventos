@@ -105,6 +105,7 @@
             this.cmbCategoria.Name = "cmbCategoria";
             this.cmbCategoria.Size = new System.Drawing.Size(212, 21);
             this.cmbCategoria.TabIndex = 16;
+            this.cmbCategoria.Text = "Outro";
             // 
             // label2
             // 

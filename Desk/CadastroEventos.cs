@@ -22,7 +22,9 @@ namespace Desk
         {
             InitializeComponent();
             currentUser = u;
-            
+
+            this.cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
+
         }
 
         private void CadastroEventos_Load(object sender, EventArgs e)
@@ -42,10 +44,17 @@ namespace Desk
             {
                 MessageBox.Show("Data fim deve ser maior ou igual à data início!");
                 return;
+            } 
+
+            if (txtNome.Text == "" || cmbCategoria.Text=="")
+            {
+                MessageBox.Show("Os campos devem ser corretament preenchidos!");
+                return;
             }
 
             try
             {
+
                 evento.criador = currentUser.email;
                 evento.nome = txtNome.Text;
                 evento.data_inicio = DateTime.Parse(dtInicio.Text);
@@ -68,7 +77,7 @@ namespace Desk
 
             catch (Exception ex)
             {
-                
+                //throw;
                 MessageBox.Show(ex.ToString());
             }
 

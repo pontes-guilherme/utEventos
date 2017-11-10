@@ -11,16 +11,23 @@ namespace Modelo.DAO
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Evento
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
         public int Id { get; set; }
+        
         public string nome { get; set; }
         public System.DateTime data_inicio { get; set; }
         public System.DateTime data_fim { get; set; }
         public string categoria { get; set; }
         public string escopo { get; set; }
         public bool importante { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public System.DateTime data_criacao { get; set; }
         public string criador { get; set; }
     

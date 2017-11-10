@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Modelo.PN
 {
@@ -14,7 +15,8 @@ namespace Modelo.PN
             try
             {
                 dbEventosEntities db = new dbEventosEntities();
-                
+                e.Id = getLasId();
+                //e.data_criacao = GetTimestamp(DateTime.Now);
                 db.Eventoes.Add(e);
                 db.SaveChanges();
 
@@ -46,6 +48,26 @@ namespace Modelo.PN
             {
                 throw;
             }
+        }
+
+        public static int getLasId()
+        {
+
+            dbEventosEntities db = new dbEventosEntities();
+            try
+            {
+                int id = db.Eventoes.Max(p => p.Id);
+                //Console.WriteLine(e.Id.ToString());
+                if (id >= 0)
+                {
+                    return id + 1;
+                }
+            } catch (Exception)
+            {
+                return 0;
+            }
+
+            return 0;
         }
     }
 }
