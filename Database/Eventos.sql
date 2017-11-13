@@ -4,7 +4,7 @@
     [nome] VARCHAR(50) NOT NULL, 
     [data_inicio] DATE NOT NULL, 
     [data_fim] DATE NOT NULL, 
-    [categoria] NVARCHAR(50) NOT NULL, 
+    [categoria] VARCHAR(50) NOT NULL, 
     [escopo] NVARCHAR(20) NOT NULL, 
     [importante] BIT NOT NULL, 
     [data_criacao] DATETIME2 DEFAULT GETDATE(), 

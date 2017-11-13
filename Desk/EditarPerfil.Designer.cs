@@ -44,7 +44,7 @@
             this.title.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.title.AutoSize = true;
             this.title.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title.Location = new System.Drawing.Point(255, 9);
+            this.title.Location = new System.Drawing.Point(290, 9);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(90, 18);
             this.title.TabIndex = 11;
@@ -53,7 +53,7 @@
             // Nascimento
             // 
             this.Nascimento.AutoSize = true;
-            this.Nascimento.Location = new System.Drawing.Point(98, 181);
+            this.Nascimento.Location = new System.Drawing.Point(148, 199);
             this.Nascimento.Name = "Nascimento";
             this.Nascimento.Size = new System.Drawing.Size(63, 13);
             this.Nascimento.TabIndex = 17;
@@ -62,7 +62,7 @@
             // Senha
             // 
             this.Senha.AutoSize = true;
-            this.Senha.Location = new System.Drawing.Point(123, 155);
+            this.Senha.Location = new System.Drawing.Point(173, 173);
             this.Senha.Name = "Senha";
             this.Senha.Size = new System.Drawing.Size(38, 13);
             this.Senha.TabIndex = 16;
@@ -71,7 +71,7 @@
             // Nome
             // 
             this.Nome.AutoSize = true;
-            this.Nome.Location = new System.Drawing.Point(126, 129);
+            this.Nome.Location = new System.Drawing.Point(176, 147);
             this.Nome.Name = "Nome";
             this.Nome.Size = new System.Drawing.Size(35, 13);
             this.Nome.TabIndex = 14;
@@ -79,7 +79,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(359, 227);
+            this.btnEditar.Location = new System.Drawing.Point(409, 245);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 23;
@@ -89,7 +89,7 @@
             // 
             // txtNascimento
             // 
-            this.txtNascimento.Location = new System.Drawing.Point(167, 181);
+            this.txtNascimento.Location = new System.Drawing.Point(217, 199);
             this.txtNascimento.Mask = "00/00/0000";
             this.txtNascimento.Name = "txtNascimento";
             this.txtNascimento.Size = new System.Drawing.Size(100, 20);
@@ -98,7 +98,7 @@
             // 
             // txtSenha
             // 
-            this.txtSenha.Location = new System.Drawing.Point(167, 155);
+            this.txtSenha.Location = new System.Drawing.Point(217, 173);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(267, 20);
             this.txtSenha.TabIndex = 21;
@@ -106,14 +106,14 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(167, 129);
+            this.txtNome.Location = new System.Drawing.Point(217, 147);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(267, 20);
             this.txtNome.TabIndex = 19;
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(278, 227);
+            this.btnExcluir.Location = new System.Drawing.Point(328, 245);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 25;

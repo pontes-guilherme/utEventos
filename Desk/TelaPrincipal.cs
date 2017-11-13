@@ -24,6 +24,16 @@ namespace Desk
 
             //default form 
             embeddedForm = new CadastroEventos(u);
+
+            //Exibe o tipo de conta na label
+            lblTipoConta.Text = u.tipo;
+
+            //Categorias só podem ser manipuladas por administradores
+            grpCategorias.Visible = false;
+            if (u.tipo == "Administrador")
+            {
+                grpCategorias.Visible = true;
+            }
         }
 
         private void TelaPrincipal_Load(object sender, EventArgs e)
@@ -87,6 +97,16 @@ namespace Desk
         {
             mainPanel.Controls.Remove(embeddedForm);
             embeddedForm = new MeusEventos(currentUser);
+            embeddedForm.TopLevel = false;
+            embeddedForm.Visible = true;
+            mainPanel.Controls.Add(embeddedForm);
+            this.Invalidate();
+        }
+
+        private void lnkCategoriaCad_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            mainPanel.Controls.Remove(embeddedForm);
+            embeddedForm = new CadastroCategoria(currentUser);
             embeddedForm.TopLevel = false;
             embeddedForm.Visible = true;
             mainPanel.Controls.Add(embeddedForm);

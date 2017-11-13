@@ -30,6 +30,9 @@
         {
             this.utEventos = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.grpCategorias = new System.Windows.Forms.GroupBox();
+            this.lnkCategoriaCad = new System.Windows.Forms.LinkLabel();
+            this.lblTipoConta = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lnkCalSem = new System.Windows.Forms.LinkLabel();
             this.lnkCalMen = new System.Windows.Forms.LinkLabel();
@@ -46,6 +49,7 @@
             this.lnkSair = new System.Windows.Forms.LinkLabel();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.grpCategorias.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -56,7 +60,7 @@
             this.utEventos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.utEventos.AutoSize = true;
             this.utEventos.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.utEventos.Location = new System.Drawing.Point(44, 9);
+            this.utEventos.Location = new System.Drawing.Point(37, 8);
             this.utEventos.Name = "utEventos";
             this.utEventos.Size = new System.Drawing.Size(100, 23);
             this.utEventos.TabIndex = 9;
@@ -66,6 +70,8 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.grpCategorias);
+            this.panel1.Controls.Add(this.lblTipoConta);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
@@ -76,12 +82,52 @@
             this.panel1.Size = new System.Drawing.Size(193, 522);
             this.panel1.TabIndex = 10;
             // 
+            // grpCategorias
+            // 
+            this.grpCategorias.Controls.Add(this.lnkCategoriaCad);
+            this.grpCategorias.Location = new System.Drawing.Point(3, 432);
+            this.grpCategorias.Name = "grpCategorias";
+            this.grpCategorias.Size = new System.Drawing.Size(171, 85);
+            this.grpCategorias.TabIndex = 14;
+            this.grpCategorias.TabStop = false;
+            this.grpCategorias.Text = "Categorias";
+            this.grpCategorias.Visible = false;
+            // 
+            // lnkCategoriaCad
+            // 
+            this.lnkCategoriaCad.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkCategoriaCad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lnkCategoriaCad.AutoSize = true;
+            this.lnkCategoriaCad.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lnkCategoriaCad.LinkColor = System.Drawing.Color.Black;
+            this.lnkCategoriaCad.Location = new System.Drawing.Point(20, 32);
+            this.lnkCategoriaCad.Name = "lnkCategoriaCad";
+            this.lnkCategoriaCad.Size = new System.Drawing.Size(53, 13);
+            this.lnkCategoriaCad.TabIndex = 8;
+            this.lnkCategoriaCad.TabStop = true;
+            this.lnkCategoriaCad.Text = "Gerenciar";
+            this.lnkCategoriaCad.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkCategoriaCad.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCategoriaCad_LinkClicked);
+            // 
+            // lblTipoConta
+            // 
+            this.lblTipoConta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTipoConta.AutoSize = true;
+            this.lblTipoConta.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipoConta.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.lblTipoConta.Location = new System.Drawing.Point(32, 42);
+            this.lblTipoConta.Name = "lblTipoConta";
+            this.lblTipoConta.Size = new System.Drawing.Size(123, 25);
+            this.lblTipoConta.TabIndex = 0;
+            this.lblTipoConta.Text = "lblTipoConta";
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.lnkCalSem);
             this.groupBox3.Controls.Add(this.lnkCalMen);
             this.groupBox3.Controls.Add(this.lnkCalDia);
-            this.groupBox3.Location = new System.Drawing.Point(5, 330);
+            this.groupBox3.Location = new System.Drawing.Point(3, 326);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(171, 100);
             this.groupBox3.TabIndex = 12;
@@ -133,7 +179,7 @@
             this.groupBox2.Controls.Add(this.lnkEvenPes);
             this.groupBox2.Controls.Add(this.lnkEvenDis);
             this.groupBox2.Controls.Add(this.lnkEvenNovo);
-            this.groupBox2.Location = new System.Drawing.Point(3, 202);
+            this.groupBox2.Location = new System.Drawing.Point(3, 198);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(171, 122);
             this.groupBox2.TabIndex = 11;
@@ -202,7 +248,7 @@
             this.groupBox1.Controls.Add(this.lnkSair);
             this.groupBox1.Location = new System.Drawing.Point(3, 70);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(171, 126);
+            this.groupBox1.Size = new System.Drawing.Size(171, 122);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Conta";
@@ -211,9 +257,10 @@
             // lnkFeed
             // 
             this.lnkFeed.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkFeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lnkFeed.AutoSize = true;
             this.lnkFeed.LinkColor = System.Drawing.Color.Black;
-            this.lnkFeed.Location = new System.Drawing.Point(20, 54);
+            this.lnkFeed.Location = new System.Drawing.Point(20, 22);
             this.lnkFeed.Name = "lnkFeed";
             this.lnkFeed.Size = new System.Drawing.Size(31, 13);
             this.lnkFeed.TabIndex = 1;
@@ -224,9 +271,10 @@
             // lnkVerPerfil
             // 
             this.lnkVerPerfil.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkVerPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lnkVerPerfil.AutoSize = true;
             this.lnkVerPerfil.LinkColor = System.Drawing.Color.Black;
-            this.lnkVerPerfil.Location = new System.Drawing.Point(20, 78);
+            this.lnkVerPerfil.Location = new System.Drawing.Point(20, 46);
             this.lnkVerPerfil.Name = "lnkVerPerfil";
             this.lnkVerPerfil.Size = new System.Drawing.Size(77, 13);
             this.lnkVerPerfil.TabIndex = 2;
@@ -238,9 +286,10 @@
             // lnkEditarPerfil
             // 
             this.lnkEditarPerfil.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkEditarPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lnkEditarPerfil.AutoSize = true;
             this.lnkEditarPerfil.LinkColor = System.Drawing.Color.Black;
-            this.lnkEditarPerfil.Location = new System.Drawing.Point(20, 101);
+            this.lnkEditarPerfil.Location = new System.Drawing.Point(20, 69);
             this.lnkEditarPerfil.Name = "lnkEditarPerfil";
             this.lnkEditarPerfil.Size = new System.Drawing.Size(60, 13);
             this.lnkEditarPerfil.TabIndex = 3;
@@ -252,9 +301,10 @@
             // lnkSair
             // 
             this.lnkSair.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkSair.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lnkSair.AutoSize = true;
             this.lnkSair.LinkColor = System.Drawing.Color.Black;
-            this.lnkSair.Location = new System.Drawing.Point(20, 27);
+            this.lnkSair.Location = new System.Drawing.Point(20, 91);
             this.lnkSair.Name = "lnkSair";
             this.lnkSair.Size = new System.Drawing.Size(25, 13);
             this.lnkSair.TabIndex = 0;
@@ -289,6 +339,8 @@
             this.Load += new System.EventHandler(this.TelaPrincipal_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.grpCategorias.ResumeLayout(false);
+            this.grpCategorias.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -318,5 +370,8 @@
         private System.Windows.Forms.LinkLabel lnkEvenDis;
         private System.Windows.Forms.LinkLabel lnkEvenNovo;
         private System.Windows.Forms.LinkLabel lnkFeed;
+        private System.Windows.Forms.Label lblTipoConta;
+        private System.Windows.Forms.GroupBox grpCategorias;
+        private System.Windows.Forms.LinkLabel lnkCategoriaCad;
     }
 }

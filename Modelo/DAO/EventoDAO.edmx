@@ -4,52 +4,76 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbEventosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Evento">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="data_inicio" Type="date" Nullable="false" />
-          <Property Name="data_fim" Type="date" Nullable="false" />
-          <Property Name="categoria" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="escopo" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="importante" Type="bit" Nullable="false" />
-          <Property Name="data_criacao" Type="date" Nullable="false" />
-          <Property Name="criador" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Usuarios">
-          <Key>
-            <PropertyRef Name="email" />
-          </Key>
-          <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="senha" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="data_nascimento" Type="date" />
-          <Property Name="tipo" Type="nvarchar" MaxLength="20" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Evento_Usuarios">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
-          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="email" />
-            </Principal>
-            <Dependent Role="Evento">
-              <PropertyRef Name="criador" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="dbEventosModelStoreContainer">
-          <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Evento_Usuarios" Association="Self.FK_Evento_Usuarios">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Evento" EntitySet="Evento" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="dbEventosModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="dbEventosModelStoreContainer">
+    <EntitySet Name="Eventoes" EntityType="dbEventosModel.Store.Eventoes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Usuarios" EntityType="dbEventosModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categorias" EntityType="dbEventosModel.Store.Categorias" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Evento_Usuarios" Association="dbEventosModel.Store.FK_Evento_Usuarios">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Evento" EntitySet="Eventoes" />
+    </AssociationSet>
+    <AssociationSet Name="EventoCategoria" Association="dbEventosModel.Store.EventoCategoria">
+      <End Role="Evento" EntitySet="Eventoes" />
+      <End Role="Categoria" EntitySet="Categorias" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Eventoes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="nome" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="data_inicio" Type="datetime" Nullable="false" />
+    <Property Name="data_fim" Type="datetime" Nullable="false" />
+    <Property Name="categoria" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="escopo" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="importante" Type="bit" Nullable="false" />
+    <Property Name="data_criacao" Type="datetime" Nullable="true" />
+    <Property Name="criador" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Categoria_nome" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="nome" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="senha" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="data_nascimento" Type="datetime" Nullable="true" />
+    <Property Name="tipo" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="nome" />
+    </Key>
+    <Property Name="nome" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Evento_Usuarios">
+    <End Role="Usuario" Type="dbEventosModel.Store.Usuarios" Multiplicity="1" />
+    <End Role="Evento" Type="dbEventosModel.Store.Eventoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="email" />
+      </Principal>
+      <Dependent Role="Evento">
+        <PropertyRef Name="criador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EventoCategoria">
+    <End Role="Evento" Type="dbEventosModel.Store.Eventoes" Multiplicity="*" />
+    <End Role="Categoria" Type="dbEventosModel.Store.Categorias" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="nome" />
+      </Principal>
+      <Dependent Role="Evento">
+        <PropertyRef Name="Categoria_nome" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbEventosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -64,9 +88,10 @@
           <Property Name="categoria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="escopo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="importante" Type="Boolean" Nullable="false" />
-          <Property Name="data_criacao" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="data_criacao" Type="DateTime" Precision="7" />
           <Property Name="criador" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Usuario" Relationship="dbEventosModel.FK_Evento_Usuarios" FromRole="Evento" ToRole="Usuario" />
+          <NavigationProperty Name="Categoria" Relationship="dbEventosModel.EventoCategoria" FromRole="Evento" ToRole="Categoria" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -86,6 +111,11 @@
             <End Role="Usuario" EntitySet="Usuarios" />
             <End Role="Evento" EntitySet="Eventoes" />
           </AssociationSet>
+          <EntitySet Name="Categorias" EntityType="dbEventosModel.Categoria" />
+          <AssociationSet Name="EventoCategoria" Association="dbEventosModel.EventoCategoria">
+            <End Role="Evento" EntitySet="Eventoes" />
+            <End Role="Categoria" EntitySet="Categorias" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Evento_Usuarios">
           <End Type="dbEventosModel.Usuario" Role="Usuario" Multiplicity="1" />
@@ -99,41 +129,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="nome" />
+          </Key>
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Eventoes" Relationship="dbEventosModel.EventoCategoria" FromRole="Categoria" ToRole="Evento" />
+        </EntityType>
+        <Association Name="EventoCategoria">
+          <End Type="dbEventosModel.Evento" Role="Evento" Multiplicity="*" />
+          <End Type="dbEventosModel.Categoria" Role="Categoria" Multiplicity="1" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="dbEventosModelStoreContainer" CdmEntityContainer="dbEventosEntities">
-          <EntitySetMapping Name="Eventoes">
-            <EntityTypeMapping TypeName="dbEventosModel.Evento">
-              <MappingFragment StoreEntitySet="Evento">
-                <ScalarProperty Name="criador" ColumnName="criador" />
-                <ScalarProperty Name="data_criacao" ColumnName="data_criacao" />
-                <ScalarProperty Name="importante" ColumnName="importante" />
-                <ScalarProperty Name="escopo" ColumnName="escopo" />
-                <ScalarProperty Name="categoria" ColumnName="categoria" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="nome" ColumnName="nome" />
-                <ScalarProperty Name="data_inicio" ColumnName="data_inicio" />
-                <ScalarProperty Name="data_fim" ColumnName="data_fim" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="dbEventosModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuarios">
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="nome" ColumnName="nome" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="senha" ColumnName="senha" />
-                <ScalarProperty Name="data_nascimento" ColumnName="data_nascimento" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbEventosModelStoreContainer" CdmEntityContainer="dbEventosEntities">
+    <EntitySetMapping Name="Eventoes">
+      <EntityTypeMapping TypeName="IsTypeOf(dbEventosModel.Evento)">
+        <MappingFragment StoreEntitySet="Eventoes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="data_inicio" ColumnName="data_inicio" />
+          <ScalarProperty Name="data_fim" ColumnName="data_fim" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+          <ScalarProperty Name="escopo" ColumnName="escopo" />
+          <ScalarProperty Name="importante" ColumnName="importante" />
+          <ScalarProperty Name="data_criacao" ColumnName="data_criacao" />
+          <ScalarProperty Name="criador" ColumnName="criador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="IsTypeOf(dbEventosModel.Usuario)">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="data_nascimento" ColumnName="data_nascimento" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="IsTypeOf(dbEventosModel.Categoria)">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="EventoCategoria" TypeName="dbEventosModel.EventoCategoria" StoreEntitySet="Eventoes">
+      <EndProperty Name="Categoria">
+        <ScalarProperty Name="nome" ColumnName="Categoria_nome" />
+      </EndProperty>
+      <EndProperty Name="Evento">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -147,7 +202,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

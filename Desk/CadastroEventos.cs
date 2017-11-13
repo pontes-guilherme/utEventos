@@ -17,6 +17,8 @@ namespace Desk
     {
         Usuario currentUser;
         Evento evento;
+        
+        List<Categoria> lista_categorias = pnCategorias.Listar();
 
         public CadastroEventos(Usuario u)
         {
@@ -24,12 +26,19 @@ namespace Desk
             currentUser = u;
 
             this.cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
+            int i = 0;
+            lista_categorias.ForEach(delegate (Categoria c) {
+
+                cmbCategoria.Items.Insert(i, c.nome.ToString());
+                i++;
+            });
 
         }
 
         private void CadastroEventos_Load(object sender, EventArgs e)
         {
-
+            //seleciona o primeiro item das categorias por default
+            cmbCategoria.SelectedIndex = 0;
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)

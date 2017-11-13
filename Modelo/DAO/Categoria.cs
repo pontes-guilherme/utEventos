@@ -12,19 +12,17 @@ namespace Modelo.DAO
     using System;
     using System.Collections.Generic;
     
-    public partial class Evento
+    public partial class Categoria
     {
-        public int Id { get; set; }
-        public string nome { get; set; }
-        public System.DateTime data_inicio { get; set; }
-        public System.DateTime data_fim { get; set; }
-        public string categoria { get; set; }
-        public string escopo { get; set; }
-        public bool importante { get; set; }
-        public Nullable<System.DateTime> data_criacao { get; set; }
-        public string criador { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Categoria()
+        {
+            this.Eventoes = new HashSet<Evento>();
+        }
     
-        public virtual Usuario Usuario { get; set; }
-        public virtual Categoria Categoria { get; set; }
+        public string nome { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Evento> Eventoes { get; set; }
     }
 }

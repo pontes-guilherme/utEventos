@@ -20,6 +20,7 @@ namespace Desk
             dbEventosDataSet.EventoDataTable eventoDT = new dbEventosDataSet.EventoDataTable();
             eventoTableAdapter.Fill(eventoDT);
             dataGridView1.DataSource = eventoDT;
+            //((DataTable)dataGridView1.DataSource).DefaultView.RowFilter = "criador = " + u.email;
         }
 
         private void MeusEventos_Load(object sender, EventArgs e)

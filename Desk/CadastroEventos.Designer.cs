@@ -95,12 +95,6 @@
             // cmbCategoria
             // 
             this.cmbCategoria.FormattingEnabled = true;
-            this.cmbCategoria.Items.AddRange(new object[] {
-            "Minicurso",
-            "Palestra",
-            "Prova",
-            "Seminário",
-            "Workshop"});
             this.cmbCategoria.Location = new System.Drawing.Point(250, 190);
             this.cmbCategoria.Name = "cmbCategoria";
             this.cmbCategoria.Size = new System.Drawing.Size(212, 21);
