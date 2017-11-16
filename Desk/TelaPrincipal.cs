@@ -112,5 +112,35 @@ namespace Desk
             mainPanel.Controls.Add(embeddedForm);
             this.Invalidate();
         }
+
+        private void lnkCalMen_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            mainPanel.Controls.Remove(embeddedForm);
+            embeddedForm = new VisualizarCalendario(currentUser, "mes");
+            embeddedForm.TopLevel = false;
+            embeddedForm.Visible = true;
+            mainPanel.Controls.Add(embeddedForm);
+            this.Invalidate();
+        }
+
+        private void lnkCalSem_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            mainPanel.Controls.Remove(embeddedForm);
+            embeddedForm = new VisualizarCalendario(currentUser, "semana");
+            embeddedForm.TopLevel = false;
+            embeddedForm.Visible = true;
+            mainPanel.Controls.Add(embeddedForm);
+            this.Invalidate();
+        }
+
+        private void lnkCalDia_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            mainPanel.Controls.Remove(embeddedForm);
+            embeddedForm = new VisualizarCalendario(currentUser, "dia");
+            embeddedForm.TopLevel = false;
+            embeddedForm.Visible = true;
+            mainPanel.Controls.Add(embeddedForm);
+            this.Invalidate();
+        }
     }
 }

@@ -30,24 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             this.title = new System.Windows.Forms.Label();
+            this.dbEventosDataSet = new Desk.dbEventosDataSet();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.fillByToolStrip = new System.Windows.Forms.ToolStrip();
             this.emailToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.emailToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.fillByToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datainicioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datafimDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.escopoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.importanteDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.eventoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dbEventosDataSet = new Desk.dbEventosDataSet();
+            this.fillByEmailToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.fillByEmailToolStrip = new System.Windows.Forms.ToolStrip();
             this.eventoTableAdapter = new Desk.dbEventosDataSetTableAdapters.EventoTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.fillByToolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.eventoBindingSource)).BeginInit();
+            this.eventoTableAdapter1 = new Modelo.DatabaseDataSetTableAdapters.EventoTableAdapter();
+            this.dbEventosDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tableAdapterManager = new Desk.dbEventosDataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.fillByEmailToolStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // title
@@ -61,39 +57,21 @@
             this.title.TabIndex = 12;
             this.title.Text = "Meus Eventos";
             // 
+            // dbEventosDataSet
+            // 
+            this.dbEventosDataSet.DataSetName = "dbEventosDataSet";
+            this.dbEventosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nomeDataGridViewTextBoxColumn,
-            this.datainicioDataGridViewTextBoxColumn,
-            this.datafimDataGridViewTextBoxColumn,
-            this.categoriaDataGridViewTextBoxColumn,
-            this.escopoDataGridViewTextBoxColumn,
-            this.importanteDataGridViewCheckBoxColumn});
-            this.dataGridView1.DataSource = this.eventoBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(26, 81);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(643, 348);
             this.dataGridView1.TabIndex = 13;
-            // 
-            // fillByToolStrip
-            // 
-            this.fillByToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.emailToolStripLabel,
-            this.emailToolStripTextBox,
-            this.fillByToolStripButton});
-            this.fillByToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.fillByToolStrip.Name = "fillByToolStrip";
-            this.fillByToolStrip.Size = new System.Drawing.Size(697, 25);
-            this.fillByToolStrip.TabIndex = 14;
-            this.fillByToolStrip.Text = "fillByToolStrip";
-            this.fillByToolStrip.Visible = false;
             // 
             // emailToolStripLabel
             // 
@@ -106,87 +84,63 @@
             this.emailToolStripTextBox.Name = "emailToolStripTextBox";
             this.emailToolStripTextBox.Size = new System.Drawing.Size(100, 25);
             // 
-            // fillByToolStripButton
+            // fillByEmailToolStripButton
             // 
-            this.fillByToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.fillByToolStripButton.Name = "fillByToolStripButton";
-            this.fillByToolStripButton.Size = new System.Drawing.Size(39, 22);
-            this.fillByToolStripButton.Text = "FillBy";
-            this.fillByToolStripButton.Click += new System.EventHandler(this.fillByToolStripButton_Click);
+            this.fillByEmailToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fillByEmailToolStripButton.Name = "fillByEmailToolStripButton";
+            this.fillByEmailToolStripButton.Size = new System.Drawing.Size(68, 22);
+            this.fillByEmailToolStripButton.Text = "FillByEmail";
+            this.fillByEmailToolStripButton.Click += new System.EventHandler(this.fillByEmailToolStripButton_Click_3);
             // 
-            // nomeDataGridViewTextBoxColumn
+            // fillByEmailToolStrip
             // 
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "nome";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "nome";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            this.nomeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // datainicioDataGridViewTextBoxColumn
-            // 
-            this.datainicioDataGridViewTextBoxColumn.DataPropertyName = "data_inicio";
-            this.datainicioDataGridViewTextBoxColumn.HeaderText = "data_inicio";
-            this.datainicioDataGridViewTextBoxColumn.Name = "datainicioDataGridViewTextBoxColumn";
-            this.datainicioDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // datafimDataGridViewTextBoxColumn
-            // 
-            this.datafimDataGridViewTextBoxColumn.DataPropertyName = "data_fim";
-            this.datafimDataGridViewTextBoxColumn.HeaderText = "data_fim";
-            this.datafimDataGridViewTextBoxColumn.Name = "datafimDataGridViewTextBoxColumn";
-            this.datafimDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // categoriaDataGridViewTextBoxColumn
-            // 
-            this.categoriaDataGridViewTextBoxColumn.DataPropertyName = "categoria";
-            this.categoriaDataGridViewTextBoxColumn.HeaderText = "categoria";
-            this.categoriaDataGridViewTextBoxColumn.Name = "categoriaDataGridViewTextBoxColumn";
-            this.categoriaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // escopoDataGridViewTextBoxColumn
-            // 
-            this.escopoDataGridViewTextBoxColumn.DataPropertyName = "escopo";
-            this.escopoDataGridViewTextBoxColumn.HeaderText = "escopo";
-            this.escopoDataGridViewTextBoxColumn.Name = "escopoDataGridViewTextBoxColumn";
-            this.escopoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // importanteDataGridViewCheckBoxColumn
-            // 
-            this.importanteDataGridViewCheckBoxColumn.DataPropertyName = "importante";
-            this.importanteDataGridViewCheckBoxColumn.HeaderText = "importante";
-            this.importanteDataGridViewCheckBoxColumn.Name = "importanteDataGridViewCheckBoxColumn";
-            this.importanteDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // eventoBindingSource
-            // 
-            this.eventoBindingSource.DataMember = "Evento";
-            this.eventoBindingSource.DataSource = this.dbEventosDataSet;
-            // 
-            // dbEventosDataSet
-            // 
-            this.dbEventosDataSet.DataSetName = "dbEventosDataSet";
-            this.dbEventosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.fillByEmailToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.emailToolStripLabel,
+            this.emailToolStripTextBox,
+            this.fillByEmailToolStripButton});
+            this.fillByEmailToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.fillByEmailToolStrip.Name = "fillByEmailToolStrip";
+            this.fillByEmailToolStrip.Size = new System.Drawing.Size(697, 25);
+            this.fillByEmailToolStrip.TabIndex = 14;
+            this.fillByEmailToolStrip.Text = "fillByEmailToolStrip";
             // 
             // eventoTableAdapter
             // 
             this.eventoTableAdapter.ClearBeforeFill = true;
+            // 
+            // eventoTableAdapter1
+            // 
+            this.eventoTableAdapter1.ClearBeforeFill = true;
+            // 
+            // dbEventosDataSetBindingSource
+            // 
+            this.dbEventosDataSetBindingSource.DataSource = this.dbEventosDataSet;
+            this.dbEventosDataSetBindingSource.Position = 0;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoriasTableAdapter = null;
+            this.tableAdapterManager.Connection = null;
+            this.tableAdapterManager.UpdateOrder = Desk.dbEventosDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // MeusEventos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 483);
-            this.Controls.Add(this.fillByToolStrip);
+            this.Controls.Add(this.fillByEmailToolStrip);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MeusEventos";
             this.Text = "MeusEventos";
             this.Load += new System.EventHandler(this.MeusEventos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.fillByToolStrip.ResumeLayout(false);
-            this.fillByToolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.eventoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.fillByEmailToolStrip.ResumeLayout(false);
+            this.fillByEmailToolStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,19 +149,15 @@
         #endregion
 
         private System.Windows.Forms.Label title;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private dbEventosDataSet dbEventosDataSet;
-        private System.Windows.Forms.BindingSource eventoBindingSource;
-        private dbEventosDataSetTableAdapters.EventoTableAdapter eventoTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datainicioDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datafimDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoriaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn escopoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn importanteDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.ToolStrip fillByToolStrip;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ToolStripLabel emailToolStripLabel;
         private System.Windows.Forms.ToolStripTextBox emailToolStripTextBox;
-        private System.Windows.Forms.ToolStripButton fillByToolStripButton;
+        private System.Windows.Forms.ToolStripButton fillByEmailToolStripButton;
+        private System.Windows.Forms.ToolStrip fillByEmailToolStrip;
+        private dbEventosDataSetTableAdapters.EventoTableAdapter eventoTableAdapter;
+        private Modelo.DatabaseDataSetTableAdapters.EventoTableAdapter eventoTableAdapter1;
+        private System.Windows.Forms.BindingSource dbEventosDataSetBindingSource;
+        private dbEventosDataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }

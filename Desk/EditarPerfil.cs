@@ -24,7 +24,6 @@ namespace Desk
             if (currentUser != null)
             {
                 txtNome.Text = currentUser.nome;
-                txtSenha.Text = currentUser.senha;
                 txtNascimento.Text = currentUser.data_nascimento.ToString();
             }
             else
@@ -35,16 +34,6 @@ namespace Desk
 
         private void EditarPerfil_Load(object sender, EventArgs e)
         {
-            if(currentUser != null)
-            {
-                txtNome.Text = currentUser.nome;
-                txtSenha.Text = currentUser.senha;
-                txtNascimento.Text = currentUser.data_nascimento.ToString();
-            }
-            else
-            {
-                MessageBox.Show("Ops! Algo inesperado ocorreu.");
-            }
         }
         
 
@@ -73,16 +62,7 @@ namespace Desk
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Confirma a exclusão?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
-            {
-                pnUsuarios.Excluir(currentUser);
-
-                MessageBox.Show("Conta encerrada.");
-                this.Hide();
-                Login nextForm = new Login();
-                nextForm.Closed += (s, args) => this.Close();
-                nextForm.Show();
-            }
+           
            
         }
 
@@ -101,6 +81,20 @@ namespace Desk
             else
             {
                 MessageBox.Show("Data Inválida.");
+            }
+        }
+
+        private void btnExcluir_Click_1(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Confirma a exclusão?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+            {
+                pnUsuarios.Excluir(currentUser);
+
+                MessageBox.Show("Conta encerrada.");
+                this.Hide();
+                Login nextForm = new Login();
+                nextForm.Closed += (s, args) => this.Close();
+                nextForm.Show();
             }
         }
     }

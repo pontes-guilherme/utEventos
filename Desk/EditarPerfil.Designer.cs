@@ -30,13 +30,13 @@
         {
             this.title = new System.Windows.Forms.Label();
             this.Nascimento = new System.Windows.Forms.Label();
-            this.Senha = new System.Windows.Forms.Label();
             this.Nome = new System.Windows.Forms.Label();
             this.btnEditar = new System.Windows.Forms.Button();
             this.txtNascimento = new System.Windows.Forms.MaskedTextBox();
-            this.txtSenha = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.btnExcluir = new System.Windows.Forms.Button();
+            this.Senha = new System.Windows.Forms.Label();
+            this.txtSenha = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // title
@@ -58,15 +58,6 @@
             this.Nascimento.Size = new System.Drawing.Size(63, 13);
             this.Nascimento.TabIndex = 17;
             this.Nascimento.Text = "Nascimento";
-            // 
-            // Senha
-            // 
-            this.Senha.AutoSize = true;
-            this.Senha.Location = new System.Drawing.Point(173, 173);
-            this.Senha.Name = "Senha";
-            this.Senha.Size = new System.Drawing.Size(38, 13);
-            this.Senha.TabIndex = 16;
-            this.Senha.Text = "Senha";
             // 
             // Nome
             // 
@@ -96,14 +87,6 @@
             this.txtNascimento.TabIndex = 22;
             this.txtNascimento.Leave += new System.EventHandler(this.txtNascimento_Leave);
             // 
-            // txtSenha
-            // 
-            this.txtSenha.Location = new System.Drawing.Point(217, 173);
-            this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Size = new System.Drawing.Size(267, 20);
-            this.txtSenha.TabIndex = 21;
-            this.txtSenha.UseSystemPasswordChar = true;
-            // 
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(217, 147);
@@ -119,6 +102,24 @@
             this.btnExcluir.TabIndex = 25;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click_1);
+            // 
+            // Senha
+            // 
+            this.Senha.AutoSize = true;
+            this.Senha.Location = new System.Drawing.Point(173, 173);
+            this.Senha.Name = "Senha";
+            this.Senha.Size = new System.Drawing.Size(38, 13);
+            this.Senha.TabIndex = 16;
+            this.Senha.Text = "Senha";
+            // 
+            // txtSenha
+            // 
+            this.txtSenha.Location = new System.Drawing.Point(217, 173);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.Size = new System.Drawing.Size(267, 20);
+            this.txtSenha.TabIndex = 21;
+            this.txtSenha.UseSystemPasswordChar = true;
             // 
             // EditarPerfil
             // 
@@ -147,12 +148,12 @@
 
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Label Nascimento;
-        private System.Windows.Forms.Label Senha;
         private System.Windows.Forms.Label Nome;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.MaskedTextBox txtNascimento;
-        private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Label Senha;
+        private System.Windows.Forms.TextBox txtSenha;
     }
 }

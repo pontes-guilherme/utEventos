@@ -146,6 +146,7 @@
             this.lnkCalSem.TabStop = true;
             this.lnkCalSem.Text = "Semanal";
             this.lnkCalSem.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkCalSem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCalSem_LinkClicked);
             // 
             // lnkCalMen
             // 
@@ -159,6 +160,7 @@
             this.lnkCalMen.TabStop = true;
             this.lnkCalMen.Text = "Mensal";
             this.lnkCalMen.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkCalMen.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCalMen_LinkClicked);
             // 
             // lnkCalDia
             // 
@@ -172,6 +174,7 @@
             this.lnkCalDia.TabStop = true;
             this.lnkCalDia.Text = "Diário";
             this.lnkCalDia.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkCalDia.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCalDia_LinkClicked);
             // 
             // groupBox2
             // 
