@@ -12,12 +12,12 @@ using Modelo.PN;
 
 namespace Desk
 {
-    public partial class Feedback : Form
+    public partial class formSugestoes : Form
     {
-        Modelo.DAO.Feedback fb = new Modelo.DAO.Feedback();
+        Sugesto sugestao = new Sugesto();
         Usuario user;
 
-        public Feedback(Usuario u)
+        public formSugestoes(Usuario u)
         {
             InitializeComponent();
             this.user = u;
@@ -31,21 +31,20 @@ namespace Desk
             try
             {
 
-                fb.titulo = txtTitulo.Text;
-                fb.descricao = txtDescricao.Text;
-                fb.Usuario = this.user;
+                sugestao.titulo = txtTitulo.Text;
+                sugestao.descricao = txtDescricao.Text;
+                sugestao.Usuario = this.user;
                 //fb.Evento = this.evento;
 
-                if (!pnFeedback.Inserir(fb))
+                if (!pnSugestoes.Inserir(sugestao))
                 {
-                    MessageBox.Show("Problema no envio de feedback!");
+                    MessageBox.Show("Problema no envio de sugestão!");
                 }
                 else
                 {
-                    MessageBox.Show("Feedback enviado.");
+                    MessageBox.Show("Sugestão enviada.");
                     this.Hide();
                 }
-
 
             }
             catch (Exception ex)

@@ -1,6 +1,6 @@
 ﻿namespace Desk
 {
-    partial class Feedback
+    partial class formFeedback
     {
         /// <summary>
         /// Required designer variable.

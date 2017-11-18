@@ -150,7 +150,7 @@ namespace Desk
             t.Id = 1;
            
             mainPanel.Controls.Remove(embeddedForm);
-            embeddedForm = new Feedback(currentUser);
+            embeddedForm = new formFeedback(currentUser);
             embeddedForm.TopLevel = false;
             embeddedForm.Visible = true;
             mainPanel.Controls.Add(embeddedForm);

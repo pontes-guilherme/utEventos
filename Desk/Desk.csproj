@@ -101,17 +101,23 @@
     <Compile Include="EditarPerfil.Designer.cs">
       <DependentUpon>EditarPerfil.cs</DependentUpon>
     </Compile>
-    <Compile Include="Feedback.cs">
+    <Compile Include="formFeedback.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Feedback.Designer.cs">
-      <DependentUpon>Feedback.cs</DependentUpon>
+    <Compile Include="formFeedback.Designer.cs">
+      <DependentUpon>formFeedback.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formSugestoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formSugestoes.Designer.cs">
+      <DependentUpon>formSugestoes.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -160,11 +166,14 @@
     <EmbeddedResource Include="EditarPerfil.resx">
       <DependentUpon>EditarPerfil.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Feedback.resx">
-      <DependentUpon>Feedback.cs</DependentUpon>
+    <EmbeddedResource Include="formFeedback.resx">
+      <DependentUpon>formFeedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formSugestoes.resx">
+      <DependentUpon>formSugestoes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
