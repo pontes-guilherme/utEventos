@@ -18,6 +18,8 @@ namespace Modelo.DAO
         public Usuario()
         {
             this.Eventoes = new HashSet<Evento>();
+            this.Feedbacks = new HashSet<Feedback>();
+            this.Sugestoes = new HashSet<Sugesto>();
         }
     
         public string nome { get; set; }
@@ -28,5 +30,9 @@ namespace Modelo.DAO
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Evento> Eventoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sugesto> Sugestoes { get; set; }
     }
 }

@@ -54,7 +54,7 @@
             this.title.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.title.AutoSize = true;
             this.title.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title.Location = new System.Drawing.Point(287, 10);
+            this.title.Location = new System.Drawing.Point(298, 9);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(58, 18);
             this.title.TabIndex = 13;

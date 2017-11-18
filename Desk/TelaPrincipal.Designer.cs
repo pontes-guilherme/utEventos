@@ -48,6 +48,7 @@
             this.lnkEditarPerfil = new System.Windows.Forms.LinkLabel();
             this.lnkSair = new System.Windows.Forms.LinkLabel();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.lnkFeedback = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.grpCategorias.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -85,9 +86,9 @@
             // grpCategorias
             // 
             this.grpCategorias.Controls.Add(this.lnkCategoriaCad);
-            this.grpCategorias.Location = new System.Drawing.Point(3, 432);
+            this.grpCategorias.Location = new System.Drawing.Point(3, 452);
             this.grpCategorias.Name = "grpCategorias";
-            this.grpCategorias.Size = new System.Drawing.Size(171, 85);
+            this.grpCategorias.Size = new System.Drawing.Size(171, 65);
             this.grpCategorias.TabIndex = 14;
             this.grpCategorias.TabStop = false;
             this.grpCategorias.Text = "Categorias";
@@ -100,7 +101,7 @@
             this.lnkCategoriaCad.AutoSize = true;
             this.lnkCategoriaCad.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.lnkCategoriaCad.LinkColor = System.Drawing.Color.Black;
-            this.lnkCategoriaCad.Location = new System.Drawing.Point(20, 32);
+            this.lnkCategoriaCad.Location = new System.Drawing.Point(20, 30);
             this.lnkCategoriaCad.Name = "lnkCategoriaCad";
             this.lnkCategoriaCad.Size = new System.Drawing.Size(53, 13);
             this.lnkCategoriaCad.TabIndex = 8;
@@ -127,7 +128,7 @@
             this.groupBox3.Controls.Add(this.lnkCalSem);
             this.groupBox3.Controls.Add(this.lnkCalMen);
             this.groupBox3.Controls.Add(this.lnkCalDia);
-            this.groupBox3.Location = new System.Drawing.Point(3, 326);
+            this.groupBox3.Location = new System.Drawing.Point(3, 346);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(171, 100);
             this.groupBox3.TabIndex = 12;
@@ -178,13 +179,14 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lnkFeedback);
             this.groupBox2.Controls.Add(this.lnkEvenGlo);
             this.groupBox2.Controls.Add(this.lnkEvenPes);
             this.groupBox2.Controls.Add(this.lnkEvenDis);
             this.groupBox2.Controls.Add(this.lnkEvenNovo);
             this.groupBox2.Location = new System.Drawing.Point(3, 198);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(171, 122);
+            this.groupBox2.Size = new System.Drawing.Size(171, 142);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Eventos";
@@ -326,6 +328,20 @@
             this.mainPanel.TabIndex = 11;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
+            // lnkFeedback
+            // 
+            this.lnkFeedback.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkFeedback.AutoSize = true;
+            this.lnkFeedback.LinkColor = System.Drawing.Color.Black;
+            this.lnkFeedback.Location = new System.Drawing.Point(20, 119);
+            this.lnkFeedback.Name = "lnkFeedback";
+            this.lnkFeedback.Size = new System.Drawing.Size(55, 13);
+            this.lnkFeedback.TabIndex = 8;
+            this.lnkFeedback.TabStop = true;
+            this.lnkFeedback.Text = "Feedback";
+            this.lnkFeedback.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkFeedback.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkFeedback_LinkClicked);
+            // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -376,5 +392,6 @@
         private System.Windows.Forms.Label lblTipoConta;
         private System.Windows.Forms.GroupBox grpCategorias;
         private System.Windows.Forms.LinkLabel lnkCategoriaCad;
+        private System.Windows.Forms.LinkLabel lnkFeedback;
     }
 }

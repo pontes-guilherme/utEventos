@@ -20,6 +20,8 @@ namespace Modelo.PN
                 db.Eventoes.Add(e);
                 db.SaveChanges();
 
+
+
                 return true;
             }
             catch (Exception)

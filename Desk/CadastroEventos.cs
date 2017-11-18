@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelo.DAO;
 using Modelo.PN;
-
+using Modelo;
+using System.Data.Entity;
 
 namespace Desk
 {
@@ -17,6 +18,7 @@ namespace Desk
     {
         Usuario currentUser;
         Evento evento;
+       
         
         List<Categoria> lista_categorias = pnCategorias.Listar();
 
@@ -43,8 +45,9 @@ namespace Desk
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-
+            var context = new EventContext();
             evento = new Evento();
+            
 
             DateTime data_inicio = DateTime.Parse(dtInicio.Text);
             DateTime data_fim = DateTime.Parse(dtFim.Text);
@@ -63,13 +66,18 @@ namespace Desk
 
             try
             {
-
+                
+               
+                dbEventosEntities db = new dbEventosEntities();
+                
+                Categoria c = context.Categorias.Find(cmbCategoria.Text);
+                
                 evento.criador = currentUser.email;
                 evento.nome = txtNome.Text;
                 evento.data_inicio = DateTime.Parse(dtInicio.Text);
                 evento.data_fim = DateTime.Parse(dtFim.Text);
                 evento.importante = ckbImportante.Checked;
-                evento.categoria = cmbCategoria.Text;
+                evento.Categoria = c;
                 //MODIFICAR ESCOPO
                 evento.escopo = currentUser.tipo;
 
@@ -86,7 +94,7 @@ namespace Desk
 
             catch (Exception ex)
             {
-                //throw;
+                throw;
                 MessageBox.Show(ex.ToString());
             }
 

@@ -28,5 +28,7 @@ namespace Modelo.DAO
         public virtual DbSet<Evento> Eventoes { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
+        public virtual DbSet<Sugesto> Sugestoes { get; set; }
     }
 }
