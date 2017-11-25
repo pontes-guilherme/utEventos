@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/18/2017 20:33:09
--- Generated from EDMX file: C:\Users\Guilherme Pontes\Source\Repos\utEventos\Modelo\DAO\EventoDAO.edmx
+-- Date Created: 11/23/2017 21:16:04
+-- Generated from EDMX file: C:\Users\l_ass\source\repos\utEventos\Modelo\DAO\EventoDAO.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,19 +17,43 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_Evento_Usuarios]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Eventoes] DROP CONSTRAINT [FK_Evento_Usuarios];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FeedbackEvento]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Feedbacks] DROP CONSTRAINT [FK_FeedbackEvento];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FeedbackUsuario]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Feedbacks] DROP CONSTRAINT [FK_FeedbackUsuario];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SugestoEvento]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sugestoes] DROP CONSTRAINT [FK_SugestoEvento];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SugestoUsuario]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sugestoes] DROP CONSTRAINT [FK_SugestoUsuario];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CategoriaEvento]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Eventoes] DROP CONSTRAINT [FK_CategoriaEvento];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Categorias]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Categorias];
-GO
-IF OBJECT_ID(N'[dbo].[Sugestoes]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Sugestoes];
+IF OBJECT_ID(N'[dbo].[Eventoes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Eventoes];
 GO
 IF OBJECT_ID(N'[dbo].[Usuarios]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Usuarios];
+GO
+IF OBJECT_ID(N'[dbo].[Categorias]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Categorias];
+GO
+IF OBJECT_ID(N'[dbo].[Feedbacks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Feedbacks];
+GO
+IF OBJECT_ID(N'[dbo].[Sugestoes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Sugestoes];
 GO
 
 -- --------------------------------------------------

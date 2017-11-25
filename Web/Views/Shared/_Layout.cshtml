@@ -21,17 +21,25 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Usuários", "Index", "Usuarios")</li>
+                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("Usuários", "Index", "Usuarios")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_MyLoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        @{ if (System.Web.HttpContext.Current.Session["nome"] != null || HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Account") {
+            @RenderBody()
+            }
+            else
+            {
+            RenderBody();
+            @RenderPage("~/Views/Shared/_NotLogged.cshtml")
+           }
+        }
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - utEventos</p>
