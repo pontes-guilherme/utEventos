@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.Label("Inicio", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.data_inicio, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control datepicker " } })
+                @Html.EditorFor(model => model.data_inicio, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control datepicker " } })
                 @Html.ValidationMessageFor(model => model.data_inicio, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.Label("Fim", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.data_fim, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control datepicker" } })
+                @Html.EditorFor(model => model.data_fim, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control datepicker" } })
                 @Html.ValidationMessageFor(model => model.data_fim, "", new { @class = "text-danger" })
             </div>
         </div>

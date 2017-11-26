@@ -22,7 +22,7 @@ namespace Modelo.PN
             {
                 dbEventosEntities db = new dbEventosEntities();
                 e.Id = getLasId();
-                //e.data_criacao = DateTime.Now;
+                e.data_criacao = DateTime.Now;
                 db.Eventoes.Add(e);
                 db.SaveChanges();
 
@@ -47,6 +47,9 @@ namespace Modelo.PN
                 evento.nome = e.nome;
                 evento.data_inicio = e.data_inicio;
                 evento.data_fim = e.data_fim;
+                evento.importante = e.importante;
+                evento.Categoria_nome = e.Categoria_nome;
+                evento.escopo = e.escopo;
 
                 db.SaveChanges();
 

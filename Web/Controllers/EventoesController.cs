@@ -89,12 +89,14 @@ namespace Web.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,nome,data_inicio,data_fim,escopo,importante,data_criacao,criador,Categoria_nome")] Evento evento)
+        public ActionResult Edit([Bind(Include = "Id,nome,data_inicio,data_fim,escopo,importante,Categoria_nome")] Evento evento)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(evento).State = EntityState.Modified;
-                db.SaveChanges();
+                evento.criador = System.Web.HttpContext.Current.Session["email"].ToString();
+                //db.Entry(evento).State = EntityState.Modified;
+                //db.SaveChanges();
+                pnEventos.Alterar(evento);
                 return RedirectToAction("Index");
             }
             ViewBag.criador = new SelectList(db.Usuarios, "email", "nome", evento.criador);
