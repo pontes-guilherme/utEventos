@@ -42,7 +42,7 @@ namespace Desk
                 }
                 else
                 {
-                    MessageBox.Show("Feedback enviado.");
+                    MessageBox.Show("Feedback enviado!");
                     this.Hide();
                 }
 
