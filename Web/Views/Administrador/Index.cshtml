@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Modelo.DAO.Categoria>
+
+@{
+    ViewBag.Title = "Categorias";
+}
+
+<h2>Categorias</h2>
+
+<p>
+    @Html.ActionLink("Nova Categoria", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Nome da Categoria</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nome)
+        </td>
+        <td>
+            @*@Html.ActionLink("Editar", "Edit", new { id=item.nome }) |*@
+            @*@Html.ActionLink("Detalhes", "Details", new { id=item.nome }) |*@
+            @Html.ActionLink("Excluir", "Delete", new { id=item.nome })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Voltar ao Painel Adminstrativo", "Main")
+</p>

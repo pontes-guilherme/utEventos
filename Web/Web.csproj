@@ -199,9 +199,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\EventoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SugestoesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -414,6 +416,18 @@
     <Content Include="Views\Eventoes\Details.cshtml" />
     <Content Include="Views\Eventoes\Edit.cshtml" />
     <Content Include="Views\Eventoes\Index.cshtml" />
+    <Content Include="Views\Home\Sugestoes.cshtml" />
+    <Content Include="Views\Administrador\Create.cshtml" />
+    <Content Include="Views\Administrador\Delete.cshtml" />
+    <Content Include="Views\Administrador\Details.cshtml" />
+    <Content Include="Views\Administrador\Edit.cshtml" />
+    <Content Include="Views\Administrador\Index.cshtml" />
+    <Content Include="Views\Administrador\Main.cshtml" />
+    <Content Include="Views\Sugestoes\Create.cshtml" />
+    <Content Include="Views\Sugestoes\Delete.cshtml" />
+    <Content Include="Views\Sugestoes\Details.cshtml" />
+    <Content Include="Views\Sugestoes\Edit.cshtml" />
+    <Content Include="Views\Sugestoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

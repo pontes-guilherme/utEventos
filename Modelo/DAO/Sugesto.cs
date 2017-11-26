@@ -17,11 +17,9 @@ namespace Modelo.DAO
         public int Id { get; set; }
         public string titulo { get; set; }
         public string descricao { get; set; }
-        public int EventoId { get; set; }
         public string Usuario_email { get; set; }
         public Nullable<System.DateTime> data_criacao { get; set; }
     
-        public virtual Evento Evento { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
 }

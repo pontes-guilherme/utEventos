@@ -22,7 +22,7 @@ namespace Modelo.PN
             {
                 dbEventosEntities db = new dbEventosEntities();
                 e.Id = getLasId();
-                e.data_criacao = DateTime.Now;
+                e.data_criacao = (DateTime.Now).Date;
                 db.Eventoes.Add(e);
                 db.SaveChanges();
 

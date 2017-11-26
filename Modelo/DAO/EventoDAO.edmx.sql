@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/25/2017 22:59:16
+-- Date Created: 11/26/2017 20:02:49
 -- Generated from EDMX file: C:\Users\l_ass\source\repos\utEventos\Modelo\DAO\EventoDAO.edmx
 -- --------------------------------------------------
 
@@ -17,8 +17,8 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_Evento_Usuarios]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Eventoes] DROP CONSTRAINT [FK_Evento_Usuarios];
+IF OBJECT_ID(N'[dbo].[FK_CategoriaEvento]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Eventoes] DROP CONSTRAINT [FK_CategoriaEvento];
 GO
 IF OBJECT_ID(N'[dbo].[FK_FeedbackEvento]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Feedbacks] DROP CONSTRAINT [FK_FeedbackEvento];
@@ -32,28 +32,25 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_SugestoUsuario]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Sugestoes] DROP CONSTRAINT [FK_SugestoUsuario];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CategoriaEvento]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Eventoes] DROP CONSTRAINT [FK_CategoriaEvento];
-GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Eventoes]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Eventoes];
-GO
-IF OBJECT_ID(N'[dbo].[Usuarios]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Usuarios];
-GO
 IF OBJECT_ID(N'[dbo].[Categorias]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Categorias];
+GO
+IF OBJECT_ID(N'[dbo].[Eventoes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Eventoes];
 GO
 IF OBJECT_ID(N'[dbo].[Feedbacks]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Feedbacks];
 GO
 IF OBJECT_ID(N'[dbo].[Sugestoes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Sugestoes];
+GO
+IF OBJECT_ID(N'[dbo].[Usuarios]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Usuarios];
 GO
 
 -- --------------------------------------------------
@@ -106,7 +103,6 @@ CREATE TABLE [dbo].[Sugestoes] (
     [Id] int  NOT NULL,
     [titulo] varchar(50)  NULL,
     [descricao] varchar(max)  NULL,
-    [EventoId] int  NOT NULL,
     [Usuario_email] nvarchar(50)  NOT NULL,
     [data_criacao] datetime  NULL
 );
@@ -193,21 +189,6 @@ GO
 CREATE INDEX [IX_FK_FeedbackUsuario]
 ON [dbo].[Feedbacks]
     ([Usuario_email]);
-GO
-
--- Creating foreign key on [EventoId] in table 'Sugestoes'
-ALTER TABLE [dbo].[Sugestoes]
-ADD CONSTRAINT [FK_SugestoEvento]
-    FOREIGN KEY ([EventoId])
-    REFERENCES [dbo].[Eventoes]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_SugestoEvento'
-CREATE INDEX [IX_FK_SugestoEvento]
-ON [dbo].[Sugestoes]
-    ([EventoId]);
 GO
 
 -- Creating foreign key on [Usuario_email] in table 'Sugestoes'

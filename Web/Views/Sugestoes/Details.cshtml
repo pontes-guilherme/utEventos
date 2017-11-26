@@ -1,0 +1,51 @@
+﻿@model Modelo.DAO.Sugesto
+
+@{
+    ViewBag.Title = "Detalhes Sugestão";
+}
+
+<h2>Detalhes Sugestão</h2>
+
+<div>
+    <h4>Informações sobre a Sugestão</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Título
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+
+        <dt>
+            Descrição
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+        <dt>
+            Data de Criação
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_criacao)
+        </dd>
+
+        <dt>
+            Criado por
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Excluir", "Delete", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar à lista de Sugestões", "Index")
+</p>

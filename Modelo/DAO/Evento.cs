@@ -18,7 +18,6 @@ namespace Modelo.DAO
         public Evento()
         {
             this.Feedbacks = new HashSet<Feedback>();
-            this.Sugestoes = new HashSet<Sugesto>();
         }
     
         public int Id { get; set; }
@@ -34,8 +33,6 @@ namespace Modelo.DAO
         public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Feedback> Feedbacks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sugesto> Sugestoes { get; set; }
         public virtual Categoria Categoria { get; set; }
     }
 }

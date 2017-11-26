@@ -15,6 +15,7 @@ namespace Modelo.PN
             try
             {
                 dbEventosEntities db = new dbEventosEntities();
+                s.data_criacao = (DateTime.Now).Date;
                 s.Id = getLasId();
                 db.Sugestoes.Add(s);
                 db.SaveChanges();
