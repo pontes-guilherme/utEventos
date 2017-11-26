@@ -1,41 +1,108 @@
-﻿@model Web.Models.RegisterViewModel
+﻿@*@model web.models.registerviewmodel
 @{
-    ViewBag.Title = "Register";
+    viewbag.title = "register";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@viewbag.title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (html.beginform("register", "account", formmethod.post, new { @class = "form-horizontal", role = "form" }))
 {
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    @html.antiforgerytoken()
+    <h4>create a new account.</h4>
     <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @html.validationsummary("", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        @html.labelfor(m => m.email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @html.textboxfor(m => m.email, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        @html.labelfor(m => m.password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @html.passwordfor(m => m.password, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        @html.labelfor(m => m.confirmpassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @html.passwordfor(m => m.confirmpassword, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default" value="register" />
         </div>
     </div>
 }
 
+@section scripts {
+    @scripts.render("~/bundles/jqueryval")
+}
+*@
+
+@model Modelo.DAO.Usuario
+
+@{
+    ViewBag.Title = "Criar conta";
+}
+
+<h2>Nova Conta</h2>
+<hr />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">       
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label(" Nome", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(" Email", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           @Html.Label(" Senha", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.senha, new { htmlAttributes = new { @type = "password", @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.senha, "", new {  @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(" Data de Nascimento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.data_nascimento, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.data_nascimento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Criar Conta" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+    @Html.ActionLink("Voltar", "Home/Index")
+</div>*@
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+

@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Modelo.DAO;
+using Modelo.PN;
 
 namespace Web.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController()
+        {
+            //System.Web.HttpContext.Current.Session["user"] = null;
+        }
+
         public ActionResult Index()
         {
             return View();
