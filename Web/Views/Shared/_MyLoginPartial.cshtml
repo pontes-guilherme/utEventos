@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNet.Identity;
+@{ if (System.Web.HttpContext.Current.Session["nome"] != null)
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Olá, " + System.Web.HttpContext.Current.Session["tipo"] + " " + System.Web.HttpContext.Current.Session["nome"] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Gerenciar" })
+            </li>
+            <li>@Html.ActionLink("Sair", "Logout", "Account", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Registrar", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Entrar", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }
+}
