@@ -4,163 +4,147 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbEventosModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="dbEventosModelStoreContainer">
-    <EntitySet Name="Eventoes" EntityType="dbEventosModel.Store.Eventoes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Usuarios" EntityType="dbEventosModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Categorias" EntityType="dbEventosModel.Store.Categorias" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Feedbacks" EntityType="dbEventosModel.Store.Feedbacks" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Sugestoes" EntityType="dbEventosModel.Store.Sugestoes" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_Evento_Usuarios" Association="dbEventosModel.Store.FK_Evento_Usuarios">
-      <End Role="Usuario" EntitySet="Usuarios" />
-      <End Role="Evento" EntitySet="Eventoes" />
-    </AssociationSet>
-    <AssociationSet Name="FeedbackEvento" Association="dbEventosModel.Store.FeedbackEvento">
-      <End Role="Feedback" EntitySet="Feedbacks" />
-      <End Role="Evento" EntitySet="Eventoes" />
-    </AssociationSet>
-    <AssociationSet Name="FeedbackUsuario" Association="dbEventosModel.Store.FeedbackUsuario">
-      <End Role="Feedback" EntitySet="Feedbacks" />
-      <End Role="Usuario" EntitySet="Usuarios" />
-    </AssociationSet>
-    <AssociationSet Name="SugestoEvento" Association="dbEventosModel.Store.SugestoEvento">
-      <End Role="Sugesto" EntitySet="Sugestoes" />
-      <End Role="Evento" EntitySet="Eventoes" />
-    </AssociationSet>
-    <AssociationSet Name="SugestoUsuario" Association="dbEventosModel.Store.SugestoUsuario">
-      <End Role="Sugesto" EntitySet="Sugestoes" />
-      <End Role="Usuario" EntitySet="Usuarios" />
-    </AssociationSet>
-    <AssociationSet Name="CategoriaEvento" Association="dbEventosModel.Store.CategoriaEvento">
-      <End Role="Categoria" EntitySet="Categorias" />
-      <End Role="Evento" EntitySet="Eventoes" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Eventoes">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="nome" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="data_inicio" Type="datetime" Nullable="false" />
-    <Property Name="data_fim" Type="datetime" Nullable="false" />
-    <Property Name="escopo" Type="nvarchar" Nullable="false" MaxLength="20" />
-    <Property Name="importante" Type="bit" Nullable="false" />
-    <Property Name="data_criacao" Type="datetime" Nullable="true" />
-    <Property Name="criador" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Categoria_nome" Type="varchar" Nullable="false" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Usuarios">
-    <Key>
-      <PropertyRef Name="email" />
-    </Key>
-    <Property Name="nome" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="senha" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="data_nascimento" Type="datetime" Nullable="true" />
-    <Property Name="tipo" Type="nvarchar" Nullable="false" MaxLength="20" />
-  </EntityType>
-  <EntityType Name="Categorias">
-    <Key>
-      <PropertyRef Name="nome" />
-    </Key>
-    <Property Name="nome" Type="varchar" Nullable="false" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Feedbacks">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="titulo" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="descricao" Type="varchar(max)" Nullable="true" />
-    <Property Name="EventoId" Type="int" Nullable="false" />
-    <Property Name="Usuario_email" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="data_criacao" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Sugestoes">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="titulo" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="descricao" Type="varchar(max)" Nullable="true" />
-    <Property Name="EventoId" Type="int" Nullable="false" />
-    <Property Name="Usuario_email" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="data_criacao" Type="datetime" Nullable="true" />
-  </EntityType>
-  <Association Name="FK_Evento_Usuarios">
-    <End Role="Usuario" Type="dbEventosModel.Store.Usuarios" Multiplicity="1" />
-    <End Role="Evento" Type="dbEventosModel.Store.Eventoes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="email" />
-      </Principal>
-      <Dependent Role="Evento">
-        <PropertyRef Name="criador" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FeedbackEvento">
-    <End Role="Feedback" Type="dbEventosModel.Store.Feedbacks" Multiplicity="*" />
-    <End Role="Evento" Type="dbEventosModel.Store.Eventoes" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Evento">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Feedback">
-        <PropertyRef Name="EventoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FeedbackUsuario">
-    <End Role="Feedback" Type="dbEventosModel.Store.Feedbacks" Multiplicity="*" />
-    <End Role="Usuario" Type="dbEventosModel.Store.Usuarios" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="email" />
-      </Principal>
-      <Dependent Role="Feedback">
-        <PropertyRef Name="Usuario_email" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="SugestoEvento">
-    <End Role="Sugesto" Type="dbEventosModel.Store.Sugestoes" Multiplicity="*" />
-    <End Role="Evento" Type="dbEventosModel.Store.Eventoes" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Evento">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Sugesto">
-        <PropertyRef Name="EventoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="SugestoUsuario">
-    <End Role="Sugesto" Type="dbEventosModel.Store.Sugestoes" Multiplicity="*" />
-    <End Role="Usuario" Type="dbEventosModel.Store.Usuarios" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="email" />
-      </Principal>
-      <Dependent Role="Sugesto">
-        <PropertyRef Name="Usuario_email" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="CategoriaEvento">
-    <End Role="Categoria" Type="dbEventosModel.Store.Categorias" Multiplicity="1" />
-    <End Role="Evento" Type="dbEventosModel.Store.Eventoes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Categoria">
-        <PropertyRef Name="nome" />
-      </Principal>
-      <Dependent Role="Evento">
-        <PropertyRef Name="Categoria_nome" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="dbEventosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="nome" />
+          </Key>
+          <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Eventoes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="data_inicio" Type="datetime" Nullable="false" />
+          <Property Name="data_fim" Type="datetime" Nullable="false" />
+          <Property Name="escopo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="importante" Type="bit" Nullable="false" />
+          <Property Name="data_criacao" Type="datetime" />
+          <Property Name="criador" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Categoria_nome" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedbacks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="50" />
+          <Property Name="descricao" Type="varchar(max)" />
+          <Property Name="EventoId" Type="int" Nullable="false" />
+          <Property Name="Usuario_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="data_criacao" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sugestoes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="50" />
+          <Property Name="descricao" Type="varchar(max)" />
+          <Property Name="EventoId" Type="int" Nullable="false" />
+          <Property Name="Usuario_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="data_criacao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="senha" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="data_nascimento" Type="date" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CategoriaEvento">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="1" />
+          <End Role="Eventoes" Type="Self.Eventoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="nome" />
+            </Principal>
+            <Dependent Role="Eventoes">
+              <PropertyRef Name="Categoria_nome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeedbackEvento">
+          <End Role="Eventoes" Type="Self.Eventoes" Multiplicity="1" />
+          <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Eventoes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feedbacks">
+              <PropertyRef Name="EventoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeedbackUsuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Feedbacks">
+              <PropertyRef Name="Usuario_email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SugestoEvento">
+          <End Role="Eventoes" Type="Self.Eventoes" Multiplicity="1" />
+          <End Role="Sugestoes" Type="Self.Sugestoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Eventoes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sugestoes">
+              <PropertyRef Name="EventoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SugestoUsuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Sugestoes" Type="Self.Sugestoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Sugestoes">
+              <PropertyRef Name="Usuario_email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbEventosModelStoreContainer">
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Eventoes" EntityType="Self.Eventoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedbacks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sugestoes" EntityType="Self.Sugestoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoriaEvento" Association="Self.FK_CategoriaEvento">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Eventoes" EntitySet="Eventoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeedbackEvento" Association="Self.FK_FeedbackEvento">
+            <End Role="Eventoes" EntitySet="Eventoes" />
+            <End Role="Feedbacks" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeedbackUsuario" Association="Self.FK_FeedbackUsuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Feedbacks" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SugestoEvento" Association="Self.FK_SugestoEvento">
+            <End Role="Eventoes" EntitySet="Eventoes" />
+            <End Role="Sugestoes" EntitySet="Sugestoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SugestoUsuario" Association="Self.FK_SugestoUsuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Sugestoes" EntitySet="Sugestoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbEventosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -170,11 +154,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="data_inicio" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="data_fim" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="data_inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="data_fim" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="escopo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="importante" Type="Boolean" Nullable="false" />
-          <Property Name="data_criacao" Type="DateTime" Precision="7" />
+          <Property Name="data_criacao" Type="DateTime" Precision="3" />
           <Property Name="criador" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Usuario" Relationship="dbEventosModel.FK_Evento_Usuarios" FromRole="Evento" ToRole="Usuario" />
           <NavigationProperty Name="Feedbacks" Relationship="dbEventosModel.FeedbackEvento" FromRole="Evento" ToRole="Feedback" />
@@ -256,7 +240,7 @@
           <Property Name="EventoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="dbEventosModel.FeedbackUsuario" FromRole="Feedback" ToRole="Usuario" />
           <Property Name="Usuario_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="data_criacao" Type="String" Nullable="false" />
+          <Property Name="data_criacao" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Sugesto">
           <Key>
@@ -269,7 +253,7 @@
           <Property Name="EventoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="dbEventosModel.SugestoUsuario" FromRole="Sugesto" ToRole="Usuario" />
           <Property Name="Usuario_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="data_criacao" Type="DateTime" Precision="7" />
+          <Property Name="data_criacao" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FeedbackEvento">
           <End Type="dbEventosModel.Feedback" Role="Feedback" Multiplicity="*" />

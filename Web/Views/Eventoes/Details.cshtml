@@ -1,0 +1,95 @@
+﻿@model Modelo.DAO.Evento
+
+@{
+    ViewBag.Title = "Detalhes do Evento";
+}
+
+<h2>Detalhes do Evento</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.nome)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Evento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            Importante
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.importante)
+        </dd>
+
+        <dt>
+            Início
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_inicio)
+        </dd>
+
+        <dt>
+            Fim
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_fim)
+        </dd>
+
+        <dt>
+            Escopo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.escopo)
+        </dd>
+
+        <dt>
+            Categoria
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.nome)
+        </dd>
+
+        <dt>
+            Criado em
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_criacao)
+        </dd>
+
+        <dt>
+            Criado por
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Usuario.nome)*@
+            @{
+                var email = Html.DisplayFor(model => model.Usuario.email).ToHtmlString();
+                var nome = Html.DisplayFor(model => model.Usuario.nome).ToHtmlString();
+
+            }
+            @Html.ActionLink(nome, "Details", "Usuarios", new { id = email + "/" }, null)
+        </dd>
+    </dl>
+</div>
+<p>
+    @{
+        if (object.Equals(System.Web.HttpContext.Current.Session["tipo"], "Administrador") || object.Equals(System.Web.HttpContext.Current.Session["email"], email))
+        {
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) 
+            @: |
+            @Html.ActionLink("Deletar", "Delete", new { id = Model.Id })
+            @: |
+        }
+    }
+    @Html.ActionLink("Voltar à lista de eventos", "Index")
+</p>
