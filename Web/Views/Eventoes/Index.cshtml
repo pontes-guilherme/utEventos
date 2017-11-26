@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Modelo.DAO.Evento>
+
+@{
+    ViewBag.Title = "Eventos";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Novo evento", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Evento
+        </th>
+        <th>
+            Importante
+        </th>
+        <th>
+            Inicio
+        </th>
+        <th>
+            Fim
+        </th>
+        <th>
+           Escopo
+        </th>
+        <th>
+            Categoria
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.importante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_inicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_fim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.escopo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.nome)
+        </td>
+        <td>
+            @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) 
+            @{
+                if (object.Equals(System.Web.HttpContext.Current.Session["tipo"], "Administrador"))
+                { 
+                    @: | 
+                    @Html.ActionLink("Editar", "Edit", new { id=item.Id }) 
+                    @: | 
+                    @Html.ActionLink("Deletar", "Delete", new { id=item.Id })
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>

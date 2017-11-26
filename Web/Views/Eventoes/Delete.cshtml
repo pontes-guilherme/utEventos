@@ -1,0 +1,93 @@
+﻿@model Modelo.DAO.Evento
+
+@{
+    ViewBag.Title = "Excluir evento";
+}
+
+<h2>Exclusão</h2>
+
+<h3>Você tem certeza que deseja excluir este evento?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Evento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            Importante
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.importante)
+        </dd>
+
+        <dt>
+            Início
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_inicio)
+        </dd>
+
+        <dt>
+            Fim
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_fim)
+        </dd>
+
+        <dt>
+            Escopo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.escopo)
+        </dd>
+
+        <dt>
+            Categoria
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.nome)
+        </dd>
+
+        <dt>
+            Criado em
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_criacao)
+        </dd>
+
+        <dt>
+            Criado por
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Usuario.nome)*@
+            @{
+                var email = Html.DisplayFor(model => model.Usuario.email).ToHtmlString();
+                var nome = Html.DisplayFor(model => model.Usuario.nome).ToHtmlString();
+
+            }
+            @Html.ActionLink(nome, "Details", "Usuarios", new { id = email + "/" }, null)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir evento" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar à lista de Eventos", "Index")
+        </div>
+    }
+</div>

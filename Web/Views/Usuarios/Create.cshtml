@@ -4,7 +4,7 @@
     ViewBag.Title = "Criar conta";
 }
 
-<h2>Nova Conta</h2>
+<h2>Novo Usuário</h2>
 <hr />
 
 
@@ -15,47 +15,65 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.Label("Nome", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label(" Nome", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label(" Email", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Senha", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label(" Senha", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.senha, new { htmlAttributes = new { @type = "password", @class = "form-control" } })
+                @Html.EditorFor(model => model.senha, new { htmlAttributes = new { @type = "password", @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.senha, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Data de Nascimento", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label(" Data de Nascimento", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.data_nascimento, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.data_nascimento, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        @Html.HiddenFor(model => model.tipo)
-        @Html.Hidden("tipo", "Estudante")
-
+        <div class="form-group">
+            @Html.Label(" Tipo", htmlAttributes: new { @class = "control-label col-md-2" })
+            @{
+                List<SelectListItem> listItems = new List<SelectListItem>();
+                listItems.Add(new SelectListItem
+                {
+                    Text = "Estudante",
+                    Value = "Estudante",
+                    Selected = true
+                });
+                listItems.Add(new SelectListItem
+                {
+                    Text = "Administrador",
+                    Value = "Administrador"
+                });
+            }
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.tipo, listItems, "-- Selecione um tipo --", new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Criar Conta" class="btn btn-default" />
+                <input type="submit" value="Criar Usuário" class="btn btn-default" />
             </div>
         </div>
-    </div>
+     </div>
 }
 
 <div>

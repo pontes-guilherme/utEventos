@@ -5,18 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Modelo.PN
 {
     public static class pnEventos
     {
+        //public static String GetTimestamp(DateTime value)
+        //{
+        //    return value.ToString("yyyyMMddHHmmssffff");
+        //}
+
         public static bool Inserir(Evento e)
         {
             try
             {
                 dbEventosEntities db = new dbEventosEntities();
                 e.Id = getLasId();
-                //e.data_criacao = GetTimestamp(DateTime.Now);
+                e.data_criacao = DateTime.Now;
                 db.Eventoes.Add(e);
                 db.SaveChanges();
 
@@ -41,10 +47,26 @@ namespace Modelo.PN
                 evento.nome = e.nome;
                 evento.data_inicio = e.data_inicio;
                 evento.data_fim = e.data_fim;
+                evento.importante = e.importante;
+                evento.Categoria_nome = e.Categoria_nome;
+                evento.escopo = e.escopo;
 
                 db.SaveChanges();
 
                 return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<Evento> Listar()
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                return (db.Eventoes.ToList());
             }
             catch (Exception)
             {

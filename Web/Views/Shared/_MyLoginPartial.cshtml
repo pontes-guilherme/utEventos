@@ -3,7 +3,7 @@
     {
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Olá, " + System.Web.HttpContext.Current.Session["tipo"] + " " + System.Web.HttpContext.Current.Session["nome"] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Gerenciar" })
+                @Html.ActionLink("Olá, " + System.Web.HttpContext.Current.Session["tipo"] + " " + System.Web.HttpContext.Current.Session["nome"] + "!", "Details", "Usuarios", new { @id = System.Web.HttpContext.Current.Session["email"]+"/" }, null)
             </li>
             <li>@Html.ActionLink("Sair", "Logout", "Account", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
         </ul>

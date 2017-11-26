@@ -26,9 +26,13 @@ namespace Web.Controllers
         {
             if (id == null)
             {
+                System.Diagnostics.Debug.WriteLine("null parameter");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Find(id);
+            System.Diagnostics.Debug.WriteLine(id);
+            id = HttpUtility.UrlDecode(id);
+            System.Diagnostics.Debug.WriteLine(id);
+            Usuario usuario = pnUsuarios.Pesquisar(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -89,6 +93,14 @@ namespace Web.Controllers
             {
                 db.Entry(usuario).State = EntityState.Modified;
                 db.SaveChanges();
+
+                if (object.Equals(usuario.email, System.Web.HttpContext.Current.Session["email"])) {
+                    Usuario u = pnUsuarios.Pesquisar(usuario.email);
+                    System.Web.HttpContext.Current.Session["nome"] = u.nome;
+                    System.Web.HttpContext.Current.Session["email"] = u.email;
+                    System.Web.HttpContext.Current.Session["tipo"] = u.tipo;
+                }
+
                 return RedirectToAction("Index");
             }
             return View(usuario);

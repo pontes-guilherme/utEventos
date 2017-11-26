@@ -1,0 +1,105 @@
+﻿@model Modelo.DAO.Evento
+
+@{
+    ViewBag.Title = "Criar evento";
+}
+
+<h2>Criar evento</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Novo evento</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group">
+            @Html.Label("Nome do evento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Inicio", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.data_inicio, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.data_inicio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Fim", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.data_fim, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.data_fim, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Escopo", htmlAttributes: new { @class = "control-label col-md-2" })
+            @{
+                List<SelectListItem> listItems = new List<SelectListItem>();
+                listItems.Add(new SelectListItem
+                {
+                    Text = "Pessoal",
+                    Value = "Pessoal",
+                    Selected = true
+                });
+                listItems.Add(new SelectListItem
+                {
+                    Text = "Disciplina",
+                    Value = "Disciplina"
+                });
+                if (object.Equals(System.Web.HttpContext.Current.Session["tipo"], "Administrador"))
+                {
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Global",
+                        Value = "Global"
+                    });
+                }
+            }
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.escopo, listItems, "-- Selecione um tipo --", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.escopo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Categoria", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Categoria_nome", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Categoria_nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Importante", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.importante)
+                    @Html.ValidationMessageFor(model => model.importante, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Criar evento" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar à lista de Eventos", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

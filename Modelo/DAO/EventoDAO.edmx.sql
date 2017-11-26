@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/23/2017 21:16:04
+-- Date Created: 11/25/2017 22:59:16
 -- Generated from EDMX file: C:\Users\l_ass\source\repos\utEventos\Modelo\DAO\EventoDAO.edmx
 -- --------------------------------------------------
 

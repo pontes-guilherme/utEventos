@@ -1,56 +1,68 @@
 ﻿@model Modelo.DAO.Usuario
 
 @{
-    ViewBag.Title = "Excluir";
+    ViewBag.Title = "Apagar Usuário";
 }
 
-<h2>Excluir</h2>
+@{
+        if (object.Equals(System.Web.HttpContext.Current.Session["tipo"], "Administrador")) {
+        <h2>Apagar Usuário</h2>
 
-<h3>Tem certeza que deseja excluir?</h3>
-<div>
-    <h4>Usuario</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nome)
-        </dt>
+        <h3>Tem certeza que deseja apagar usuário?</h3>
+        <div>
+            <h4>@Html.DisplayFor(model => model.nome)</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                   Nome
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nome)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.nome)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+                <dt>
+                    Email
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.senha)
-        </dt>
+                <dt>
+                   Data de Nascimento
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.senha)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.data_nascimento)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.data_nascimento)
-        </dt>
+                <dt>
+                   Tipo
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.data_nascimento)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tipo)
+                </dd>
+            </dl>
 
-    </dl>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Voltar para a listagem", "Index")
+                <div class="form-actions no-color">
+                    <input type="submit" value="Apagar" class="btn btn-default" /> |
+                    @Html.ActionLink("Voltar para a listagem", "Index")
+                </div>
+            }
         </div>
     }
-</div>
+    else
+    {
+        @RenderPage("~/Views/Shared/_NotAuthorized.cshtml")
+        <div>
+            @Html.ActionLink("Voltar ao perfil", "Details", new { id = ViewContext.RouteData.Values["id"] + "/" }, null)
+        </div>
+    }
+
+}
