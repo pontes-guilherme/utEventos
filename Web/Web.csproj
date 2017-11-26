@@ -278,6 +278,7 @@
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Shared\_NotLogged.cshtml" />
     <Content Include="Views\Shared\_MyLoginPartial.cshtml" />
+    <Content Include="Views\Shared\_NotAuthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

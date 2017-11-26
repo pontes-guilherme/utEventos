@@ -4,29 +4,34 @@
     ViewBag.Title = "Usuários";
 }
 
-<h2>Listar usuários</h2>
+<h2>Lista de usuários</h2>
 
-<p>
-    @Html.ActionLink("Criar novo", "Create")
-</p>
+@{
+    if (object.Equals(System.Web.HttpContext.Current.Session["tipo"], "Administrador")) {
+        @: <p>
+            @Html.ActionLink("Criar novo", "Create")
+        @:</p>
+    }
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nome)
+           Nome
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.data_nascimento)
+            Data de Nascimento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tipo)
+            Tipo
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.nome)
@@ -41,9 +46,17 @@
             @Html.DisplayFor(modelItem => item.tipo)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.email + "/" } ) |
-            @Html.ActionLink("Detalhes", "Details", new { id = item.email + "/" }) |
-            @Html.ActionLink("Excluir", "Delete", new { id = item.email + "/" } )
+            
+            @Html.ActionLink("Detalhes", "Details", new { id = item.email + "/" }) 
+            @{if (object.Equals(System.Web.HttpContext.Current.Session["tipo"],"Administrador"))
+                {
+                @:|
+                @Html.ActionLink("Editar", "Edit", new { id = item.email + "/" }) 
+                @:|
+                @Html.ActionLink("Excluir", "Delete", new { id = item.email + "/" })
+                    }
+                }
+            
         </td>
     </tr>
 }
