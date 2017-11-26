@@ -26,7 +26,15 @@
             @Html.DisplayFor(modelItem => item.titulo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.data_criacao)
+            @{
+                var data = Html.DisplayFor(modelItem => item.data_criacao);
+                var str = "-";
+                if (data.ToString().Length > 0)
+                {
+                    str = data.ToString().Substring(0, 10);
+                }
+            }
+            @str
         </td>
         <td>
             @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@

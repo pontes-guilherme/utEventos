@@ -40,7 +40,15 @@
             @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.data_nascimento)
+            @{
+                var data = Html.DisplayFor(modelItem => item.data_nascimento);
+                var str = "-";
+                if (data.ToString().Length > 0)
+                {
+                    str = data.ToString().Substring(0, 10);
+                }
+            }
+            @str
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.tipo)

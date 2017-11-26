@@ -24,7 +24,15 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.data_criacao)
+            @{
+                var data = Html.DisplayFor(model => model.data_criacao);
+                var str = "-";
+                if (data.ToString().Length > 0)
+                {
+                    str = data.ToString().Substring(0, 10);
+                }
+            }
+            @str
         </dd>
 
         <dt>

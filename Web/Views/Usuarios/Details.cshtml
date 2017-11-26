@@ -11,7 +11,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.nome)
+            Nome
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.email)
+            Email
         </dt>
 
         <dd>
@@ -27,15 +27,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.data_nascimento)
+            Data de Nascimento
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.data_nascimento)
+            @{ 
+                var data = Html.DisplayFor(model => model.data_nascimento);
+                var str = "-";
+                if (data.ToString().Length > 0)
+                {
+                    str = data.ToString().Substring(0, 10);
+                }
+            }
+            @str
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tipo)
+            Tipo
         </dt>
 
         <dd>
