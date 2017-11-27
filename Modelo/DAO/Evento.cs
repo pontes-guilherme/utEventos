@@ -18,6 +18,7 @@ namespace Modelo.DAO
         public Evento()
         {
             this.Feedbacks = new HashSet<Feedback>();
+            this.Inscricoes = new HashSet<Inscricao>();
         }
     
         public int Id { get; set; }
@@ -29,10 +30,13 @@ namespace Modelo.DAO
         public Nullable<System.DateTime> data_criacao { get; set; }
         public string criador { get; set; }
         public string Categoria_nome { get; set; }
+        public Nullable<int> capacidade { get; set; }
     
         public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Feedback> Feedbacks { get; set; }
         public virtual Categoria Categoria { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inscricao> Inscricoes { get; set; }
     }
 }

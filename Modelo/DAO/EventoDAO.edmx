@@ -11,6 +11,7 @@
     <EntitySet Name="Categorias" EntityType="dbEventosModel.Store.Categorias" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Feedbacks" EntityType="dbEventosModel.Store.Feedbacks" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Sugestoes" EntityType="dbEventosModel.Store.Sugestoes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Inscricoes" EntityType="dbEventosModel.Store.Inscricoes" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Evento_Usuarios" Association="dbEventosModel.Store.FK_Evento_Usuarios">
       <End Role="Usuario" EntitySet="Usuarios" />
       <End Role="Evento" EntitySet="Eventoes" />
@@ -31,6 +32,14 @@
       <End Role="Categoria" EntitySet="Categorias" />
       <End Role="Evento" EntitySet="Eventoes" />
     </AssociationSet>
+    <AssociationSet Name="InscricaoUsuario" Association="dbEventosModel.Store.InscricaoUsuario">
+      <End Role="Inscricao" EntitySet="Inscricoes" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="InscricaoEvento" Association="dbEventosModel.Store.InscricaoEvento">
+      <End Role="Inscricao" EntitySet="Inscricoes" />
+      <End Role="Evento" EntitySet="Eventoes" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Eventoes">
     <Key>
@@ -45,6 +54,7 @@
     <Property Name="data_criacao" Type="datetime" Nullable="true" />
     <Property Name="criador" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Categoria_nome" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="capacidade" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
@@ -82,6 +92,14 @@
     <Property Name="descricao" Type="varchar(max)" Nullable="true" />
     <Property Name="Usuario_email" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="data_criacao" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Inscricoes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usuario_email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="EventoId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_Evento_Usuarios">
     <End Role="Usuario" Type="dbEventosModel.Store.Usuarios" Multiplicity="1" />
@@ -143,6 +161,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="InscricaoUsuario">
+    <End Role="Inscricao" Type="dbEventosModel.Store.Inscricoes" Multiplicity="*" />
+    <End Role="Usuario" Type="dbEventosModel.Store.Usuarios" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="email" />
+      </Principal>
+      <Dependent Role="Inscricao">
+        <PropertyRef Name="Usuario_email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InscricaoEvento">
+    <End Role="Inscricao" Type="dbEventosModel.Store.Inscricoes" Multiplicity="*" />
+    <End Role="Evento" Type="dbEventosModel.Store.Eventoes" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Evento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inscricao">
+        <PropertyRef Name="EventoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -163,6 +205,8 @@
           <NavigationProperty Name="Feedbacks" Relationship="dbEventosModel.FeedbackEvento" FromRole="Evento" ToRole="Feedback" />
           <NavigationProperty Name="Categoria" Relationship="dbEventosModel.CategoriaEvento" FromRole="Evento" ToRole="Categoria" />
           <Property Name="Categoria_nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Inscricoes" Relationship="dbEventosModel.InscricaoEvento" FromRole="Evento" ToRole="Inscricao" />
+          <Property Name="capacidade" Type="Int32" Nullable="true" ConcurrencyMode="None" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -176,6 +220,7 @@
           <NavigationProperty Name="Eventoes" Relationship="dbEventosModel.FK_Evento_Usuarios" FromRole="Usuario" ToRole="Evento" />
           <NavigationProperty Name="Feedbacks" Relationship="dbEventosModel.FeedbackUsuario" FromRole="Usuario" ToRole="Feedback" />
           <NavigationProperty Name="Sugestoes" Relationship="dbEventosModel.SugestoUsuario" FromRole="Usuario" ToRole="Sugesto" />
+          <NavigationProperty Name="Inscricoes" Relationship="dbEventosModel.InscricaoUsuario" FromRole="Usuario" ToRole="Inscricao" />
         </EntityType>
         <EntityContainer Name="dbEventosEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Eventoes" EntityType="Self.Evento" />
@@ -201,6 +246,15 @@
           </AssociationSet>
           <AssociationSet Name="CategoriaEvento" Association="dbEventosModel.CategoriaEvento">
             <End Role="Categoria" EntitySet="Categorias" />
+            <End Role="Evento" EntitySet="Eventoes" />
+          </AssociationSet>
+          <EntitySet Name="Inscricoes" EntityType="dbEventosModel.Inscricao" />
+          <AssociationSet Name="InscricaoUsuario" Association="dbEventosModel.InscricaoUsuario">
+            <End Role="Inscricao" EntitySet="Inscricoes" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="InscricaoEvento" Association="dbEventosModel.InscricaoEvento">
+            <End Role="Inscricao" EntitySet="Inscricoes" />
             <End Role="Evento" EntitySet="Eventoes" />
           </AssociationSet>
         </EntityContainer>
@@ -245,7 +299,7 @@
           <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Usuario" Relationship="dbEventosModel.SugestoUsuario" FromRole="Sugesto" ToRole="Usuario" />
           <Property Name="Usuario_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="data_criacao" Type="DateTime" Precision="3" />
+          <Property Name="data_criacao" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="FeedbackEvento">
           <End Type="dbEventosModel.Feedback" Role="Feedback" Multiplicity="*" />
@@ -295,6 +349,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Inscricao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Usuario" Relationship="dbEventosModel.InscricaoUsuario" FromRole="Inscricao" ToRole="Usuario" />
+          <Property Name="Usuario_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Evento" Relationship="dbEventosModel.InscricaoEvento" FromRole="Inscricao" ToRole="Evento" />
+          <Property Name="EventoId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="InscricaoUsuario">
+          <End Type="dbEventosModel.Inscricao" Role="Inscricao" Multiplicity="*" />
+          <End Type="dbEventosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Inscricao">
+              <PropertyRef Name="Usuario_email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InscricaoEvento">
+          <End Type="dbEventosModel.Inscricao" Role="Inscricao" Multiplicity="*" />
+          <End Type="dbEventosModel.Evento" Role="Evento" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inscricao">
+              <PropertyRef Name="EventoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -313,6 +401,7 @@
           <ScalarProperty Name="data_criacao" ColumnName="data_criacao" />
           <ScalarProperty Name="criador" ColumnName="criador" />
           <ScalarProperty Name="Categoria_nome" ColumnName="Categoria_nome" />
+          <ScalarProperty Name="capacidade" ColumnName="capacidade" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -354,6 +443,15 @@
           <ScalarProperty Name="descricao" ColumnName="descricao" />
           <ScalarProperty Name="Usuario_email" ColumnName="Usuario_email" />
           <ScalarProperty Name="data_criacao" ColumnName="data_criacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inscricoes">
+      <EntityTypeMapping TypeName="IsTypeOf(dbEventosModel.Inscricao)">
+        <MappingFragment StoreEntitySet="Inscricoes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Usuario_email" ColumnName="Usuario_email" />
+          <ScalarProperty Name="EventoId" ColumnName="EventoId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

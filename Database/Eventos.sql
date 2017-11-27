@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Evento]
+﻿CREATE TABLE [dbo].[Eventoes]
 (
 	[Id] INT NOT NULL, 
     [nome] VARCHAR(50) NOT NULL, 
@@ -9,6 +9,7 @@
     [importante] BIT NOT NULL, 
     [data_criacao] DATETIME2 DEFAULT GETDATE(), 
     [criador] NVARCHAR(50) NOT NULL, 
+    [capacidade] INT NULL, 
     CONSTRAINT [FK_Evento_Usuarios] FOREIGN KEY ([criador]) REFERENCES [Usuarios]([email]), 
     CONSTRAINT [PK_Evento] PRIMARY KEY ([Id])
 )

@@ -43,6 +43,38 @@
         </dd>
 
         <dt>
+            Capacidade
+        </dt>
+
+        <dd>
+            @{
+                var cap = Html.DisplayFor(model => model.capacidade).ToString();
+                var capInt = 0;
+                Int32.TryParse(cap, out capInt);
+
+                if (capInt == 0)
+                {
+                    cap = "Número de vagas não informada";
+                }
+            }
+            @cap
+        </dd>
+
+        @{ 
+            if (capInt > 0)
+            {
+                <dt>
+                    Vagas
+                </dt>
+
+                <dd>
+                    @{var vagas = capInt - Model.Inscricoes.Count();}
+                    @vagas
+                </dd>
+            }
+        }
+
+        <dt>
             Escopo
         </dt>
 
@@ -91,11 +123,30 @@
 </div>
 <p>
     @{
+
+        if (Model.Inscricoes.Count() > 0 && Model.Inscricoes.ToList().Exists(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) != null)
+        {
+            @Html.ActionLink("Deixa de participar", "SignOut", "Eventoes", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default" });
+            @: | 
+        }
+        else if (Model.Inscricoes.Count() >= Model.capacidade && Model.capacidade > 0)
+        {
+            //Html.ActionLink("Esgotado", "SignUp", "Eventos", htmlAttributes: new { @class = "btn btn-default" });
+            <input type="button" value="Esgotado" class="btn btn-default" disabled /> 
+            @: |  
+        }
+        else
+        {
+            @Html.ActionLink("Participar", "SignUp", "Eventoes", new { id = Model.Id }, new { @class = "btn btn-default" });
+            @: | 
+        }
+
+
         if (object.Equals(System.Web.HttpContext.Current.Session["tipo"], "Administrador") || object.Equals(System.Web.HttpContext.Current.Session["email"], email))
         {
-            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) 
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id });
             @: |
-            @Html.ActionLink("Deletar", "Delete", new { id = Model.Id })
+            @Html.ActionLink("Deletar", "Delete", new { id = Model.Id });
             @: |
         }
     }

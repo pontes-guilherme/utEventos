@@ -37,12 +37,63 @@ namespace Web.Controllers
             return View(evento);
         }
 
+        public ActionResult SignUp(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Evento evento = db.Eventoes.Find(id);
+            if (evento == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (pnInscricoes.Pesquisar(id, System.Web.HttpContext.Current.Session["email"].ToString()) == null)
+            {
+                pnInscricoes.Inserir(id, System.Web.HttpContext.Current.Session["email"].ToString());
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("ja inscrito");
+            }
+
+            return RedirectToAction("Details", new { id = evento.Id });
+        }
+
+        public ActionResult SignOut(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Evento evento = db.Eventoes.Find(id);
+            if (evento == null)
+            {
+                return HttpNotFound();
+            }
+
+            Inscricao inscr = pnInscricoes.Pesquisar(id, System.Web.HttpContext.Current.Session["email"].ToString());
+            if (inscr != null)
+            {
+                pnInscricoes.Excluir(inscr);
+            }
+
+            return RedirectToAction("Details", new { id = evento.Id });
+        }
+
         // GET: Eventoes/Create
         public ActionResult Create()
         {
             //ViewBag.criador = new SelectList(db.Usuarios, "email", "nome");
             ViewBag.Categoria_nome = new SelectList(db.Categorias, "nome", "nome");
-            return View();
+            var evento = new Evento();
+            evento.data_inicio = (DateTime.Now).AddDays(1);
+            evento.data_fim = evento.data_inicio.AddHours(1);
+            System.Diagnostics.Debug.WriteLine(evento.data_inicio.ToString());
+            System.Diagnostics.Debug.WriteLine(evento.data_fim.ToString());
+            var model = evento;
+            return View(model);
         }
 
         // POST: Eventoes/Create
@@ -50,11 +101,14 @@ namespace Web.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "nome,data_inicio,data_fim,escopo,importante,Categoria_nome")] Evento evento)
+        public ActionResult Create([Bind(Include = "nome,data_inicio,data_fim,capacidade,escopo,importante,Categoria_nome")] Evento evento)
         {
             if (ModelState.IsValid)
             {
-      
+                if(evento.capacidade == null)
+                {
+                    evento.capacidade = 0;
+                }
                 evento.criador = System.Web.HttpContext.Current.Session["email"].ToString();
                 //db.Eventoes.Add(evento);
                 //db.SaveChanges();

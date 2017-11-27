@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Feedback]
+﻿CREATE TABLE [dbo].[Feedbacks]
 (
 	[Id] INT NOT NULL PRIMARY KEY, 
     [titulo] VARCHAR(50) NULL, 
