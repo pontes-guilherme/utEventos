@@ -69,8 +69,8 @@ namespace Desk
                 
                
                 dbEventosEntities db = new dbEventosEntities();
-                
-                Categoria c = context.Categorias.Find(cmbCategoria.Text);
+
+                Categoria c = context.Categoria_.DefaultIfEmpty().FirstOrDefault(x => x.nome == cmbCategoria.Text);
                 
                 evento.criador = currentUser.email;
                 evento.nome = txtNome.Text;
@@ -78,6 +78,7 @@ namespace Desk
                 evento.data_fim = DateTime.Parse(dtFim.Text);
                 evento.importante = ckbImportante.Checked;
                 evento.Categoria = c;
+                evento.Categoria_nome = c.nome;
                 //MODIFICAR ESCOPO
                 evento.escopo = currentUser.tipo;
 

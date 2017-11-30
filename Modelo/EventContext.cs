@@ -12,6 +12,12 @@ namespace Modelo
     public class EventContext : DbContext
     {
         public DbSet<Evento> Eventos { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Categoria> Categoria_ { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer<EventContext>(null);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

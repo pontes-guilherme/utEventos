@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c38cdfc5522c47f09f90a48e112d56fc" Name="Diagram1" ZoomLevel="109">
-        <EntityTypeShape EntityType="dbEventosModel.Evento" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosModel.Evento" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="dbEventosModel.Usuario" Width="1.5" PointX="4.75" PointY="2.5" IsExpanded="true" />
         <AssociationConnector Association="dbEventosModel.FK_Evento_Usuarios" />
         <EntityTypeShape EntityType="dbEventosModel.Categoria" Width="1.5" PointX="4.75" PointY="0.625" />

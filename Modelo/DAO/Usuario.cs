@@ -11,7 +11,8 @@ namespace Modelo.DAO
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +25,7 @@ namespace Modelo.DAO
         }
     
         public string nome { get; set; }
+        [Key]
         public string email { get; set; }
         public string senha { get; set; }
         public Nullable<System.DateTime> data_nascimento { get; set; }

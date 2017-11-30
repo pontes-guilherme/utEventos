@@ -11,9 +11,11 @@ namespace Modelo.DAO
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Inscricao
     {
+        [Key]
         public int Id { get; set; }
         public string Usuario_email { get; set; }
         public int EventoId { get; set; }

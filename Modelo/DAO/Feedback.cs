@@ -11,9 +11,11 @@ namespace Modelo.DAO
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Feedback
     {
+        [Key]
         public int Id { get; set; }
         public string titulo { get; set; }
         public string descricao { get; set; }
