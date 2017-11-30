@@ -16,17 +16,15 @@ namespace Modelo.PN
         //    return value.ToString("yyyyMMddHHmmssffff");
         //}
 
-        public static bool Inserir(Evento e)
+        public static bool Inserir(Evento e, dbEventosEntities db)
         {
             try
             {
-                dbEventosEntities db = new dbEventosEntities();
+                //dbEventosEntities db = new dbEventosEntities();
                 e.Id = getLasId();
                 e.data_criacao = (DateTime.Now).Date;
                 db.Eventoes.Add(e);
                 db.SaveChanges();
-
-
 
                 return true;
             }
@@ -36,11 +34,11 @@ namespace Modelo.PN
             }
         }
 
-        public static bool Alterar(Evento e)
+        public static bool Alterar(Evento e, dbEventosEntities db)
         {
             try
             {
-                dbEventosEntities db = new dbEventosEntities();
+                //dbEventosEntities db = new dbEventosEntities();
                 Evento evento = new Evento();
                 evento = db.Eventoes.Find(e.Id);
 

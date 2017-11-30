@@ -92,7 +92,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="EventContext.cs" />
     <Compile Include="PN\pnCategorias.cs" />
     <Compile Include="PN\pnEventos.cs" />
     <Compile Include="PN\pnFeedback.cs" />

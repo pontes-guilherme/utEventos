@@ -45,7 +45,7 @@ namespace Desk
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            var context = new EventContext();
+            //var context = new EventContext();
             evento = new Evento();
             
 
@@ -66,12 +66,11 @@ namespace Desk
 
             try
             {
-                
-               
-                dbEventosEntities db = new dbEventosEntities();
 
-                Categoria c = context.Categoria_.DefaultIfEmpty().FirstOrDefault(x => x.nome == cmbCategoria.Text);
+                dbEventosEntities db = new dbEventosEntities();
                 
+                Categoria c = db.Categorias.Find(cmbCategoria.Text);
+
                 evento.criador = currentUser.email;
                 evento.nome = txtNome.Text;
                 evento.data_inicio = DateTime.Parse(dtInicio.Text);
@@ -82,7 +81,7 @@ namespace Desk
                 //MODIFICAR ESCOPO
                 evento.escopo = currentUser.tipo;
 
-                if (!pnEventos.Inserir(evento))
+                if (!pnEventos.Inserir(evento, db))
                 {
                     MessageBox.Show("Problema na inserção de evento!");
                 }
