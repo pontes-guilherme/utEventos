@@ -14,6 +14,11 @@ namespace Modelo.PN
         {
             try
             {
+                if(db == null)
+                {
+                    db = new dbEventosEntities();
+                }
+
                 s.data_criacao = (DateTime.Now).Date;
                 s.Id = getLasId();
                 db.Sugestoes.Add(s);

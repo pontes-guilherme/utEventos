@@ -74,7 +74,7 @@ namespace Web.Controllers
                     //db.Usuarios.Add(usuario);
                     //db.SaveChanges();
                     s.Usuario_email = System.Web.HttpContext.Current.Session["email"].ToString();
-                    pnSugestoes.Inserir(s);
+                    pnSugestoes.Inserir(s, null);
                     return RedirectToAction("Index");
                 }
                 catch (Exception) { }

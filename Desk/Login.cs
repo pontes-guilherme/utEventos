@@ -76,5 +76,13 @@ namespace Desk
                 Entrar_Click(this, new EventArgs());
             }
         }
+
+        private void RecuperarSenha_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            frmRecuperar f = new frmRecuperar();
+            f.Closed += (s, args) => this.Close();
+            f.Show();
+        }
     }
 }

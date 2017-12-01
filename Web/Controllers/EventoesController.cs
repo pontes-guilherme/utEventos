@@ -112,7 +112,7 @@ namespace Web.Controllers
                 evento.criador = System.Web.HttpContext.Current.Session["email"].ToString();
                 //db.Eventoes.Add(evento);
                 //db.SaveChanges();
-                pnEventos.Inserir(evento);
+                pnEventos.Inserir(evento, null);
                 return RedirectToAction("Index");
             }
 
@@ -150,7 +150,7 @@ namespace Web.Controllers
                 evento.criador = System.Web.HttpContext.Current.Session["email"].ToString();
                 //db.Entry(evento).State = EntityState.Modified;
                 //db.SaveChanges();
-                pnEventos.Alterar(evento);
+                pnEventos.Alterar(evento, null);
                 return RedirectToAction("Index");
             }
             ViewBag.criador = new SelectList(db.Usuarios, "email", "nome", evento.criador);

@@ -20,7 +20,10 @@ namespace Modelo.PN
         {
             try
             {
-                //dbEventosEntities db = new dbEventosEntities();
+                if (db == null)
+                {
+                    db = new dbEventosEntities();
+                }
                 e.Id = getLasId();
                 e.data_criacao = (DateTime.Now).Date;
                 db.Eventoes.Add(e);
@@ -38,7 +41,9 @@ namespace Modelo.PN
         {
             try
             {
-                //dbEventosEntities db = new dbEventosEntities();
+                if (db == null) { 
+                    db = new dbEventosEntities();
+                }
                 Evento evento = new Evento();
                 evento = db.Eventoes.Find(e.Id);
 

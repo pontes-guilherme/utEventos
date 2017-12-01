@@ -103,6 +103,7 @@
             this.RecuperarSenha.TabIndex = 5;
             this.RecuperarSenha.TabStop = true;
             this.RecuperarSenha.Text = "Recuperar Senha";
+            this.RecuperarSenha.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RecuperarSenha_LinkClicked);
             // 
             // utEventos
             // 

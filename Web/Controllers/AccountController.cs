@@ -63,6 +63,58 @@ namespace Web.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Recuperar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Recuperar(Usuario u)
+        {
+            u = pnUsuarios.Pesquisar(u.email);
+            if (u != null)
+            {
+                pnUsuarios.sendMail(u);
+            }
+            else
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [AllowAnonymous]
+        public ActionResult AlterarSenha(string email, string codigo)
+        {
+            Usuario u = pnUsuarios.Pesquisar(email);
+            if  (u != null)
+            {
+                string userCode = pnUsuarios.CreateMD5(u.email + u.senha);
+                if(object.Equals(codigo, userCode))
+                {
+                    return View();
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult AlterarSenha(Usuario u)
+        {
+            Usuario oldU = pnUsuarios.Pesquisar(u.email);
+            if (oldU != null)
+            {
+                oldU.senha = u.Passw;
+                pnUsuarios.Alterar(oldU);
+            }
+            return RedirectToAction("Login", "Account");
+        }
+
         //
         // POST: /Account/Login
         //[HttpPost]

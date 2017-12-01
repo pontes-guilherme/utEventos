@@ -428,6 +428,8 @@
     <Content Include="Views\Sugestoes\Details.cshtml" />
     <Content Include="Views\Sugestoes\Edit.cshtml" />
     <Content Include="Views\Sugestoes\Index.cshtml" />
+    <Content Include="Views\Account\Recuperar.cshtml" />
+    <Content Include="Views\Account\AlterarSenha.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

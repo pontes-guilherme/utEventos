@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace Modelo.PN
 {
@@ -145,6 +146,33 @@ namespace Modelo.PN
                 }
                 return sb.ToString();
             }
+        }
+
+        public static bool sendMail(Usuario u)
+        {
+
+           
+
+            MailMessage mail = new MailMessage("suporte.uteventos@gmail.com", "guilherme.2015@alunos.utfpr.edu.br");
+            SmtpClient client = new SmtpClient();
+            client.Port = 25;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Host = "smtp.gmail.com";
+            client.Credentials = new System.Net.NetworkCredential("suporte.uteventos@gmail.com", "sodargetni");
+            client.EnableSsl = true;
+            mail.Subject = "Recuperação de senha";
+            mail.IsBodyHtml = true;
+            string r = "localhost:50699/Account/AlterarSenha?email=" + u.email.ToString() + "&codigo=" + CreateMD5(u.email.ToString() + u.senha.ToString());
+
+            string link = "<a href='" + r + "'>clique aqui para recuperar</a>";
+
+            mail.Body = "Link para recuperação: " + link;
+           
+            client.Send(mail);
+
+
+            return true;
         }
 
     }
