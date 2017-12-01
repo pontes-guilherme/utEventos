@@ -29,11 +29,18 @@ namespace Desk
 
             this.cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
             int i = 0;
-            lista_categorias.ForEach(delegate (Categoria c) {
+            try
+            {
+                lista_categorias.ForEach(delegate (Categoria c) {
 
-                cmbCategoria.Items.Insert(i, c.nome.ToString());
-                i++;
-            });
+                    cmbCategoria.Items.Insert(i, c.nome.ToString());
+                    i++;
+                });
+            } catch
+            {
+                cmbCategoria.Items.Insert(0, "Outro");
+            }
+            
 
         }
 
@@ -75,6 +82,7 @@ namespace Desk
                 evento.nome = txtNome.Text;
                 evento.data_inicio = DateTime.Parse(dtInicio.Text);
                 evento.data_fim = DateTime.Parse(dtFim.Text);
+                evento.capacidade = int.Parse(txtCapacidade.Value.ToString());
                 evento.importante = ckbImportante.Checked;
                 evento.Categoria = c;
                 evento.Categoria_nome = c.nome;

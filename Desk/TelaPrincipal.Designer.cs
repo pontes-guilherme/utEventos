@@ -38,6 +38,7 @@
             this.lnkCalMen = new System.Windows.Forms.LinkLabel();
             this.lnkCalDia = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lnkFeedback = new System.Windows.Forms.LinkLabel();
             this.lnkEvenGlo = new System.Windows.Forms.LinkLabel();
             this.lnkEvenPes = new System.Windows.Forms.LinkLabel();
             this.lnkEvenDis = new System.Windows.Forms.LinkLabel();
@@ -48,7 +49,7 @@
             this.lnkEditarPerfil = new System.Windows.Forms.LinkLabel();
             this.lnkSair = new System.Windows.Forms.LinkLabel();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.lnkFeedback = new System.Windows.Forms.LinkLabel();
+            this.lnkSugestoes = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.grpCategorias.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -80,13 +81,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(193, 522);
+            this.panel1.Size = new System.Drawing.Size(193, 533);
             this.panel1.TabIndex = 10;
             // 
             // grpCategorias
             // 
             this.grpCategorias.Controls.Add(this.lnkCategoriaCad);
-            this.grpCategorias.Location = new System.Drawing.Point(3, 452);
+            this.grpCategorias.Location = new System.Drawing.Point(3, 463);
             this.grpCategorias.Name = "grpCategorias";
             this.grpCategorias.Size = new System.Drawing.Size(171, 65);
             this.grpCategorias.TabIndex = 14;
@@ -128,7 +129,7 @@
             this.groupBox3.Controls.Add(this.lnkCalSem);
             this.groupBox3.Controls.Add(this.lnkCalMen);
             this.groupBox3.Controls.Add(this.lnkCalDia);
-            this.groupBox3.Location = new System.Drawing.Point(3, 346);
+            this.groupBox3.Location = new System.Drawing.Point(3, 357);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(171, 100);
             this.groupBox3.TabIndex = 12;
@@ -179,6 +180,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lnkSugestoes);
             this.groupBox2.Controls.Add(this.lnkFeedback);
             this.groupBox2.Controls.Add(this.lnkEvenGlo);
             this.groupBox2.Controls.Add(this.lnkEvenPes);
@@ -186,17 +188,31 @@
             this.groupBox2.Controls.Add(this.lnkEvenNovo);
             this.groupBox2.Location = new System.Drawing.Point(3, 198);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(171, 142);
+            this.groupBox2.Size = new System.Drawing.Size(171, 153);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Eventos";
+            // 
+            // lnkFeedback
+            // 
+            this.lnkFeedback.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkFeedback.AutoSize = true;
+            this.lnkFeedback.LinkColor = System.Drawing.Color.Black;
+            this.lnkFeedback.Location = new System.Drawing.Point(20, 108);
+            this.lnkFeedback.Name = "lnkFeedback";
+            this.lnkFeedback.Size = new System.Drawing.Size(55, 13);
+            this.lnkFeedback.TabIndex = 8;
+            this.lnkFeedback.TabStop = true;
+            this.lnkFeedback.Text = "Feedback";
+            this.lnkFeedback.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkFeedback.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkFeedback_LinkClicked);
             // 
             // lnkEvenGlo
             // 
             this.lnkEvenGlo.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
             this.lnkEvenGlo.AutoSize = true;
             this.lnkEvenGlo.LinkColor = System.Drawing.Color.Black;
-            this.lnkEvenGlo.Location = new System.Drawing.Point(20, 97);
+            this.lnkEvenGlo.Location = new System.Drawing.Point(20, 86);
             this.lnkEvenGlo.Name = "lnkEvenGlo";
             this.lnkEvenGlo.Size = new System.Drawing.Size(84, 13);
             this.lnkEvenGlo.TabIndex = 7;
@@ -209,7 +225,7 @@
             this.lnkEvenPes.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
             this.lnkEvenPes.AutoSize = true;
             this.lnkEvenPes.LinkColor = System.Drawing.Color.Black;
-            this.lnkEvenPes.Location = new System.Drawing.Point(20, 49);
+            this.lnkEvenPes.Location = new System.Drawing.Point(20, 38);
             this.lnkEvenPes.Name = "lnkEvenPes";
             this.lnkEvenPes.Size = new System.Drawing.Size(75, 13);
             this.lnkEvenPes.TabIndex = 5;
@@ -223,7 +239,7 @@
             this.lnkEvenDis.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
             this.lnkEvenDis.AutoSize = true;
             this.lnkEvenDis.LinkColor = System.Drawing.Color.Black;
-            this.lnkEvenDis.Location = new System.Drawing.Point(20, 73);
+            this.lnkEvenDis.Location = new System.Drawing.Point(20, 62);
             this.lnkEvenDis.Name = "lnkEvenDis";
             this.lnkEvenDis.Size = new System.Drawing.Size(114, 13);
             this.lnkEvenDis.TabIndex = 6;
@@ -236,7 +252,7 @@
             this.lnkEvenNovo.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
             this.lnkEvenNovo.AutoSize = true;
             this.lnkEvenNovo.LinkColor = System.Drawing.Color.Black;
-            this.lnkEvenNovo.Location = new System.Drawing.Point(20, 26);
+            this.lnkEvenNovo.Location = new System.Drawing.Point(20, 15);
             this.lnkEvenNovo.Name = "lnkEvenNovo";
             this.lnkEvenNovo.Size = new System.Drawing.Size(89, 13);
             this.lnkEvenNovo.TabIndex = 4;
@@ -324,29 +340,29 @@
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.mainPanel.Location = new System.Drawing.Point(180, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(713, 522);
+            this.mainPanel.Size = new System.Drawing.Size(713, 533);
             this.mainPanel.TabIndex = 11;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
-            // lnkFeedback
+            // lnkSugestoes
             // 
-            this.lnkFeedback.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkFeedback.AutoSize = true;
-            this.lnkFeedback.LinkColor = System.Drawing.Color.Black;
-            this.lnkFeedback.Location = new System.Drawing.Point(20, 119);
-            this.lnkFeedback.Name = "lnkFeedback";
-            this.lnkFeedback.Size = new System.Drawing.Size(55, 13);
-            this.lnkFeedback.TabIndex = 8;
-            this.lnkFeedback.TabStop = true;
-            this.lnkFeedback.Text = "Feedback";
-            this.lnkFeedback.VisitedLinkColor = System.Drawing.Color.Black;
-            this.lnkFeedback.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkFeedback_LinkClicked);
+            this.lnkSugestoes.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkSugestoes.AutoSize = true;
+            this.lnkSugestoes.LinkColor = System.Drawing.Color.Black;
+            this.lnkSugestoes.Location = new System.Drawing.Point(20, 130);
+            this.lnkSugestoes.Name = "lnkSugestoes";
+            this.lnkSugestoes.Size = new System.Drawing.Size(57, 13);
+            this.lnkSugestoes.TabIndex = 9;
+            this.lnkSugestoes.TabStop = true;
+            this.lnkSugestoes.Text = "Sugestões";
+            this.lnkSugestoes.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkSugestoes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkSugestoes_LinkClicked);
             // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 522);
+            this.ClientSize = new System.Drawing.Size(893, 533);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -393,5 +409,6 @@
         private System.Windows.Forms.GroupBox grpCategorias;
         private System.Windows.Forms.LinkLabel lnkCategoriaCad;
         private System.Windows.Forms.LinkLabel lnkFeedback;
+        private System.Windows.Forms.LinkLabel lnkSugestoes;
     }
 }

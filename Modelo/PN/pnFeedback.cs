@@ -10,12 +10,12 @@ namespace Modelo.PN
     public class pnFeedback
     {
 
-        public static bool Inserir(Feedback f)
+        public static bool Inserir(Feedback f, dbEventosEntities db)
         {
             try
             {
-                dbEventosEntities db = new dbEventosEntities();
                 f.Id = getLasId();
+                f.data_criacao = (DateTime.Now).Date; 
                 db.Feedbacks.Add(f);
                 db.SaveChanges();
 

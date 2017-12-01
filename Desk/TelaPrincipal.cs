@@ -156,5 +156,19 @@ namespace Desk
             mainPanel.Controls.Add(embeddedForm);
             this.Invalidate();
         }
+
+        private void lnkSugestoes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            dbEventosEntities db = new dbEventosEntities();
+            Evento t = new Evento();
+            t.Id = 1;
+
+            mainPanel.Controls.Remove(embeddedForm);
+            embeddedForm = new formSugestoes(currentUser);
+            embeddedForm.TopLevel = false;
+            embeddedForm.Visible = true;
+            mainPanel.Controls.Add(embeddedForm);
+            this.Invalidate();
+        }
     }
 }

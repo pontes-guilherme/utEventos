@@ -19,8 +19,8 @@ namespace Desk
         {
             InitializeComponent();
             this.current_user = u;
-            dbEventosDataSet.EventoDataTable eventoDT = new dbEventosDataSet.EventoDataTable();
-            eventoTableAdapter.Fill(eventoDT);
+            dbEventosDataSet.EventosDataTable eventoDT = new dbEventosDataSet.EventosDataTable();
+            eventosTableAdapter1.Fill(eventoDT);
             dataGridView1.DataSource = eventoDT;
             //((DataTable)dataGridView1.DataSource).DefaultView.RowFilter = "criador = " + u.email;
         }
@@ -31,7 +31,7 @@ namespace Desk
             //this.eventoTableAdapter.Fill(this.dbEventosDataSet.Evento);
             // TODO: This line of code loads data into the 'dbEventosDataSet.Evento' table. You can move, or remove it, as needed.
             Console.WriteLine(current_user.email);
-            this.eventoTableAdapter.FillByEmail(this.dbEventosDataSet.Evento, current_user.email.ToString());
+            this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, current_user.email.ToString());
 
         }
 
@@ -39,7 +39,7 @@ namespace Desk
         {
             try
             {
-                this.eventoTableAdapter.FillByEmail(this.dbEventosDataSet.Evento, emailToolStripTextBox.Text);
+                this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
             }
             catch (System.Exception ex)
             {
@@ -78,7 +78,7 @@ namespace Desk
         {
             try
             {
-                this.eventoTableAdapter.FillByEmail(this.dbEventosDataSet.Evento, emailToolStripTextBox.Text);
+                this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
             }
             catch (System.Exception ex)
             {
@@ -104,7 +104,7 @@ namespace Desk
         {
             try
             {
-                this.eventoTableAdapter.FillByEmail(this.dbEventosDataSet.Evento, emailToolStripTextBox.Text);
+                this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
             }
             catch (System.Exception ex)
             {
@@ -130,7 +130,7 @@ namespace Desk
         {
             try
             {
-                this.eventoTableAdapter.FillByEmail(this.dbEventosDataSet.Evento, emailToolStripTextBox.Text);
+                this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
             }
             catch (System.Exception ex)
             {
@@ -143,7 +143,85 @@ namespace Desk
         {
             try
             {
-                this.eventoTableAdapter.FillByEmail(this.dbEventosDataSet.Evento, emailToolStripTextBox.Text);
+                this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillByDayToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.eventosTableAdapter1.FillByDay(this.dbEventosDataSet1.Eventos);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillByEmailToolStripButton_Click_5(object sender, EventArgs e)
+        {
+            try
+            {
+                this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillByDayToolStripButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                this.eventosTableAdapter1.FillByDay(this.dbEventosDataSet1.Eventos);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillByMONTH2ToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.eventosTableAdapter1.FillByMONTH2(this.dbEventosDataSet1.Eventos);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillByWeekToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.eventosTableAdapter1.FillByWeek(this.dbEventosDataSet1.Eventos);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillByEmailToolStripButton_Click_6(object sender, EventArgs e)
+        {
+            try
+            {
+                this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
             }
             catch (System.Exception ex)
             {

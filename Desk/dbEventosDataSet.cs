@@ -17,9 +17,12 @@ namespace Desk {
     }
 }
 
-namespace Desk.dbEventosDataSetTableAdapters {
-    
-    
+namespace Desk.dbEventosDataSetTableAdapters
+{
+    partial class EventosTableAdapter
+    {
+    }
+
     public partial class EventoTableAdapter {
     }
 }

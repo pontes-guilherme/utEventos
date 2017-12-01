@@ -39,6 +39,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.ckbImportante = new System.Windows.Forms.CheckBox();
+            this.txtCapacidade = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).BeginInit();
             this.SuspendLayout();
             // 
             // title
@@ -54,9 +57,9 @@
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(365, 269);
+            this.btnCadastrar.Location = new System.Drawing.Point(250, 305);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(97, 23);
+            this.btnCadastrar.Size = new System.Drawing.Size(212, 23);
             this.btnCadastrar.TabIndex = 11;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
@@ -122,7 +125,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(207, 249);
+            this.label4.Location = new System.Drawing.Point(218, 249);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 19;
@@ -131,12 +134,43 @@
             // ckbImportante
             // 
             this.ckbImportante.AutoSize = true;
-            this.ckbImportante.Location = new System.Drawing.Point(250, 275);
+            this.ckbImportante.Location = new System.Drawing.Point(386, 271);
             this.ckbImportante.Name = "ckbImportante";
             this.ckbImportante.Size = new System.Drawing.Size(76, 17);
             this.ckbImportante.TabIndex = 20;
             this.ckbImportante.Text = "Importante";
             this.ckbImportante.UseVisualStyleBackColor = true;
+            // 
+            // txtCapacidade
+            // 
+            this.txtCapacidade.Location = new System.Drawing.Point(250, 269);
+            this.txtCapacidade.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.txtCapacidade.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtCapacidade.Name = "txtCapacidade";
+            this.txtCapacidade.Size = new System.Drawing.Size(120, 20);
+            this.txtCapacidade.TabIndex = 22;
+            this.txtCapacidade.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(177, 271);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Capacidade:";
             // 
             // CadastroEventos
             // 
@@ -144,6 +178,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 522);
             this.ControlBox = false;
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtCapacidade);
             this.Controls.Add(this.ckbImportante);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -162,6 +198,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CadastroEventos";
             this.Load += new System.EventHandler(this.CadastroEventos_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,5 +217,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox ckbImportante;
+        private System.Windows.Forms.NumericUpDown txtCapacidade;
+        private System.Windows.Forms.Label label5;
     }
 }

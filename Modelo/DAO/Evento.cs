@@ -11,8 +11,7 @@ namespace Modelo.DAO
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Evento
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +20,7 @@ namespace Modelo.DAO
             this.Feedbacks = new HashSet<Feedback>();
             this.Inscricoes = new HashSet<Inscricao>();
         }
-        [Key]    
+    
         public int Id { get; set; }
         public string nome { get; set; }
         public System.DateTime data_inicio { get; set; }

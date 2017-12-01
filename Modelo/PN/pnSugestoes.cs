@@ -10,11 +10,10 @@ namespace Modelo.PN
     public class pnSugestoes
     {
 
-        public static bool Inserir(Sugesto s)
+        public static bool Inserir(Sugesto s, dbEventosEntities db)
         {
             try
             {
-                dbEventosEntities db = new dbEventosEntities();
                 s.data_criacao = (DateTime.Now).Date;
                 s.Id = getLasId();
                 db.Sugestoes.Add(s);

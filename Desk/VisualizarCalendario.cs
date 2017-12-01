@@ -27,15 +27,15 @@ namespace Desk
             if (this.filterBy == "mes")
             {
                 this.title.Text = "Mensal";
-                this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
+                this.eventosTableAdapter1.FillByMONTH2(this.dbEventosDataSet.Eventos);
             } else if (this.filterBy == "semana")
             {
                 this.title.Text = "Semanal";
-                this.eventoTableAdapter.FillByWeek(this.dbEventosDataSet.Evento);
+                this.eventosTableAdapter1.FillByWeek(this.dbEventosDataSet.Eventos);
             } else if (this.filterBy == "dia")
             {
                 this.title.Text = "Diário";
-                this.eventoTableAdapter.FillByDay(this.dbEventosDataSet.Evento);
+                this.eventosTableAdapter1.FillByDay(this.dbEventosDataSet.Eventos);
             }
             
 
@@ -89,7 +89,7 @@ namespace Desk
         {
             try
             {
-                this.eventoTableAdapter.FillByMonth(this.dbEventosDataSet.Evento);
+                //this.eventoTableAdapter.FillByMonth(this.dbEventosDataSet.Evento);
             }
             catch (System.Exception ex)
             {
@@ -102,7 +102,7 @@ namespace Desk
         {
             try
             {
-                this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
+                //this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
             }
             catch (System.Exception ex)
             {
@@ -115,7 +115,7 @@ namespace Desk
         {
             try
             {
-                this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
+                //this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
             }
             catch (System.Exception ex)
             {
@@ -128,7 +128,7 @@ namespace Desk
         {
             try
             {
-                this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
+                //this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
             }
             catch (System.Exception ex)
             {
@@ -141,7 +141,7 @@ namespace Desk
         {
             try
             {
-                this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
+                //this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
             }
             catch (System.Exception ex)
             {

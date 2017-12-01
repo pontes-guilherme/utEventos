@@ -24,9 +24,11 @@ namespace Desk {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class dbEventosDataSet : global::System.Data.DataSet {
         
-        private EventoDataTable tableEvento;
+        private EventosDataTable tableEventos;
         
         private CategoriasDataTable tableCategorias;
+        
+        private global::System.Data.DataRelation relationFK_CategoriaEvento1;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -56,8 +58,8 @@ namespace Desk {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Evento"] != null)) {
-                    base.Tables.Add(new EventoDataTable(ds.Tables["Evento"]));
+                if ((ds.Tables["Eventos"] != null)) {
+                    base.Tables.Add(new EventosDataTable(ds.Tables["Eventos"]));
                 }
                 if ((ds.Tables["Categorias"] != null)) {
                     base.Tables.Add(new CategoriasDataTable(ds.Tables["Categorias"]));
@@ -84,9 +86,9 @@ namespace Desk {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public EventoDataTable Evento {
+        public EventosDataTable Eventos {
             get {
-                return this.tableEvento;
+                return this.tableEventos;
             }
         }
         
@@ -167,8 +169,8 @@ namespace Desk {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Evento"] != null)) {
-                    base.Tables.Add(new EventoDataTable(ds.Tables["Evento"]));
+                if ((ds.Tables["Eventos"] != null)) {
+                    base.Tables.Add(new EventosDataTable(ds.Tables["Eventos"]));
                 }
                 if ((ds.Tables["Categorias"] != null)) {
                     base.Tables.Add(new CategoriasDataTable(ds.Tables["Categorias"]));
@@ -206,10 +208,10 @@ namespace Desk {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableEvento = ((EventoDataTable)(base.Tables["Evento"]));
+            this.tableEventos = ((EventosDataTable)(base.Tables["Eventos"]));
             if ((initTable == true)) {
-                if ((this.tableEvento != null)) {
-                    this.tableEvento.InitVars();
+                if ((this.tableEventos != null)) {
+                    this.tableEventos.InitVars();
                 }
             }
             this.tableCategorias = ((CategoriasDataTable)(base.Tables["Categorias"]));
@@ -218,6 +220,7 @@ namespace Desk {
                     this.tableCategorias.InitVars();
                 }
             }
+            this.relationFK_CategoriaEvento1 = this.Relations["FK_CategoriaEvento1"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -228,15 +231,19 @@ namespace Desk {
             this.Namespace = "http://tempuri.org/dbEventosDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableEvento = new EventoDataTable();
-            base.Tables.Add(this.tableEvento);
+            this.tableEventos = new EventosDataTable();
+            base.Tables.Add(this.tableEventos);
             this.tableCategorias = new CategoriasDataTable();
             base.Tables.Add(this.tableCategorias);
+            this.relationFK_CategoriaEvento1 = new global::System.Data.DataRelation("FK_CategoriaEvento1", new global::System.Data.DataColumn[] {
+                        this.tableCategorias.nomeColumn}, new global::System.Data.DataColumn[] {
+                        this.tableEventos.Categoria_nomeColumn}, false);
+            this.Relations.Add(this.relationFK_CategoriaEvento1);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeEvento() {
+        private bool ShouldSerializeEventos() {
             return false;
         }
         
@@ -302,7 +309,7 @@ namespace Desk {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void EventoRowChangeEventHandler(object sender, EventoRowChangeEvent e);
+        public delegate void EventosRowChangeEventHandler(object sender, EventosRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void CategoriasRowChangeEventHandler(object sender, CategoriasRowChangeEvent e);
@@ -312,7 +319,7 @@ namespace Desk {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class EventoDataTable : global::System.Data.TypedTableBase<EventoRow> {
+        public partial class EventosDataTable : global::System.Data.TypedTableBase<EventosRow> {
             
             private global::System.Data.DataColumn columnnome;
             
@@ -320,18 +327,24 @@ namespace Desk {
             
             private global::System.Data.DataColumn columndata_fim;
             
-            private global::System.Data.DataColumn columncategoria;
-            
             private global::System.Data.DataColumn columnescopo;
             
             private global::System.Data.DataColumn columnimportante;
             
+            private global::System.Data.DataColumn columnId;
+            
+            private global::System.Data.DataColumn columndata_criacao;
+            
             private global::System.Data.DataColumn columncriador;
+            
+            private global::System.Data.DataColumn columncapacidade;
+            
+            private global::System.Data.DataColumn columnCategoria_nome;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EventoDataTable() {
-                this.TableName = "Evento";
+            public EventosDataTable() {
+                this.TableName = "Eventos";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -339,7 +352,7 @@ namespace Desk {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal EventoDataTable(global::System.Data.DataTable table) {
+            internal EventosDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -356,7 +369,7 @@ namespace Desk {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected EventoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected EventosDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -387,14 +400,6 @@ namespace Desk {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn categoriaColumn {
-                get {
-                    return this.columncategoria;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn escopoColumn {
                 get {
                     return this.columnescopo;
@@ -411,9 +416,41 @@ namespace Desk {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdColumn {
+                get {
+                    return this.columnId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn data_criacaoColumn {
+                get {
+                    return this.columndata_criacao;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn criadorColumn {
                 get {
                     return this.columncriador;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn capacidadeColumn {
+                get {
+                    return this.columncapacidade;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Categoria_nomeColumn {
+                get {
+                    return this.columnCategoria_nome;
                 }
             }
             
@@ -428,51 +465,64 @@ namespace Desk {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EventoRow this[int index] {
+            public EventosRow this[int index] {
                 get {
-                    return ((EventoRow)(this.Rows[index]));
+                    return ((EventosRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event EventoRowChangeEventHandler EventoRowChanging;
+            public event EventosRowChangeEventHandler EventosRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event EventoRowChangeEventHandler EventoRowChanged;
+            public event EventosRowChangeEventHandler EventosRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event EventoRowChangeEventHandler EventoRowDeleting;
+            public event EventosRowChangeEventHandler EventosRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event EventoRowChangeEventHandler EventoRowDeleted;
+            public event EventosRowChangeEventHandler EventosRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddEventoRow(EventoRow row) {
+            public void AddEventosRow(EventosRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EventoRow AddEventoRow(string nome, System.DateTime data_inicio, System.DateTime data_fim, string categoria, string escopo, bool importante, string criador) {
-                EventoRow rowEventoRow = ((EventoRow)(this.NewRow()));
+            public EventosRow AddEventosRow(string nome, System.DateTime data_inicio, System.DateTime data_fim, string escopo, bool importante, int Id, System.DateTime data_criacao, string criador, int capacidade, CategoriasRow parentCategoriasRowByFK_CategoriaEvento1) {
+                EventosRow rowEventosRow = ((EventosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         nome,
                         data_inicio,
                         data_fim,
-                        categoria,
                         escopo,
                         importante,
-                        criador};
-                rowEventoRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowEventoRow);
-                return rowEventoRow;
+                        Id,
+                        data_criacao,
+                        criador,
+                        capacidade,
+                        null};
+                if ((parentCategoriasRowByFK_CategoriaEvento1 != null)) {
+                    columnValuesArray[9] = parentCategoriasRowByFK_CategoriaEvento1[0];
+                }
+                rowEventosRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowEventosRow);
+                return rowEventosRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EventosRow FindById(int Id) {
+                return ((EventosRow)(this.Rows.Find(new object[] {
+                            Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                EventoDataTable cln = ((EventoDataTable)(base.Clone()));
+                EventosDataTable cln = ((EventosDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -480,7 +530,7 @@ namespace Desk {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new EventoDataTable();
+                return new EventosDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -489,10 +539,13 @@ namespace Desk {
                 this.columnnome = base.Columns["nome"];
                 this.columndata_inicio = base.Columns["data_inicio"];
                 this.columndata_fim = base.Columns["data_fim"];
-                this.columncategoria = base.Columns["categoria"];
                 this.columnescopo = base.Columns["escopo"];
                 this.columnimportante = base.Columns["importante"];
+                this.columnId = base.Columns["Id"];
+                this.columndata_criacao = base.Columns["data_criacao"];
                 this.columncriador = base.Columns["criador"];
+                this.columncapacidade = base.Columns["capacidade"];
+                this.columnCategoria_nome = base.Columns["Categoria_nome"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -504,49 +557,61 @@ namespace Desk {
                 base.Columns.Add(this.columndata_inicio);
                 this.columndata_fim = new global::System.Data.DataColumn("data_fim", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndata_fim);
-                this.columncategoria = new global::System.Data.DataColumn("categoria", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncategoria);
                 this.columnescopo = new global::System.Data.DataColumn("escopo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnescopo);
                 this.columnimportante = new global::System.Data.DataColumn("importante", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnimportante);
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
+                this.columndata_criacao = new global::System.Data.DataColumn("data_criacao", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndata_criacao);
                 this.columncriador = new global::System.Data.DataColumn("criador", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncriador);
+                this.columncapacidade = new global::System.Data.DataColumn("capacidade", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncapacidade);
+                this.columnCategoria_nome = new global::System.Data.DataColumn("Categoria_nome", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCategoria_nome);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnId}, true));
                 this.columnnome.AllowDBNull = false;
                 this.columnnome.MaxLength = 50;
                 this.columndata_inicio.AllowDBNull = false;
                 this.columndata_fim.AllowDBNull = false;
-                this.columncategoria.AllowDBNull = false;
-                this.columncategoria.MaxLength = 50;
                 this.columnescopo.AllowDBNull = false;
                 this.columnescopo.MaxLength = 20;
                 this.columnimportante.AllowDBNull = false;
+                this.columnId.AllowDBNull = false;
+                this.columnId.Unique = true;
+                this.columncriador.AllowDBNull = false;
+                this.columncriador.MaxLength = 50;
+                this.columnCategoria_nome.AllowDBNull = false;
+                this.columnCategoria_nome.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EventoRow NewEventoRow() {
-                return ((EventoRow)(this.NewRow()));
+            public EventosRow NewEventosRow() {
+                return ((EventosRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new EventoRow(builder);
+                return new EventosRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(EventoRow);
+                return typeof(EventosRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.EventoRowChanged != null)) {
-                    this.EventoRowChanged(this, new EventoRowChangeEvent(((EventoRow)(e.Row)), e.Action));
+                if ((this.EventosRowChanged != null)) {
+                    this.EventosRowChanged(this, new EventosRowChangeEvent(((EventosRow)(e.Row)), e.Action));
                 }
             }
             
@@ -554,8 +619,8 @@ namespace Desk {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.EventoRowChanging != null)) {
-                    this.EventoRowChanging(this, new EventoRowChangeEvent(((EventoRow)(e.Row)), e.Action));
+                if ((this.EventosRowChanging != null)) {
+                    this.EventosRowChanging(this, new EventosRowChangeEvent(((EventosRow)(e.Row)), e.Action));
                 }
             }
             
@@ -563,8 +628,8 @@ namespace Desk {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.EventoRowDeleted != null)) {
-                    this.EventoRowDeleted(this, new EventoRowChangeEvent(((EventoRow)(e.Row)), e.Action));
+                if ((this.EventosRowDeleted != null)) {
+                    this.EventosRowDeleted(this, new EventosRowChangeEvent(((EventosRow)(e.Row)), e.Action));
                 }
             }
             
@@ -572,14 +637,14 @@ namespace Desk {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.EventoRowDeleting != null)) {
-                    this.EventoRowDeleting(this, new EventoRowChangeEvent(((EventoRow)(e.Row)), e.Action));
+                if ((this.EventosRowDeleting != null)) {
+                    this.EventosRowDeleting(this, new EventosRowChangeEvent(((EventosRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveEventoRow(EventoRow row) {
+            public void RemoveEventosRow(EventosRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -606,7 +671,7 @@ namespace Desk {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "EventoDataTable";
+                attribute2.FixedValue = "EventosDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -909,25 +974,25 @@ namespace Desk {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class EventoRow : global::System.Data.DataRow {
+        public partial class EventosRow : global::System.Data.DataRow {
             
-            private EventoDataTable tableEvento;
+            private EventosDataTable tableEventos;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal EventoRow(global::System.Data.DataRowBuilder rb) : 
+            internal EventosRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableEvento = ((EventoDataTable)(this.Table));
+                this.tableEventos = ((EventosDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string nome {
                 get {
-                    return ((string)(this[this.tableEvento.nomeColumn]));
+                    return ((string)(this[this.tableEventos.nomeColumn]));
                 }
                 set {
-                    this[this.tableEvento.nomeColumn] = value;
+                    this[this.tableEventos.nomeColumn] = value;
                 }
             }
             
@@ -935,10 +1000,10 @@ namespace Desk {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime data_inicio {
                 get {
-                    return ((global::System.DateTime)(this[this.tableEvento.data_inicioColumn]));
+                    return ((global::System.DateTime)(this[this.tableEventos.data_inicioColumn]));
                 }
                 set {
-                    this[this.tableEvento.data_inicioColumn] = value;
+                    this[this.tableEventos.data_inicioColumn] = value;
                 }
             }
             
@@ -946,21 +1011,10 @@ namespace Desk {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime data_fim {
                 get {
-                    return ((global::System.DateTime)(this[this.tableEvento.data_fimColumn]));
+                    return ((global::System.DateTime)(this[this.tableEventos.data_fimColumn]));
                 }
                 set {
-                    this[this.tableEvento.data_fimColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string categoria {
-                get {
-                    return ((string)(this[this.tableEvento.categoriaColumn]));
-                }
-                set {
-                    this[this.tableEvento.categoriaColumn] = value;
+                    this[this.tableEventos.data_fimColumn] = value;
                 }
             }
             
@@ -968,10 +1022,10 @@ namespace Desk {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string escopo {
                 get {
-                    return ((string)(this[this.tableEvento.escopoColumn]));
+                    return ((string)(this[this.tableEventos.escopoColumn]));
                 }
                 set {
-                    this[this.tableEvento.escopoColumn] = value;
+                    this[this.tableEventos.escopoColumn] = value;
                 }
             }
             
@@ -979,10 +1033,37 @@ namespace Desk {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool importante {
                 get {
-                    return ((bool)(this[this.tableEvento.importanteColumn]));
+                    return ((bool)(this[this.tableEventos.importanteColumn]));
                 }
                 set {
-                    this[this.tableEvento.importanteColumn] = value;
+                    this[this.tableEventos.importanteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Id {
+                get {
+                    return ((int)(this[this.tableEventos.IdColumn]));
+                }
+                set {
+                    this[this.tableEventos.IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime data_criacao {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableEventos.data_criacaoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'data_criacao\' in table \'Eventos\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEventos.data_criacaoColumn] = value;
                 }
             }
             
@@ -990,28 +1071,73 @@ namespace Desk {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string criador {
                 get {
+                    return ((string)(this[this.tableEventos.criadorColumn]));
+                }
+                set {
+                    this[this.tableEventos.criadorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int capacidade {
+                get {
                     try {
-                        return ((string)(this[this.tableEvento.criadorColumn]));
+                        return ((int)(this[this.tableEventos.capacidadeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'criador\' in table \'Evento\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'capacidade\' in table \'Eventos\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableEvento.criadorColumn] = value;
+                    this[this.tableEventos.capacidadeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IscriadorNull() {
-                return this.IsNull(this.tableEvento.criadorColumn);
+            public string Categoria_nome {
+                get {
+                    return ((string)(this[this.tableEventos.Categoria_nomeColumn]));
+                }
+                set {
+                    this[this.tableEventos.Categoria_nomeColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetcriadorNull() {
-                this[this.tableEvento.criadorColumn] = global::System.Convert.DBNull;
+            public CategoriasRow CategoriasRowByFK_CategoriaEvento1 {
+                get {
+                    return ((CategoriasRow)(this.GetParentRow(this.Table.ParentRelations["FK_CategoriaEvento1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_CategoriaEvento1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isdata_criacaoNull() {
+                return this.IsNull(this.tableEventos.data_criacaoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setdata_criacaoNull() {
+                this[this.tableEventos.data_criacaoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscapacidadeNull() {
+                return this.IsNull(this.tableEventos.capacidadeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcapacidadeNull() {
+                this[this.tableEventos.capacidadeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1039,28 +1165,39 @@ namespace Desk {
                     this[this.tableCategorias.nomeColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EventosRow[] GetEventosRowsByFK_CategoriaEvento1() {
+                if ((this.Table.ChildRelations["FK_CategoriaEvento1"] == null)) {
+                    return new EventosRow[0];
+                }
+                else {
+                    return ((EventosRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CategoriaEvento1"])));
+                }
+            }
         }
         
         /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class EventoRowChangeEvent : global::System.EventArgs {
+        public class EventosRowChangeEvent : global::System.EventArgs {
             
-            private EventoRow eventRow;
+            private EventosRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EventoRowChangeEvent(EventoRow row, global::System.Data.DataRowAction action) {
+            public EventosRowChangeEvent(EventosRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EventoRow Row {
+            public EventosRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1122,7 +1259,7 @@ namespace Desk.dbEventosDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class EventoTableAdapter : global::System.ComponentModel.Component {
+    public partial class EventosTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1136,7 +1273,7 @@ namespace Desk.dbEventosDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public EventoTableAdapter() {
+        public EventosTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1233,14 +1370,54 @@ namespace Desk.dbEventosDataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Evento";
+            tableMapping.DataSetTable = "Eventos";
             tableMapping.ColumnMappings.Add("nome", "nome");
             tableMapping.ColumnMappings.Add("data_inicio", "data_inicio");
             tableMapping.ColumnMappings.Add("data_fim", "data_fim");
-            tableMapping.ColumnMappings.Add("categoria", "categoria");
             tableMapping.ColumnMappings.Add("escopo", "escopo");
             tableMapping.ColumnMappings.Add("importante", "importante");
+            tableMapping.ColumnMappings.Add("Id", "Id");
+            tableMapping.ColumnMappings.Add("data_criacao", "data_criacao");
+            tableMapping.ColumnMappings.Add("criador", "criador");
+            tableMapping.ColumnMappings.Add("capacidade", "capacidade");
+            tableMapping.ColumnMappings.Add("Categoria_nome", "Categoria_nome");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Eventoes] WHERE (([Id] = @Original_Id))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Eventoes] ([nome], [data_inicio], [data_fim], [Categoria_nome], [escopo], [importante], [Id], [capacidade], [criador], [data_criacao]) VALUES (@nome, @data_inicio, @data_fim, @Categoria_nome, @escopo, @importante, @Id, @capacidade, @criador, @data_criacao);
+SELECT nome, data_inicio, data_fim, Categoria_nome, escopo, importante, Id, capacidade, criador, data_criacao FROM Eventoes WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nome", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data_inicio", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "data_inicio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data_fim", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "data_fim", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Categoria_nome", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Categoria_nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@escopo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "escopo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@importante", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "importante", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@capacidade", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "capacidade", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@criador", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "criador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data_criacao", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "data_criacao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Eventoes] SET [nome] = @nome, [data_inicio] = @data_inicio, [data_fim] = @data_fim, [Categoria_nome] = @Categoria_nome, [escopo] = @escopo, [importante] = @importante, [Id] = @Id, [capacidade] = @capacidade, [criador] = @criador, [data_criacao] = @data_criacao WHERE (([Id] = @Original_Id));
+SELECT nome, data_inicio, data_fim, Categoria_nome, escopo, importante, Id, capacidade, criador, data_criacao FROM Eventoes WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nome", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data_inicio", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "data_inicio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data_fim", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "data_fim", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Categoria_nome", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Categoria_nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@escopo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "escopo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@importante", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "importante", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@capacidade", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "capacidade", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@criador", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "criador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data_criacao", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "data_criacao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1256,8 +1433,8 @@ namespace Desk.dbEventosDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT nome, data_inicio, data_fim, categoria, escopo, importante FROM dbo.Evento" +
-                "";
+            this._commandCollection[0].CommandText = "SELECT nome, data_inicio, data_fim, Categoria_nome, escopo, importante, Id, capac" +
+                "idade, criador, data_criacao FROM dbo.Eventoes";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -1293,7 +1470,7 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dbEventosDataSet.EventoDataTable dataTable) {
+        public virtual int Fill(dbEventosDataSet.EventosDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1306,9 +1483,9 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dbEventosDataSet.EventoDataTable GetData() {
+        public virtual dbEventosDataSet.EventosDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dbEventosDataSet.EventoDataTable dataTable = new dbEventosDataSet.EventoDataTable();
+            dbEventosDataSet.EventosDataTable dataTable = new dbEventosDataSet.EventosDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1317,7 +1494,7 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByDay(dbEventosDataSet.EventoDataTable dataTable) {
+        public virtual int FillByDay(dbEventosDataSet.EventosDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1330,7 +1507,7 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByEmail(dbEventosDataSet.EventoDataTable dataTable, string email) {
+        public virtual int FillByEmail(dbEventosDataSet.EventosDataTable dataTable, string email) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((email == null)) {
                 throw new global::System.ArgumentNullException("email");
@@ -1349,7 +1526,7 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByMonth(dbEventosDataSet.EventoDataTable dataTable) {
+        public virtual int FillByMonth(dbEventosDataSet.EventosDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1362,7 +1539,7 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByMONTH2(dbEventosDataSet.EventoDataTable dataTable) {
+        public virtual int FillByMONTH2(dbEventosDataSet.EventosDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1375,13 +1552,42 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByWeek(dbEventosDataSet.EventoDataTable dataTable) {
+        public virtual int FillByWeek(dbEventosDataSet.EventosDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[5];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
             int returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(dbEventosDataSet.EventosDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(dbEventosDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "Eventos");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
         }
     }
     
@@ -1706,6 +1912,8 @@ namespace Desk.dbEventosDataSetTableAdapters {
         
         private UpdateOrderOption _updateOrder;
         
+        private EventosTableAdapter _eventosTableAdapter;
+        
         private CategoriasTableAdapter _categoriasTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
@@ -1720,6 +1928,20 @@ namespace Desk.dbEventosDataSetTableAdapters {
             }
             set {
                 this._updateOrder = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public EventosTableAdapter EventosTableAdapter {
+            get {
+                return this._eventosTableAdapter;
+            }
+            set {
+                this._eventosTableAdapter = value;
             }
         }
         
@@ -1756,6 +1978,10 @@ namespace Desk.dbEventosDataSetTableAdapters {
                 if ((this._connection != null)) {
                     return this._connection;
                 }
+                if (((this._eventosTableAdapter != null) 
+                            && (this._eventosTableAdapter.Connection != null))) {
+                    return this._eventosTableAdapter.Connection;
+                }
                 if (((this._categoriasTableAdapter != null) 
                             && (this._categoriasTableAdapter.Connection != null))) {
                     return this._categoriasTableAdapter.Connection;
@@ -1773,6 +1999,9 @@ namespace Desk.dbEventosDataSetTableAdapters {
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
+                if ((this._eventosTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 if ((this._categoriasTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -1796,6 +2025,15 @@ namespace Desk.dbEventosDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._eventosTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Eventos.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._eventosTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -1814,6 +2052,14 @@ namespace Desk.dbEventosDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._eventosTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Eventos.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._eventosTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -1824,6 +2070,14 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(dbEventosDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._eventosTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Eventos.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._eventosTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._categoriasTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Categorias.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -1871,6 +2125,11 @@ namespace Desk.dbEventosDataSetTableAdapters {
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
+            if (((this._eventosTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._eventosTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             if (((this._categoriasTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._categoriasTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
@@ -1908,6 +2167,15 @@ namespace Desk.dbEventosDataSetTableAdapters {
             try {
                 // ---- Prepare for update -----------
                 //
+                if ((this._eventosTableAdapter != null)) {
+                    revertConnections.Add(this._eventosTableAdapter, this._eventosTableAdapter.Connection);
+                    this._eventosTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._eventosTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._eventosTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._eventosTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._eventosTableAdapter.Adapter);
+                    }
+                }
                 if ((this._categoriasTableAdapter != null)) {
                     revertConnections.Add(this._categoriasTableAdapter, this._categoriasTableAdapter.Connection);
                     this._categoriasTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -1974,6 +2242,10 @@ namespace Desk.dbEventosDataSetTableAdapters {
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
+                }
+                if ((this._eventosTableAdapter != null)) {
+                    this._eventosTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._eventosTableAdapter]));
+                    this._eventosTableAdapter.Transaction = null;
                 }
                 if ((this._categoriasTableAdapter != null)) {
                     this._categoriasTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._categoriasTableAdapter]));

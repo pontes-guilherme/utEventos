@@ -37,7 +37,10 @@ namespace Modelo.PN
                 user = db.Usuarios.Find(u.email);
 
                 user.nome = u.nome;
-                user.senha = CreateMD5(u.senha);
+                if (u.senha != "")
+                {
+                    user.senha = CreateMD5(u.senha);
+                }
                 user.data_nascimento = u.data_nascimento;
 
                 db.SaveChanges();

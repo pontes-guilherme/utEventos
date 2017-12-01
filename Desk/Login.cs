@@ -27,9 +27,9 @@ namespace Desk
 
         private void Entrar_Click(object sender, EventArgs e)
         {
-            if (txtEmail.Text == "" || txtSenha.Text == "")
+            if (txtEmail.Text == "")
             {
-                MessageBox.Show("Por favor, informe email e senha.");
+                MessageBox.Show("Por favor, informe o email");
             }
             else
             {

@@ -44,7 +44,7 @@ namespace Desk
             currentUser.senha = txtSenha.Text;
             currentUser.data_nascimento = DateTime.Parse(txtNascimento.Text);
             currentUser.tipo = currentUser.tipo;
-
+                
             if (!pnUsuarios.Alterar(currentUser))
             {
                 MessageBox.Show("Erro ao alterar perfil!");

@@ -81,7 +81,7 @@
     <Property Name="descricao" Type="varchar(max)" Nullable="true" />
     <Property Name="EventoId" Type="int" Nullable="false" />
     <Property Name="Usuario_email" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="data_criacao" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="data_criacao" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="Sugestoes">
     <Key>
@@ -288,7 +288,7 @@
           <Property Name="EventoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="dbEventosModel.FeedbackUsuario" FromRole="Feedback" ToRole="Usuario" />
           <Property Name="Usuario_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="data_criacao" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="data_criacao" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Sugesto">
           <Key>

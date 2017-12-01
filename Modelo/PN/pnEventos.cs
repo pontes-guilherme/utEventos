@@ -72,6 +72,19 @@ namespace Modelo.PN
             }
         }
 
+        public static List<Evento> ListarAnteriores()
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                return (db.Eventoes.Where(ev => ev.data_fim < (DateTime.Now)).ToList());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static int getLasId()
         {
 
