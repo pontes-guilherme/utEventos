@@ -1438,31 +1438,33 @@ SELECT nome, data_inicio, data_fim, Categoria_nome, escopo, importante, Id, capa
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT nome, data_inicio, data_fim, categoria, escopo, importante FROM dbo.Evento" +
-                " WHERE data_inicio <= GETDATE() AND data_fim >= GETDATE()";
+            this._commandCollection[1].CommandText = "SELECT nome, data_inicio, data_fim, Categoria_nome, escopo, importante FROM dbo.E" +
+                "ventoes WHERE data_inicio <= GETDATE() AND data_fim >= GETDATE()";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT nome, data_inicio, data_fim, categoria, escopo, importante FROM dbo.Evento" +
-                " WHERE criador = @email";
+            this._commandCollection[2].CommandText = "SELECT id, nome, data_inicio, data_fim, Categoria_nome, escopo, importante, data_" +
+                "criacao, criador, capacidade, importante FROM dbo.Eventoes WHERE criador = @emai" +
+                "l";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@email", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "criador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT nome, data_inicio, data_fim, categoria, escopo, importante FROM dbo.Evento" +
-                " WHERE \r\nMONTH(data_inicio) = MONTH(GETDATE())";
+            this._commandCollection[3].CommandText = "SELECT nome, data_inicio, data_fim, categoria_nome, escopo, importante FROM dbo.E" +
+                "ventoes WHERE \r\nMONTH(data_inicio) = MONTH(GETDATE())";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT nome, data_inicio, data_fim, categoria, escopo, importante FROM dbo.Evento" +
-                " WHERE YEAR(data_inicio) = YEAR(GETDATE()) AND MONTH(data_inicio) >= MONTH(GETDA" +
-                "TE()) AND MONTH(data_fim) <= MONTH(GETDATE())";
+            this._commandCollection[4].CommandText = "SELECT nome, data_inicio, data_fim, categoria_nome, escopo, importante FROM dbo.E" +
+                "ventoes WHERE YEAR(data_inicio) = YEAR(GETDATE()) AND MONTH(data_inicio) >= MONT" +
+                "H(GETDATE()) AND MONTH(data_fim) <= MONTH(GETDATE())";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT nome, data_inicio, data_fim, categoria, escopo, importante FROM dbo.Evento" +
-                " WHERE YEAR(data_inicio) = YEAR(GETDATE()) AND DATEPART(wk, data_inicio) >= DATE" +
-                "PART(wk, GETDATE()) AND DATEPART(wk, data_fim) <= DATEPART(wk, GETDATE())";
+            this._commandCollection[5].CommandText = "SELECT nome, data_inicio, data_fim, categoria_nome, escopo, importante FROM dbo.E" +
+                "ventoes WHERE YEAR(data_inicio) = YEAR(GETDATE()) AND DATEPART(wk, data_inicio) " +
+                ">= DATEPART(wk, GETDATE()) AND DATEPART(wk, data_fim) <= DATEPART(wk, GETDATE())" +
+                "";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
         }
         
