@@ -30,26 +30,31 @@
         {
             this.components = new System.ComponentModel.Container();
             this.title = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.fillByEmailToolStrip = new System.Windows.Forms.ToolStrip();
-            this.emailToolStripLabel = new System.Windows.Forms.ToolStripLabel();
-            this.emailToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.fillByEmailToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.eventosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dbEventosDataSet = new Desk.dbEventosDataSet();
-            this.eventosTableAdapter1 = new Desk.dbEventosDataSetTableAdapters.EventosTableAdapter();
-            this.datacriacaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.importanteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datafimDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datainicioDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.escopoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categorianomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.capacidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.fillByEmailToolStrip.SuspendLayout();
+            this.eventosTableAdapter = new Desk.dbEventosDataSetTableAdapters.EventosTableAdapter();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnAlterar = new System.Windows.Forms.Button();
+            this.dtInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtFim = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.cmbCategoria = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ckbImportante = new System.Windows.Forms.CheckBox();
+            this.txtCapacidade = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbEscopo = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbDisciplina = new System.Windows.Forms.ComboBox();
+            this.eventosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // title
@@ -63,62 +68,17 @@
             this.title.TabIndex = 12;
             this.title.Text = "Meus Eventos";
             // 
-            // dataGridView1
+            // listBox1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nomeDataGridViewTextBoxColumn,
-            this.capacidadeDataGridViewTextBoxColumn,
-            this.categorianomeDataGridViewTextBoxColumn,
-            this.escopoDataGridViewTextBoxColumn,
-            this.datainicioDataGridViewCheckBoxColumn,
-            this.datafimDataGridViewTextBoxColumn,
-            this.importanteDataGridViewTextBoxColumn,
-            this.datacriacaoDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.eventosBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(57, 77);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(583, 372);
-            this.dataGridView1.TabIndex = 13;
-            // 
-            // fillByEmailToolStrip
-            // 
-            this.fillByEmailToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.emailToolStripLabel,
-            this.emailToolStripTextBox,
-            this.fillByEmailToolStripButton});
-            this.fillByEmailToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.fillByEmailToolStrip.Name = "fillByEmailToolStrip";
-            this.fillByEmailToolStrip.Size = new System.Drawing.Size(697, 25);
-            this.fillByEmailToolStrip.TabIndex = 14;
-            this.fillByEmailToolStrip.Text = "fillByEmailToolStrip";
-            this.fillByEmailToolStrip.Visible = false;
-            // 
-            // emailToolStripLabel
-            // 
-            this.emailToolStripLabel.Name = "emailToolStripLabel";
-            this.emailToolStripLabel.Size = new System.Drawing.Size(39, 22);
-            this.emailToolStripLabel.Text = "email:";
-            // 
-            // emailToolStripTextBox
-            // 
-            this.emailToolStripTextBox.Name = "emailToolStripTextBox";
-            this.emailToolStripTextBox.Size = new System.Drawing.Size(100, 25);
-            // 
-            // fillByEmailToolStripButton
-            // 
-            this.fillByEmailToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.fillByEmailToolStripButton.Name = "fillByEmailToolStripButton";
-            this.fillByEmailToolStripButton.Size = new System.Drawing.Size(68, 22);
-            this.fillByEmailToolStripButton.Text = "FillByEmail";
-            this.fillByEmailToolStripButton.Click += new System.EventHandler(this.fillByEmailToolStripButton_Click_6);
+            this.listBox1.DataSource = this.eventosBindingSource1;
+            this.listBox1.DisplayMember = "nome";
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(34, 85);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(165, 329);
+            this.listBox1.TabIndex = 13;
+            this.listBox1.ValueMember = "id";
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // eventosBindingSource
             // 
@@ -130,83 +90,204 @@
             this.dbEventosDataSet.DataSetName = "dbEventosDataSet";
             this.dbEventosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // eventosTableAdapter1
+            // eventosTableAdapter
             // 
-            this.eventosTableAdapter1.ClearBeforeFill = true;
+            this.eventosTableAdapter.ClearBeforeFill = true;
             // 
-            // datacriacaoDataGridViewTextBoxColumn
+            // label7
             // 
-            this.datacriacaoDataGridViewTextBoxColumn.DataPropertyName = "data_criacao";
-            this.datacriacaoDataGridViewTextBoxColumn.HeaderText = "data_criacao";
-            this.datacriacaoDataGridViewTextBoxColumn.Name = "datacriacaoDataGridViewTextBoxColumn";
-            this.datacriacaoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(31, 69);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(87, 13);
+            this.label7.TabIndex = 43;
+            this.label7.Text = "Eventos Criados:";
             // 
-            // importanteDataGridViewTextBoxColumn
+            // btnAlterar
             // 
-            this.importanteDataGridViewTextBoxColumn.DataPropertyName = "importante";
-            this.importanteDataGridViewTextBoxColumn.HeaderText = "importante";
-            this.importanteDataGridViewTextBoxColumn.Name = "importanteDataGridViewTextBoxColumn";
-            this.importanteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.btnAlterar.Location = new System.Drawing.Point(290, 253);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(212, 23);
+            this.btnAlterar.TabIndex = 28;
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
-            // datafimDataGridViewTextBoxColumn
+            // dtInicio
             // 
-            this.datafimDataGridViewTextBoxColumn.DataPropertyName = "data_fim";
-            this.datafimDataGridViewTextBoxColumn.HeaderText = "data_fim";
-            this.datafimDataGridViewTextBoxColumn.Name = "datafimDataGridViewTextBoxColumn";
-            this.datafimDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dtInicio.Location = new System.Drawing.Point(290, 165);
+            this.dtInicio.Name = "dtInicio";
+            this.dtInicio.Size = new System.Drawing.Size(212, 20);
+            this.dtInicio.TabIndex = 29;
             // 
-            // datainicioDataGridViewCheckBoxColumn
+            // dtFim
             // 
-            this.datainicioDataGridViewCheckBoxColumn.DataPropertyName = "data_inicio";
-            this.datainicioDataGridViewCheckBoxColumn.HeaderText = "data_inicio";
-            this.datainicioDataGridViewCheckBoxColumn.Name = "datainicioDataGridViewCheckBoxColumn";
-            this.datainicioDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.dtFim.Location = new System.Drawing.Point(290, 191);
+            this.dtFim.Name = "dtFim";
+            this.dtFim.Size = new System.Drawing.Size(212, 20);
+            this.dtFim.TabIndex = 30;
             // 
-            // escopoDataGridViewTextBoxColumn
+            // label1
             // 
-            this.escopoDataGridViewTextBoxColumn.DataPropertyName = "escopo";
-            this.escopoDataGridViewTextBoxColumn.HeaderText = "escopo";
-            this.escopoDataGridViewTextBoxColumn.Name = "escopoDataGridViewTextBoxColumn";
-            this.escopoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(246, 88);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Nome:";
             // 
-            // categorianomeDataGridViewTextBoxColumn
+            // txtNome
             // 
-            this.categorianomeDataGridViewTextBoxColumn.DataPropertyName = "Categoria_nome";
-            this.categorianomeDataGridViewTextBoxColumn.HeaderText = "Categoria_nome";
-            this.categorianomeDataGridViewTextBoxColumn.Name = "categorianomeDataGridViewTextBoxColumn";
-            this.categorianomeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.txtNome.Location = new System.Drawing.Point(290, 85);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(212, 20);
+            this.txtNome.TabIndex = 32;
             // 
-            // capacidadeDataGridViewTextBoxColumn
+            // cmbCategoria
             // 
-            this.capacidadeDataGridViewTextBoxColumn.DataPropertyName = "capacidade";
-            this.capacidadeDataGridViewTextBoxColumn.HeaderText = "capacidade";
-            this.capacidadeDataGridViewTextBoxColumn.Name = "capacidadeDataGridViewTextBoxColumn";
-            this.capacidadeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cmbCategoria.FormattingEnabled = true;
+            this.cmbCategoria.Location = new System.Drawing.Point(290, 138);
+            this.cmbCategoria.Name = "cmbCategoria";
+            this.cmbCategoria.Size = new System.Drawing.Size(212, 21);
+            this.cmbCategoria.TabIndex = 33;
+            this.cmbCategoria.Text = "Outro";
             // 
-            // nomeDataGridViewTextBoxColumn
+            // label2
             // 
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "nome";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "nome";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            this.nomeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(229, 141);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Categoria:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(247, 171);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "Início:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(258, 197);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(26, 13);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "Fim:";
+            // 
+            // ckbImportante
+            // 
+            this.ckbImportante.AutoSize = true;
+            this.ckbImportante.Location = new System.Drawing.Point(426, 219);
+            this.ckbImportante.Name = "ckbImportante";
+            this.ckbImportante.Size = new System.Drawing.Size(76, 17);
+            this.ckbImportante.TabIndex = 37;
+            this.ckbImportante.Text = "Importante";
+            this.ckbImportante.UseVisualStyleBackColor = true;
+            // 
+            // txtCapacidade
+            // 
+            this.txtCapacidade.Location = new System.Drawing.Point(290, 217);
+            this.txtCapacidade.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.txtCapacidade.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtCapacidade.Name = "txtCapacidade";
+            this.txtCapacidade.Size = new System.Drawing.Size(120, 20);
+            this.txtCapacidade.TabIndex = 38;
+            this.txtCapacidade.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(217, 219);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "Capacidade:";
+            // 
+            // cmbEscopo
+            // 
+            this.cmbEscopo.FormattingEnabled = true;
+            this.cmbEscopo.Items.AddRange(new object[] {
+            "Global",
+            "Pessoal",
+            "Disciplina"});
+            this.cmbEscopo.Location = new System.Drawing.Point(290, 111);
+            this.cmbEscopo.Name = "cmbEscopo";
+            this.cmbEscopo.Size = new System.Drawing.Size(212, 21);
+            this.cmbEscopo.TabIndex = 40;
+            this.cmbEscopo.Text = "Global";
+            this.cmbEscopo.SelectedIndexChanged += new System.EventHandler(this.cmbEscopo_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(238, 114);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 13);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "Escopo:";
+            // 
+            // cmbDisciplina
+            // 
+            this.cmbDisciplina.FormattingEnabled = true;
+            this.cmbDisciplina.Location = new System.Drawing.Point(508, 111);
+            this.cmbDisciplina.Name = "cmbDisciplina";
+            this.cmbDisciplina.Size = new System.Drawing.Size(166, 21);
+            this.cmbDisciplina.TabIndex = 42;
+            this.cmbDisciplina.Visible = false;
+            // 
+            // eventosBindingSource1
+            // 
+            this.eventosBindingSource1.DataMember = "Eventos";
+            this.eventosBindingSource1.DataSource = this.dbEventosDataSet;
             // 
             // MeusEventos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 483);
-            this.Controls.Add(this.fillByEmailToolStrip);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cmbDisciplina);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cmbEscopo);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtCapacidade);
+            this.Controls.Add(this.ckbImportante);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmbCategoria);
+            this.Controls.Add(this.txtNome);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtFim);
+            this.Controls.Add(this.dtInicio);
+            this.Controls.Add(this.btnAlterar);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MeusEventos";
             this.Text = "MeusEventos";
             this.Load += new System.EventHandler(this.MeusEventos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.fillByEmailToolStrip.ResumeLayout(false);
-            this.fillByEmailToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,21 +296,26 @@
         #endregion
 
         private System.Windows.Forms.Label title;
-        private dbEventosDataSetTableAdapters.EventosTableAdapter eventosTableAdapter1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ToolStrip fillByEmailToolStrip;
-        private System.Windows.Forms.ToolStripLabel emailToolStripLabel;
-        private System.Windows.Forms.ToolStripTextBox emailToolStripTextBox;
-        private System.Windows.Forms.ToolStripButton fillByEmailToolStripButton;
-        private System.Windows.Forms.BindingSource eventosBindingSource;
+        private System.Windows.Forms.ListBox listBox1;
         private dbEventosDataSet dbEventosDataSet;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn capacidadeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categorianomeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn escopoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn datainicioDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datafimDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn importanteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datacriacaoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource eventosBindingSource;
+        private dbEventosDataSetTableAdapters.EventosTableAdapter eventosTableAdapter;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnAlterar;
+        private System.Windows.Forms.DateTimePicker dtInicio;
+        private System.Windows.Forms.DateTimePicker dtFim;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.ComboBox cmbCategoria;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox ckbImportante;
+        private System.Windows.Forms.NumericUpDown txtCapacidade;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbEscopo;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbDisciplina;
+        private System.Windows.Forms.BindingSource eventosBindingSource1;
     }
 }

@@ -337,6 +337,8 @@ namespace Desk {
             
             private global::System.Data.DataColumn columndata_criacao;
             
+            private global::System.Data.DataColumn columnid;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EventosDataTable() {
@@ -436,6 +438,14 @@ namespace Desk {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn idColumn {
+                get {
+                    return this.columnid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -471,7 +481,7 @@ namespace Desk {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EventosRow AddEventosRow(string nome, System.DateTime capacidade, System.DateTime Categoria_nome, string escopo, bool data_inicio, System.DateTime data_fim, int importante, CategoriasRow parentCategoriasRowByFK_CategoriaEvento1) {
+            public EventosRow AddEventosRow(string nome, System.DateTime capacidade, System.DateTime Categoria_nome, string escopo, bool data_inicio, System.DateTime data_fim, int importante, CategoriasRow parentCategoriasRowByFK_CategoriaEvento1, int id) {
                 EventosRow rowEventosRow = ((EventosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         nome,
@@ -481,13 +491,21 @@ namespace Desk {
                         data_inicio,
                         data_fim,
                         importante,
-                        null};
+                        null,
+                        id};
                 if ((parentCategoriasRowByFK_CategoriaEvento1 != null)) {
                     columnValuesArray[7] = parentCategoriasRowByFK_CategoriaEvento1[0];
                 }
                 rowEventosRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEventosRow);
                 return rowEventosRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EventosRow FindByid(int id) {
+                return ((EventosRow)(this.Rows.Find(new object[] {
+                            id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -515,6 +533,7 @@ namespace Desk {
                 this.columndata_fim = base.Columns["data_fim"];
                 this.columnimportante = base.Columns["importante"];
                 this.columndata_criacao = base.Columns["data_criacao"];
+                this.columnid = base.Columns["id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -536,6 +555,10 @@ namespace Desk {
                 base.Columns.Add(this.columnimportante);
                 this.columndata_criacao = new global::System.Data.DataColumn("data_criacao", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndata_criacao);
+                this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint3", new global::System.Data.DataColumn[] {
+                                this.columnid}, true));
                 this.columnnome.AllowDBNull = false;
                 this.columnnome.MaxLength = 50;
                 this.columncapacidade.AllowDBNull = false;
@@ -545,6 +568,8 @@ namespace Desk {
                 this.columndata_inicio.AllowDBNull = false;
                 this.columndata_criacao.AllowDBNull = false;
                 this.columndata_criacao.MaxLength = 50;
+                this.columnid.AllowDBNull = false;
+                this.columnid.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1044,6 +1069,17 @@ namespace Desk {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int id {
+                get {
+                    return ((int)(this[this.tableEventos.idColumn]));
+                }
+                set {
+                    this[this.tableEventos.idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CategoriasRow CategoriasRowByFK_CategoriaEvento1 {
                 get {
                     return ((CategoriasRow)(this.GetParentRow(this.Table.ParentRelations["FK_CategoriaEvento1"])));
@@ -1316,6 +1352,7 @@ namespace Desk.dbEventosDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("data_criacao", "data_fim");
             tableMapping.ColumnMappings.Add("capacidade", "importante");
             tableMapping.ColumnMappings.Add("Categoria_nome", "data_criacao");
+            tableMapping.ColumnMappings.Add("id", "id");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1332,41 +1369,41 @@ namespace Desk.dbEventosDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[7];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, im" +
-                "portante, data_criacao\r\nFROM            Eventoes";
+            this._commandCollection[0].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
+                "ante, data_criacao FROM Eventoes";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT Categoria_nome, capacidade, data_criacao, data_fim, data_inicio, escopo, i" +
-                "mportante, nome FROM Eventoes";
+            this._commandCollection[1].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
+                "o, importante, nome FROM Eventoes";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT Categoria_nome, capacidade, data_criacao, data_fim, data_inicio, escopo, i" +
-                "mportante, nome FROM Eventoes WHERE (data_inicio <= GETDATE()) AND (data_fim >= " +
-                "GETDATE())";
+            this._commandCollection[2].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
+                "o, importante, nome FROM Eventoes WHERE (data_inicio <= GETDATE()) AND (data_fim" +
+                " >= GETDATE())";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, important" +
-                "e, data_criacao FROM Eventoes WHERE (criador = @email)";
+            this._commandCollection[3].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
+                "o, importante, nome FROM Eventoes WHERE (criador = @email)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@email", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "criador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT Categoria_nome, capacidade, data_criacao, data_fim, data_inicio, escopo, i" +
-                "mportante, nome FROM Eventoes WHERE (MONTH(data_inicio) = MONTH(GETDATE()))";
+            this._commandCollection[4].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
+                "o, importante, nome FROM Eventoes WHERE (MONTH(data_inicio) = MONTH(GETDATE()))";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT Categoria_nome, capacidade, data_criacao, data_fim, data_inicio, escopo, i" +
-                "mportante, nome FROM Eventoes WHERE (YEAR(data_inicio) = YEAR(GETDATE())) AND (M" +
-                "ONTH(data_inicio) >= MONTH(GETDATE())) AND (MONTH(data_fim) <= MONTH(GETDATE()))" +
-                "";
+            this._commandCollection[5].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
+                "o, importante, nome FROM Eventoes WHERE (YEAR(data_inicio) = YEAR(GETDATE())) AN" +
+                "D (MONTH(data_inicio) >= MONTH(GETDATE())) AND (MONTH(data_fim) <= MONTH(GETDATE" +
+                "()))";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = @"SELECT Categoria_nome, capacidade, data_criacao, data_fim, data_inicio, escopo, importante, nome FROM Eventoes WHERE (YEAR(data_inicio) = YEAR(GETDATE())) AND (DATEPART(wk, data_inicio) >= DATEPART(wk, GETDATE())) AND (DATEPART(wk, data_fim) <= DATEPART(wk, GETDATE()))";
+            this._commandCollection[6].CommandText = @"SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escopo, importante, nome FROM Eventoes WHERE (YEAR(data_inicio) = YEAR(GETDATE())) AND (DATEPART(wk, data_inicio) >= DATEPART(wk, GETDATE())) AND (DATEPART(wk, data_fim) <= DATEPART(wk, GETDATE()))";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
         }
         

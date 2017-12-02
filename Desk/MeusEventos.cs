@@ -18,20 +18,21 @@ namespace Desk
         Usuario current_user;
         string opc;
 
+        List<Categoria> lista_categorias = pnCategorias.Listar();
+        List<Disciplina> lista_disciplinas = pnDisciplinas.Listar();
+
         public MeusEventos(Usuario u, string opc)
         {
             InitializeComponent();
             this.current_user = u;
             this.opc = opc;
 
-            dataGridView1.Columns.Clear();
-            dataGridView1.AutoGenerateColumns = false;
+            this.cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbEscopo.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbDisciplina.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            dbEventosDataSet.EventosDataTable EventosDT = new dbEventosDataSet.EventosDataTable();
-            var dataAdapter = new dbEventosDataSetTableAdapters.EventosTableAdapter();
-
-            dataAdapter.FillByEmail(EventosDT, u.email);
-            eventosBindingSource.DataSource = EventosDT;
+            loadCmbCategorias();
+            loadCmbDisciplinas();
 
             if (this.opc == "meus")
             {
@@ -42,220 +43,173 @@ namespace Desk
 
         private void MeusEventos_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dbEventosDataSet.Evento' table. You can move, or remove it, as needed.
-            //this.eventoTableAdapter.Fill(this.dbEventosDataSet.Evento);
-            // TODO: This line of code loads data into the 'dbEventosDataSet.Evento' table. You can move, or remove it, as needed.
-            Console.WriteLine(current_user.email);
+            // TODO: This line of code loads data into the 'dbEventosDataSet.Eventos' table. You can move, or remove it, as needed.
+            this.eventosTableAdapter.FillByEmail(this.dbEventosDataSet.Eventos, current_user.email);
+            loadFromDb();
+            //loadFromListToFields();
+        }
+
+        private void loadCmbDisciplinas()
+        {
+            int i = 0;
+
+            lista_disciplinas.ForEach(delegate (Disciplina d) {
+
+                cmbDisciplina.Items.Insert(i, d.nome.ToString());
+                i++;
+            });
+
+        }
+
+        private void loadCmbCategorias()
+        {
+            int i = 0;
+            try
+            {
+                lista_categorias.ForEach(delegate (Categoria c) {
+
+                    cmbCategoria.Items.Insert(i, c.nome.ToString());
+                    i++;
+                });
+            }
+            catch
+            {
+                cmbCategoria.Items.Insert(0, "Outro");
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadFromListToFields();
+            //this.Refresh();
+        }
+
+        private void loadFromDb()
+        {
+            List<Evento> lista_eventos = pnEventos.Listar();
+
+
+            try
+            {
+               
+
+                listBox1.DataSource = lista_eventos;
+ 
+               
+            }catch
+            {
+
+            }
+
+        }
+
+        private void loadFromListToFields()
+        {
+            dbEventosEntities db = new dbEventosEntities();
             
-
-        }
-
-        private void fillByToolStripButton_Click(object sender, EventArgs e)
-        {
             try
             {
-                //this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
+                Evento evento = db.Eventoes.Find(listBox1.SelectedValue);
 
-        }
-
-        private void fillByToolStripButton1_Click(object sender, EventArgs e)
-        {
-            try
+                txtNome.Text = evento.nome;
+                txtCapacidade.Text = evento.capacidade.ToString();
+                cmbCategoria.SelectedItem = evento.Categoria_nome;
+                cmbEscopo.SelectedItem = evento.escopo;
+                dtInicio.Value = evento.data_inicio;
+                dtFim.Value = evento.data_fim;
+                ckbImportante.Checked = evento.importante;
+                if (evento.escopo == "Disciplina")
+                {
+                    cmbDisciplina.Visible = true;
+                    cmbDisciplina.SelectedItem = evento.Disciplina_nome;
+                }
+                else
+                {
+                    cmbDisciplina.Visible = false;
+                }
+                
+            }
+            catch
             {
                 
             }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
         }
 
-        private void fillByEmailToolStripButton_Click(object sender, EventArgs e)
+        private void btnAlterar_Click(object sender, EventArgs e)
         {
-            try
+        
+
+            DateTime data_inicio = DateTime.Parse(dtInicio.Text);
+            DateTime data_fim = DateTime.Parse(dtFim.Text);
+
+            if (data_inicio > data_fim)
             {
-                
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                MessageBox.Show("Data fim deve ser maior ou igual à data início!");
+                return;
             }
 
+            if (txtNome.Text == "" || cmbCategoria.Text == "")
+            {
+                MessageBox.Show("Os campos devem ser corretament preenchidos!");
+                return;
+            }
+
+            try
+            {
+
+                dbEventosEntities db = new dbEventosEntities();
+                Evento evento = db.Eventoes.Find(listBox1.SelectedValue);
+
+                Categoria c = db.Categorias.Find(cmbCategoria.Text);
+
+                evento.criador = current_user.email;
+                evento.nome = txtNome.Text;
+                evento.data_inicio = DateTime.Parse(dtInicio.Text);
+                evento.data_fim = DateTime.Parse(dtFim.Text);
+                evento.capacidade = int.Parse(txtCapacidade.Value.ToString());
+                evento.importante = ckbImportante.Checked;
+
+                evento.Categoria = c;
+                evento.Categoria_nome = c.nome;
+
+                if (cmbEscopo.SelectedIndex == 2)
+                {
+                    Disciplina d = db.Disciplinas.Find(cmbDisciplina.SelectedItem);
+                    evento.Disciplina = d;
+                    evento.Disciplina_nome = d.nome;
+                }
+
+                evento.escopo = cmbEscopo.SelectedItem.ToString();
+
+                if (!pnEventos.Alterar(evento, db))
+                {
+                    MessageBox.Show("Problema na inserção de evento!");
+                }
+                else
+                {
+                    MessageBox.Show("Cadastro realizado com sucesso.");
+                    this.Hide();
+                }
+            }
+
+            catch (Exception ex)
+            {
+                //throw;
+                MessageBox.Show(ex.ToString());
+            }
         }
 
-        private void fillByEmailToolStripButton_Click_1(object sender, EventArgs e)
+        private void cmbEscopo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if (cmbEscopo.SelectedIndex == 2)
             {
-                //this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
+                cmbDisciplina.Visible = true;
+                cmbDisciplina.SelectedIndex = 0;
             }
-            catch (System.Exception ex)
+            else
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                cmbDisciplina.Visible = false;
             }
-
-        }
-
-        private void fillByEmailToolStripButton1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventoTableAdapter.FillByEmail(this.dbEventosDataSet.Evento, emailToolStripTextBox1.Text);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByEmailToolStripButton_Click_2(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByEmailToolStripButton1_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventoTableAdapter.FillByEmail(this.dbEventosDataSet.Evento, emailToolStripTextBox1.Text);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByEmailToolStripButton_Click_3(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByEmailToolStripButton_Click_4(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByDayToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventosTableAdapter1.FillByDay(this.dbEventosDataSet1.Eventos);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByEmailToolStripButton_Click_5(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByDayToolStripButton_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventosTableAdapter1.FillByDay(this.dbEventosDataSet1.Eventos);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByMONTH2ToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventosTableAdapter1.FillByMONTH2(this.dbEventosDataSet1.Eventos);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByWeekToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventosTableAdapter1.FillByWeek(this.dbEventosDataSet1.Eventos);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByEmailToolStripButton_Click_6(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventosTableAdapter1.FillByEmail(this.dbEventosDataSet1.Eventos, emailToolStripTextBox.Text);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByToolStripButton_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                this.eventosTableAdapter1.FillBy(this.dbEventosDataSet.Eventos);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
         }
     }
 }
