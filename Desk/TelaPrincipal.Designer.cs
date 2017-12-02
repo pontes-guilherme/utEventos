@@ -242,10 +242,10 @@
             this.lnkEvenPes.LinkColor = System.Drawing.Color.Black;
             this.lnkEvenPes.Location = new System.Drawing.Point(20, 38);
             this.lnkEvenPes.Name = "lnkEvenPes";
-            this.lnkEvenPes.Size = new System.Drawing.Size(75, 13);
+            this.lnkEvenPes.Size = new System.Drawing.Size(84, 13);
             this.lnkEvenPes.TabIndex = 5;
             this.lnkEvenPes.TabStop = true;
-            this.lnkEvenPes.Text = "Meus Eventos";
+            this.lnkEvenPes.Text = "Eventos Criados";
             this.lnkEvenPes.VisitedLinkColor = System.Drawing.Color.Black;
             this.lnkEvenPes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEvenPes_LinkClicked);
             // 

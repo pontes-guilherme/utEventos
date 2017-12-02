@@ -43,6 +43,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbEscopo = new System.Windows.Forms.ComboBox();
+            this.cmbDisciplina = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).BeginInit();
             this.SuspendLayout();
             // 
@@ -195,6 +196,16 @@
             this.cmbEscopo.Size = new System.Drawing.Size(212, 21);
             this.cmbEscopo.TabIndex = 24;
             this.cmbEscopo.Text = "Global";
+            this.cmbEscopo.SelectedIndexChanged += new System.EventHandler(this.cmbEscopo_SelectedIndexChanged);
+            // 
+            // cmbDisciplina
+            // 
+            this.cmbDisciplina.FormattingEnabled = true;
+            this.cmbDisciplina.Location = new System.Drawing.Point(468, 190);
+            this.cmbDisciplina.Name = "cmbDisciplina";
+            this.cmbDisciplina.Size = new System.Drawing.Size(166, 21);
+            this.cmbDisciplina.TabIndex = 26;
+            this.cmbDisciplina.Visible = false;
             // 
             // CadastroEventos
             // 
@@ -202,6 +213,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 522);
             this.ControlBox = false;
+            this.Controls.Add(this.cmbDisciplina);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbEscopo);
             this.Controls.Add(this.label5);
@@ -247,5 +259,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbEscopo;
+        private System.Windows.Forms.ComboBox cmbDisciplina;
     }
 }

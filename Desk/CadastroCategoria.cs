@@ -74,6 +74,11 @@ namespace Desk
             {
                 categoria = new Categoria();
                 String nome = categoriasDataGridView.SelectedCells[0].Value.ToString();
+                if (nome == "Outro")
+                {
+                    MessageBox.Show("Não é possível excluir essa categoria!");
+                    return;
+                }
                 if (MessageBox.Show("Deseja realmente excuir?", "Excluir?", MessageBoxButtons.YesNo) == DialogResult.Yes )
                 {
                     categoria.nome = nome;

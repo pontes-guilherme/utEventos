@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/02/2017 01:26:30
--- Generated from EDMX file: C:\Users\l_ass\source\repos\utEventos\Modelo\DAO\EventoDAO.edmx
+-- Date Created: 12/02/2017 17:58:09
+-- Generated from EDMX file: C:\Users\Guilherme Pontes\Source\Repos\utEventos\Modelo\DAO\EventoDAO.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -38,6 +38,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_InscricaoEvento]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Inscricoes] DROP CONSTRAINT [FK_InscricaoEvento];
 GO
+IF OBJECT_ID(N'[dbo].[FK_DisciplinaEvento]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Eventoes] DROP CONSTRAINT [FK_DisciplinaEvento];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -60,6 +63,9 @@ IF OBJECT_ID(N'[dbo].[Sugestoes]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Inscricoes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Inscricoes];
+GO
+IF OBJECT_ID(N'[dbo].[Disciplinas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Disciplinas];
 GO
 
 -- --------------------------------------------------
