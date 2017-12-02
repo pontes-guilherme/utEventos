@@ -50,7 +50,7 @@
             this.title.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.title.AutoSize = true;
             this.title.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title.Location = new System.Drawing.Point(332, 9);
+            this.title.Location = new System.Drawing.Point(304, 9);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(86, 18);
             this.title.TabIndex = 13;
@@ -58,7 +58,7 @@
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(414, 112);
+            this.btnCadastrar.Location = new System.Drawing.Point(385, 106);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrar.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(289, 86);
+            this.txtNome.Location = new System.Drawing.Point(260, 80);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(200, 20);
             this.txtNome.TabIndex = 1;
@@ -76,7 +76,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(245, 89);
+            this.label2.Location = new System.Drawing.Point(216, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 17;
@@ -113,9 +113,10 @@
             this.categoriasDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1});
             this.categoriasDataGridView.DataSource = this.categoriasBindingSource;
-            this.categoriasDataGridView.Location = new System.Drawing.Point(248, 173);
+            this.categoriasDataGridView.Location = new System.Drawing.Point(219, 167);
             this.categoriasDataGridView.MultiSelect = false;
             this.categoriasDataGridView.Name = "categoriasDataGridView";
+            this.categoriasDataGridView.ReadOnly = true;
             this.categoriasDataGridView.RowHeadersVisible = false;
             this.categoriasDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.categoriasDataGridView.Size = new System.Drawing.Size(241, 217);
@@ -128,10 +129,11 @@
             this.dataGridViewTextBoxColumn1.DataPropertyName = "nome";
             this.dataGridViewTextBoxColumn1.HeaderText = "nome";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(414, 396);
+            this.btnExcluir.Location = new System.Drawing.Point(385, 390);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 19;
@@ -143,7 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 444);
+            this.ClientSize = new System.Drawing.Size(697, 483);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.categoriasDataGridView);
             this.Controls.Add(this.label2);

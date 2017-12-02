@@ -38,9 +38,10 @@ namespace Desk
                 else
                 {
                     MessageBox.Show("Cadastro realizado com sucesso.");
-                    categoriasDataGridView.DataSource = null;
-                    categoriasDataGridView.DataSource = categoriasBindingSource;
-                    this.Hide();
+
+                    this.categoriasTableAdapter.ClearBeforeFill = true;
+                    this.categoriasTableAdapter.Fill(this.dbEventosDataSet.Categorias);
+
                 }
             }
 
@@ -77,9 +78,10 @@ namespace Desk
                 {
                     categoria.nome = nome;
                     pnCategorias.Excluir(categoria);
-                    categoriasDataGridView.Update();
-                    categoriasDataGridView.Refresh();
-                    
+
+                    this.categoriasTableAdapter.ClearBeforeFill = true;
+                    this.categoriasTableAdapter.Fill(this.dbEventosDataSet.Categorias);
+
                 }
             } catch (Exception ex)
             {

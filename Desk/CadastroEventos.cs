@@ -28,6 +28,8 @@ namespace Desk
             currentUser = u;
 
             this.cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbEscopo.DropDownStyle = ComboBoxStyle.DropDownList;
+
             int i = 0;
             try
             {
@@ -40,7 +42,11 @@ namespace Desk
             {
                 cmbCategoria.Items.Insert(0, "Outro");
             }
-            
+
+            if (u.tipo != "Administrador")
+            {
+                cmbEscopo.Items.Remove("Global");
+            }
 
         }
 
