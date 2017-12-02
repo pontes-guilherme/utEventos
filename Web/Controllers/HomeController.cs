@@ -12,7 +12,6 @@ namespace Web.Controllers
     {
         public HomeController()
         {
-            //System.Web.HttpContext.Current.Session["user"] = null;
         }
 
         public ActionResult Index()
