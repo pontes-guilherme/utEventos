@@ -57,6 +57,9 @@
     <Compile Include="DAO\Categoria.cs">
       <DependentUpon>EventoDAO.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAO\Disciplina.cs">
+      <DependentUpon>EventoDAO.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAO\Evento.cs">
       <DependentUpon>EventoDAO.tt</DependentUpon>
     </Compile>

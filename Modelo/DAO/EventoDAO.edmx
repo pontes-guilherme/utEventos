@@ -12,6 +12,7 @@
     <EntitySet Name="Feedbacks" EntityType="dbEventosModel.Store.Feedbacks" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Sugestoes" EntityType="dbEventosModel.Store.Sugestoes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Inscricoes" EntityType="dbEventosModel.Store.Inscricoes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Disciplinas" EntityType="dbEventosModel.Store.Disciplinas" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Evento_Usuarios" Association="dbEventosModel.Store.FK_Evento_Usuarios">
       <End Role="Usuario" EntitySet="Usuarios" />
       <End Role="Evento" EntitySet="Eventoes" />
@@ -40,6 +41,10 @@
       <End Role="Inscricao" EntitySet="Inscricoes" />
       <End Role="Evento" EntitySet="Eventoes" />
     </AssociationSet>
+    <AssociationSet Name="DisciplinaEvento" Association="dbEventosModel.Store.DisciplinaEvento">
+      <End Role="Disciplina" EntitySet="Disciplinas" />
+      <End Role="Evento" EntitySet="Eventoes" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Eventoes">
     <Key>
@@ -55,6 +60,7 @@
     <Property Name="criador" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Categoria_nome" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="capacidade" Type="int" Nullable="true" />
+    <Property Name="Disciplina_nome" Type="nvarchar" Nullable="true" MaxLength="50" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
@@ -81,7 +87,7 @@
     <Property Name="descricao" Type="varchar(max)" Nullable="true" />
     <Property Name="EventoId" Type="int" Nullable="false" />
     <Property Name="Usuario_email" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="data_criacao" Type="datetime" Nullable="true" />
+    <Property Name="data_criacao" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Sugestoes">
     <Key>
@@ -100,6 +106,12 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Usuario_email" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="EventoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Disciplinas">
+    <Key>
+      <PropertyRef Name="nome" />
+    </Key>
+    <Property Name="nome" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
   </EntityType>
   <Association Name="FK_Evento_Usuarios">
     <End Role="Usuario" Type="dbEventosModel.Store.Usuarios" Multiplicity="1" />
@@ -185,6 +197,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="DisciplinaEvento">
+    <End Role="Disciplina" Type="dbEventosModel.Store.Disciplinas" Multiplicity="0..1" />
+    <End Role="Evento" Type="dbEventosModel.Store.Eventoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disciplina">
+        <PropertyRef Name="nome" />
+      </Principal>
+      <Dependent Role="Evento">
+        <PropertyRef Name="Disciplina_nome" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -207,6 +231,8 @@
           <Property Name="Categoria_nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Inscricoes" Relationship="dbEventosModel.InscricaoEvento" FromRole="Evento" ToRole="Inscricao" />
           <Property Name="capacidade" Type="Int32" Nullable="true" ConcurrencyMode="None" />
+          <NavigationProperty Name="Disciplina" Relationship="dbEventosModel.DisciplinaEvento" FromRole="Evento" ToRole="Disciplina" />
+          <Property Name="Disciplina_nome" Type="String" Nullable="true" MaxLength="50" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -255,6 +281,11 @@
           </AssociationSet>
           <AssociationSet Name="InscricaoEvento" Association="dbEventosModel.InscricaoEvento">
             <End Role="Inscricao" EntitySet="Inscricoes" />
+            <End Role="Evento" EntitySet="Eventoes" />
+          </AssociationSet>
+          <EntitySet Name="Disciplinas" EntityType="dbEventosModel.Disciplina" />
+          <AssociationSet Name="DisciplinaEvento" Association="dbEventosModel.DisciplinaEvento">
+            <End Role="Disciplina" EntitySet="Disciplinas" />
             <End Role="Evento" EntitySet="Eventoes" />
           </AssociationSet>
         </EntityContainer>
@@ -383,6 +414,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Disciplina">
+          <Key>
+            <PropertyRef Name="nome" />
+          </Key>
+          <Property Name="nome" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="50" />
+          <NavigationProperty Name="Eventos" Relationship="dbEventosModel.DisciplinaEvento" FromRole="Disciplina" ToRole="Evento" />
+        </EntityType>
+        <Association Name="DisciplinaEvento">
+          <End Type="dbEventosModel.Disciplina" Role="Disciplina" Multiplicity="0..1" />
+          <End Type="dbEventosModel.Evento" Role="Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplina">
+              <PropertyRef Name="nome" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="Disciplina_nome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -402,6 +452,7 @@
           <ScalarProperty Name="criador" ColumnName="criador" />
           <ScalarProperty Name="Categoria_nome" ColumnName="Categoria_nome" />
           <ScalarProperty Name="capacidade" ColumnName="capacidade" />
+          <ScalarProperty Name="Disciplina_nome" ColumnName="Disciplina_nome" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -452,6 +503,13 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Usuario_email" ColumnName="Usuario_email" />
           <ScalarProperty Name="EventoId" ColumnName="EventoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Disciplinas">
+      <EntityTypeMapping TypeName="IsTypeOf(dbEventosModel.Disciplina)">
+        <MappingFragment StoreEntitySet="Disciplinas">
+          <ScalarProperty Name="nome" ColumnName="nome" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

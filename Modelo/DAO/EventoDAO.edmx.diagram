@@ -18,6 +18,8 @@
         <EntityTypeShape EntityType="dbEventosModel.Inscricao" Width="1.5" PointX="8.5" PointY="5.75" />
         <AssociationConnector Association="dbEventosModel.InscricaoUsuario" />
         <AssociationConnector Association="dbEventosModel.InscricaoEvento" />
+        <EntityTypeShape EntityType="dbEventosModel.Disciplina" Width="1.5" PointX="10.375" PointY="3.125" />
+        <AssociationConnector Association="dbEventosModel.DisciplinaEvento" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

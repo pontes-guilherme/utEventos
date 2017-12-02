@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Modelo.DAO;
 using Modelo.PN;
+using System.Globalization;
 
 namespace Web.Controllers
 {
@@ -87,13 +88,15 @@ namespace Web.Controllers
         {
             //ViewBag.criador = new SelectList(db.Usuarios, "email", "nome");
             ViewBag.Categoria_nome = new SelectList(db.Categorias, "nome", "nome");
-            var evento = new Evento();
-            evento.data_inicio = (DateTime.Now).AddDays(1);
-            evento.data_fim = evento.data_inicio.AddHours(1);
-            System.Diagnostics.Debug.WriteLine(evento.data_inicio.ToString());
-            System.Diagnostics.Debug.WriteLine(evento.data_fim.ToString());
-            var model = evento;
-            return View(model);
+            ViewBag.Disciplina_nome = new SelectList(db.Disciplinas, "nome", "nome");
+            Evento evento = new Evento();
+            string inicio = (DateTime.Now).AddDays(1).ToString("yyyy-MM-ddThh:mm");
+            string fim = (DateTime.Now).AddDays(1).ToString("yyyy-MM-ddThhmm");
+            evento.data_inicio = DateTime.ParseExact(inicio, "yyyy-MM-ddThh:mm", CultureInfo.InvariantCulture);
+            evento.data_fim = DateTime.ParseExact(fim, "yyyy-MM-ddThhmm", CultureInfo.InvariantCulture);
+            //System.Diagnostics.Debug.WriteLine(evento.data_inicio.ToString());
+            //System.Diagnostics.Debug.WriteLine(evento.data_fim.ToString());
+            return View(evento);
         }
 
         // POST: Eventoes/Create
@@ -101,7 +104,7 @@ namespace Web.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "nome,data_inicio,data_fim,capacidade,escopo,importante,Categoria_nome")] Evento evento)
+        public ActionResult Create([Bind(Include = "nome,data_inicio,data_fim,capacidade,escopo,Disciplina_nome,importante,Categoria_nome")] Evento evento)
         {
             if (ModelState.IsValid)
             {
@@ -110,13 +113,12 @@ namespace Web.Controllers
                     evento.capacidade = 0;
                 }
                 evento.criador = System.Web.HttpContext.Current.Session["email"].ToString();
-                //db.Eventoes.Add(evento);
-                //db.SaveChanges();
                 pnEventos.Inserir(evento, null);
                 return RedirectToAction("Index");
             }
 
             ViewBag.criador = new SelectList(db.Usuarios, "email", "nome", evento.criador);
+            ViewBag.Disciplina_nome = new SelectList(db.Categorias, "nome", "nome", evento.Disciplina_nome);
             ViewBag.Categoria_nome = new SelectList(db.Categorias, "nome", "nome", evento.Categoria_nome);
             return View(evento);
         }

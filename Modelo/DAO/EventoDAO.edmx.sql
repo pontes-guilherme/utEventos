@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/29/2017 15:52:35
--- Generated from EDMX file: C:\Users\Guilherme Pontes\Source\Repos\utEventos\Modelo\DAO\EventoDAO.edmx
+-- Date Created: 12/02/2017 01:26:30
+-- Generated from EDMX file: C:\Users\l_ass\source\repos\utEventos\Modelo\DAO\EventoDAO.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -77,7 +77,8 @@ CREATE TABLE [dbo].[Eventoes] (
     [data_criacao] datetime  NULL,
     [criador] nvarchar(50)  NOT NULL,
     [Categoria_nome] varchar(50)  NOT NULL,
-    [capacidade] int  NULL
+    [capacidade] int  NULL,
+    [Disciplina_nome] nvarchar(50)  NULL
 );
 GO
 
@@ -104,7 +105,7 @@ CREATE TABLE [dbo].[Feedbacks] (
     [descricao] varchar(max)  NULL,
     [EventoId] int  NOT NULL,
     [Usuario_email] nvarchar(50)  NOT NULL,
-    [data_criacao] nvarchar(max)  NOT NULL
+    [data_criacao] datetime  NOT NULL
 );
 GO
 
@@ -123,6 +124,12 @@ CREATE TABLE [dbo].[Inscricoes] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Usuario_email] nvarchar(50)  NOT NULL,
     [EventoId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Disciplinas'
+CREATE TABLE [dbo].[Disciplinas] (
+    [nome] nvarchar(50)  NOT NULL
 );
 GO
 
@@ -164,6 +171,12 @@ GO
 ALTER TABLE [dbo].[Inscricoes]
 ADD CONSTRAINT [PK_Inscricoes]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [nome] in table 'Disciplinas'
+ALTER TABLE [dbo].[Disciplinas]
+ADD CONSTRAINT [PK_Disciplinas]
+    PRIMARY KEY CLUSTERED ([nome] ASC);
 GO
 
 -- --------------------------------------------------
@@ -273,6 +286,21 @@ GO
 CREATE INDEX [IX_FK_InscricaoEvento]
 ON [dbo].[Inscricoes]
     ([EventoId]);
+GO
+
+-- Creating foreign key on [Disciplina_nome] in table 'Eventoes'
+ALTER TABLE [dbo].[Eventoes]
+ADD CONSTRAINT [FK_DisciplinaEvento]
+    FOREIGN KEY ([Disciplina_nome])
+    REFERENCES [dbo].[Disciplinas]
+        ([nome])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DisciplinaEvento'
+CREATE INDEX [IX_FK_DisciplinaEvento]
+ON [dbo].[Eventoes]
+    ([Disciplina_nome]);
 GO
 
 -- --------------------------------------------------

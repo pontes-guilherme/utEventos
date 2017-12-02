@@ -169,7 +169,7 @@ namespace Modelo.PN
 
                 mail.Body = "<html><body><h1>utEventos - Redefinir Senha</h1><br><a href =" + link + ">Clique Aqui</a></body></html>";
 
-                             client.Send(mail);
+                client.Send(mail);
 
                 //var mailMessage = new MailMessage();
                 //mailMessage.To.Add("suporte.uteventos@gmail.com");
