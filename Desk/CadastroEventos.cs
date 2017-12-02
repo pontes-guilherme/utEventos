@@ -86,8 +86,7 @@ namespace Desk
                 evento.importante = ckbImportante.Checked;
                 evento.Categoria = c;
                 evento.Categoria_nome = c.nome;
-                //MODIFICAR ESCOPO
-                evento.escopo = currentUser.tipo;
+                evento.escopo = cmbEscopo.SelectedItem.ToString();
 
                 if (!pnEventos.Inserir(evento, db))
                 {

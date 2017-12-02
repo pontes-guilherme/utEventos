@@ -23,14 +23,16 @@ namespace Modelo.DAO
     
         public int Id { get; set; }
         public string nome { get; set; }
+        public Nullable<int> capacidade { get; set; }
+        public string Categoria_nome { get; set; }
+        public string escopo { get; set; }
         public System.DateTime data_inicio { get; set; }
         public System.DateTime data_fim { get; set; }
-        public string escopo { get; set; }
         public bool importante { get; set; }
         public Nullable<System.DateTime> data_criacao { get; set; }
         public string criador { get; set; }
-        public string Categoria_nome { get; set; }
-        public Nullable<int> capacidade { get; set; }
+        
+       
     
         public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -31,14 +31,39 @@ namespace Desk
                     if (pnUsuarios.sendMail(u))
                     {
                         MessageBox.Show("Email enviado!");
+
+                        this.Hide();
+                        Login f = new Login();
+                        f.Closed += (s, args) => this.Close();
+                        f.Show();
+
                     } else
                     {
                         MessageBox.Show("Erro ao enviar!");
                     }
+                } else
+                {
+                    MessageBox.Show("O email não está registrado!");
                 }
             }
 
 
+        }
+
+        private void lnkVoltar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Login f = new Login();
+            f.Closed += (s, args) => this.Close();
+            f.Show();
+        }
+
+        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnEnviar_Click(this, new EventArgs());
+            }
         }
     }
 }
