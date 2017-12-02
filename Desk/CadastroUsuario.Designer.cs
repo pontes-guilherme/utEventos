@@ -55,12 +55,12 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(12, 63);
+            this.linkLabel1.Location = new System.Drawing.Point(15, 19);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(49, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(19, 13);
             this.linkLabel1.TabIndex = 9;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "<< Voltar";
+            this.linkLabel1.Text = "<<";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // Nome

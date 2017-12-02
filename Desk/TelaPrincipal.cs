@@ -96,7 +96,7 @@ namespace Desk
         private void lnkEvenPes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             mainPanel.Controls.Remove(embeddedForm);
-            embeddedForm = new MeusEventos(currentUser);
+            embeddedForm = new MeusEventos(currentUser, "meus");
             embeddedForm.TopLevel = false;
             embeddedForm.Visible = true;
             mainPanel.Controls.Add(embeddedForm);
@@ -169,6 +169,11 @@ namespace Desk
             embeddedForm.Visible = true;
             mainPanel.Controls.Add(embeddedForm);
             this.Invalidate();
+        }
+
+        private void lnkEvenGlo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

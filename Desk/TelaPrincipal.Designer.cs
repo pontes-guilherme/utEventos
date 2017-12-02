@@ -38,6 +38,7 @@
             this.lnkCalMen = new System.Windows.Forms.LinkLabel();
             this.lnkCalDia = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lnkSugestoes = new System.Windows.Forms.LinkLabel();
             this.lnkFeedback = new System.Windows.Forms.LinkLabel();
             this.lnkEvenGlo = new System.Windows.Forms.LinkLabel();
             this.lnkEvenPes = new System.Windows.Forms.LinkLabel();
@@ -49,7 +50,6 @@
             this.lnkEditarPerfil = new System.Windows.Forms.LinkLabel();
             this.lnkSair = new System.Windows.Forms.LinkLabel();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.lnkSugestoes = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.grpCategorias.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -193,6 +193,20 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Eventos";
             // 
+            // lnkSugestoes
+            // 
+            this.lnkSugestoes.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkSugestoes.AutoSize = true;
+            this.lnkSugestoes.LinkColor = System.Drawing.Color.Black;
+            this.lnkSugestoes.Location = new System.Drawing.Point(20, 130);
+            this.lnkSugestoes.Name = "lnkSugestoes";
+            this.lnkSugestoes.Size = new System.Drawing.Size(57, 13);
+            this.lnkSugestoes.TabIndex = 9;
+            this.lnkSugestoes.TabStop = true;
+            this.lnkSugestoes.Text = "Sugestões";
+            this.lnkSugestoes.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkSugestoes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkSugestoes_LinkClicked);
+            // 
             // lnkFeedback
             // 
             this.lnkFeedback.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
@@ -219,6 +233,7 @@
             this.lnkEvenGlo.TabStop = true;
             this.lnkEvenGlo.Text = "Eventos Globais";
             this.lnkEvenGlo.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkEvenGlo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEvenGlo_LinkClicked);
             // 
             // lnkEvenPes
             // 
@@ -343,20 +358,6 @@
             this.mainPanel.Size = new System.Drawing.Size(713, 533);
             this.mainPanel.TabIndex = 11;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
-            // 
-            // lnkSugestoes
-            // 
-            this.lnkSugestoes.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkSugestoes.AutoSize = true;
-            this.lnkSugestoes.LinkColor = System.Drawing.Color.Black;
-            this.lnkSugestoes.Location = new System.Drawing.Point(20, 130);
-            this.lnkSugestoes.Name = "lnkSugestoes";
-            this.lnkSugestoes.Size = new System.Drawing.Size(57, 13);
-            this.lnkSugestoes.TabIndex = 9;
-            this.lnkSugestoes.TabStop = true;
-            this.lnkSugestoes.Text = "Sugestões";
-            this.lnkSugestoes.VisitedLinkColor = System.Drawing.Color.Black;
-            this.lnkSugestoes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkSugestoes_LinkClicked);
             // 
             // TelaPrincipal
             // 
