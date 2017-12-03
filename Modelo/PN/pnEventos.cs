@@ -64,12 +64,27 @@ namespace Modelo.PN
             }
         }
 
-        public static List<Evento> Listar()
+        public static List<Evento> Listar(string tipo = "")
         {
             try
             {
                 dbEventosEntities db = new dbEventosEntities();
-                return (db.Eventoes.ToList());
+                List<Evento> eventos;
+
+                if (tipo == "atuais") {
+                    eventos = db.Eventoes.Where(x => DateTime.Compare(x.data_fim, DateTime.Now) > 0).ToList();
+                }
+                else if(tipo == "passados")
+                {
+                    eventos = db.Eventoes.Where(x => DateTime.Compare(x.data_fim, DateTime.Now) <= 0).ToList();
+                }
+                else
+                {
+                    eventos = db.Eventoes.ToList();
+                }
+                
+                
+                return (eventos);
             }
             catch (Exception)
             {
@@ -108,6 +123,41 @@ namespace Modelo.PN
             }
 
             return 0;
+        }
+
+        public static Evento Pesquisar(int id)
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                Evento u = new Evento();
+
+                u = db.Eventoes.Find(id);
+                return u;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static bool Excluir(Evento u)
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                Evento user = new Evento();
+
+                user = db.Eventoes.Find(u.Id);
+                db.Eventoes.Remove(user);
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

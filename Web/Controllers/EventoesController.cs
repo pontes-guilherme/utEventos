@@ -19,18 +19,22 @@ namespace Web.Controllers
         // GET: Eventoes
         public ActionResult Index()
         {
-            var eventoes = db.Eventoes.Include(e => e.Usuario).Include(e => e.Categoria);
-            return View(eventoes.ToList());
+            return View(pnEventos.Listar("atuais"));
+        }
+
+        public ActionResult Museu()
+        {
+            return View(pnEventos.Listar("passados"));
         }
 
         // GET: Eventoes/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Evento evento = db.Eventoes.Find(id);
+            Evento evento = pnEventos.Pesquisar(id);
             if (evento == null)
             {
                 return HttpNotFound();
@@ -44,7 +48,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Evento evento = db.Eventoes.Find(id);
+            Evento evento = pnEventos.Pesquisar(id);
             if (evento == null)
             {
                 return HttpNotFound();
@@ -68,7 +72,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Evento evento = db.Eventoes.Find(id);
+            Evento evento = pnEventos.Pesquisar(id);
             if (evento == null)
             {
                 return HttpNotFound();
@@ -124,13 +128,13 @@ namespace Web.Controllers
         }
 
         // GET: Eventoes/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Evento evento = db.Eventoes.Find(id);
+            Evento evento = pnEventos.Pesquisar(id);
             if (evento == null)
             {
                 return HttpNotFound();
@@ -161,13 +165,13 @@ namespace Web.Controllers
         }
 
         // GET: Eventoes/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Evento evento = db.Eventoes.Find(id);
+            Evento evento = pnEventos.Pesquisar(id);
             if (evento == null)
             {
                 return HttpNotFound();
@@ -180,9 +184,8 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Evento evento = db.Eventoes.Find(id);
-            db.Eventoes.Remove(evento);
-            db.SaveChanges();
+            Evento evento = pnEventos.Pesquisar(id);
+            pnEventos.Excluir(evento);
             return RedirectToAction("Index");
         }
 

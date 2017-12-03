@@ -14,6 +14,11 @@ namespace Modelo.PN
         {
             try
             {
+                if (db == null)
+                {
+                    db = new dbEventosEntities();
+                }
+
                 f.Id = getLasId();
                 f.data_criacao = (DateTime.Now).Date; 
                 db.Feedbacks.Add(f);
@@ -46,5 +51,54 @@ namespace Modelo.PN
 
             return 0;
         }
+
+        public static Feedback Pesquisar(int id)
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                Feedback u = new Feedback();
+
+                u = db.Feedbacks.Find(id);
+                return u;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static bool Excluir(Feedback u)
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                Feedback user = new Feedback();
+
+                user = db.Feedbacks.Find(u.Id);
+                db.Feedbacks.Remove(user);
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<Feedback> Listar()
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                return (db.Feedbacks.ToList());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

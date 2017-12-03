@@ -54,7 +54,6 @@ namespace Modelo.PN
             }
         }
 
-        //PROBLEMA
         public static Usuario Pesquisar(string email)
         {
             try

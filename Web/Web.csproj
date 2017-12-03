@@ -202,6 +202,7 @@
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\DisciplinasController.cs" />
     <Compile Include="Controllers\EventoesController.cs" />
+    <Compile Include="Controllers\FeedbacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SugestoesController.cs" />
@@ -436,6 +437,12 @@
     <Content Include="Views\Disciplinas\Details.cshtml" />
     <Content Include="Views\Disciplinas\Edit.cshtml" />
     <Content Include="Views\Disciplinas\Index.cshtml" />
+    <Content Include="Views\Eventoes\Museu.cshtml" />
+    <Content Include="Views\Feedbacks\Create.cshtml" />
+    <Content Include="Views\Feedbacks\Delete.cshtml" />
+    <Content Include="Views\Feedbacks\Details.cshtml" />
+    <Content Include="Views\Feedbacks\Edit.cshtml" />
+    <Content Include="Views\Feedbacks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<Modelo.DAO.Evento>
 
 @{
-    ViewBag.Title = "Próximos Eventos";
+    ViewBag.Title = "Museu de Eventos";
 }
 
-<h2>Próximos Eventos</h2>
+<h2>Museu de Eventos Passados</h2>
 
-<p>
-    @Html.ActionLink("Novo evento", "Create") | @Html.ActionLink("Sugerir Evento", "Create", "Sugestoes", null, null)
-</p>
 <table class="table">
     <tr>
         <th>
@@ -54,7 +51,7 @@
         </td>
         <td>
             @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) 
-            @{
+            @*@{
                 if (object.Equals(System.Web.HttpContext.Current.Session["tipo"], "Administrador"))
                 { 
                     @: | 
@@ -62,7 +59,7 @@
                     @: | 
                     @Html.ActionLink("Deletar", "Delete", new { id=item.Id })
                 }
-            }
+            }*@
         </td>
     </tr>
 }

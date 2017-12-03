@@ -71,7 +71,7 @@
                     @{var vagas = capInt - Model.Inscricoes.Count();}
                     @vagas
                 </dd>
-            }
+                        }
         }
 
         <dt>
@@ -123,22 +123,49 @@
 </div>
 <p>
     @{
-
-        if (Model.Inscricoes.Count() > 0 && Model.Inscricoes.ToList().Exists(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) != null)
+        if (DateTime.Compare(Model.data_inicio, DateTime.Now) > 0)
         {
-            @Html.ActionLink("Deixa de participar", "SignOut", "Eventoes", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default" });
-            @: | 
+            if (Model.Inscricoes.Count() > 0 && Model.Inscricoes.ToList().Exists(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) != null)
+            {
+                    @Html.ActionLink("Deixa de participar", "SignOut", "Eventoes", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default" });
+                    @: | 
+                }
+            else if (Model.Inscricoes.Count() >= Model.capacidade && Model.capacidade > 0)
+            {
+                //Html.ActionLink("Esgotado", "SignUp", "Eventos", htmlAttributes: new { @class = "btn btn-default" });
+                    <input type="button" value="Esgotado" class="btn btn-default" disabled /> 
+                    @: |  
+                    }
+            else
+            {
+                    @Html.ActionLink("Participar", "SignUp", "Eventoes", new { id = Model.Id }, new { @class = "btn btn-default" });
+                    @: | 
+                }
         }
-        else if (Model.Inscricoes.Count() >= Model.capacidade && Model.capacidade > 0)
+        else if (DateTime.Compare(Model.data_fim, DateTime.Now) > 0)
         {
-            //Html.ActionLink("Esgotado", "SignUp", "Eventos", htmlAttributes: new { @class = "btn btn-default" });
-            <input type="button" value="Esgotado" class="btn btn-default" disabled /> 
-            @: |  
+            if (Model.Inscricoes.Count() > 0 && Model.Inscricoes.ToList().Exists(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) != null
+                && Model.Checkins.Count() > 0 && !Model.Checkins.ToList().Any(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) != null)
+            {
+                    @Html.ActionLink("Check In", "Create", "Checkin", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default" });
+                    @: |
+                }
+            else if (Model.Inscricoes.Count() > 0 && !Model.Inscricoes.ToList().Any(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) != null)
+            {
+                //Html.ActionLink("Esgotado", "SignUp", "Eventos", htmlAttributes: new { @class = "btn btn-default" });
+                    <input type="button" value="Inscrições Encerradas" class="btn btn-default" disabled />
+                    @: |
+                    }
+            else
+            {
+                    <input type="button" value="Checked In" class="btn btn-default" disabled />
+                    @: |
+                }
         }
         else
         {
-            @Html.ActionLink("Participar", "SignUp", "Eventoes", new { id = Model.Id }, new { @class = "btn btn-default" });
-            @: | 
+                @Html.ActionLink("Feedback", "Create", "Feedbacks", new { id = Model.Id },null);
+                @: | 
         }
 
 
@@ -152,3 +179,42 @@
     }
     @Html.ActionLink("Voltar à lista de eventos", "Index")
 </p>
+
+@{
+    if (DateTime.Compare(Model.data_fim, DateTime.Now) <= 0)
+    {
+        <hr>
+        <h3>Feedbacks sobre o Evento</h3>
+        <table class="table">
+            @if (Model.Feedbacks.Count() == 0)
+            {
+                <tr>
+                    <th>Ainda não existe nenhum feedback para este evento</th>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model.Feedbacks)
+                {
+                    <tr>
+                        <th>
+                            Titulo: @Html.DisplayFor(modelItem => item.titulo)
+                        </th>
+                        <th>
+                            @{ 
+                                DateTime d = item.data_criacao;
+                            }
+                                -- @Html.DisplayFor(modelItem => item.Usuario.nome) em @d.ToString("dd/MM/yyyy")
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            @Html.DisplayFor(modelItem => item.descricao)
+                        </td>
+                    </tr>
+                    <br />
+                }
+            }
+        </table>
+    }
+}
