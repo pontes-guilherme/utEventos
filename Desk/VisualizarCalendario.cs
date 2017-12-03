@@ -14,153 +14,136 @@ namespace Desk
 {
     public partial class VisualizarCalendario : Form
     {
-        String filterBy;
-        public VisualizarCalendario(Usuario u, String filterBy)
+        //String filterBy;
+
+        List<Categoria> lista_categorias = pnCategorias.Listar();
+        List<Disciplina> lista_disciplinas = pnDisciplinas.Listar();
+
+        public VisualizarCalendario(Usuario u)
         {
             InitializeComponent();
-            this.filterBy = filterBy;
+
+            loadCmbCategorias();
+            loadCmbDisciplinas();
+
         }
 
         private void VisualizarCalendario_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'dbEventosDataSet.Evento' table. You can move, or remove it, as needed.
-            if (this.filterBy == "mes")
+
+            try
             {
-                this.title.Text = "Mensal";
-                this.eventosTableAdapter1.FillByMONTH2(this.dbEventosDataSet.Eventos);
-            } else if (this.filterBy == "semana")
-            {
-                this.title.Text = "Semanal";
-                this.eventosTableAdapter1.FillByWeek(this.dbEventosDataSet.Eventos);
-            } else if (this.filterBy == "dia")
-            {
-                this.title.Text = "Diário";
                 this.eventosTableAdapter1.FillByDay(this.dbEventosDataSet.Eventos);
-            }
-            
+                loadFromListToFields();
+            }catch { }
 
         }
 
-        private void fillBy1ToolStripButton_Click(object sender, EventArgs e)
+        private void loadCmbDisciplinas()
         {
+            int i = 0;
+
+            lista_disciplinas.ForEach(delegate (Disciplina d) {
+
+                cmbDisciplina.Items.Insert(i, d.nome.ToString());
+                i++;
+            });
+
+        }
+
+        private void loadCmbCategorias()
+        {
+            int i = 0;
             try
             {
-                
+                lista_categorias.ForEach(delegate (Categoria c) {
+
+                    cmbCategoria.Items.Insert(i, c.nome.ToString());
+                    i++;
+                });
             }
-            catch (System.Exception ex)
+            catch
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                cmbCategoria.Items.Insert(0, "Outro");
             }
-
         }
 
-        private void fillBy1ToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void loadFromListToFields()
         {
+            dbEventosEntities db = new dbEventosEntities();
 
-        }
-
-        private void fillBy2ToolStripButton_Click(object sender, EventArgs e)
-        {
             try
             {
-                
+                Evento evento = db.Eventoes.Find(listBox1.SelectedValue);
+
+                txtNome.Text = evento.nome;
+                txtCapacidade.Text = evento.capacidade.ToString();
+                cmbCategoria.SelectedItem = evento.Categoria_nome;
+                cmbEscopo.SelectedItem = evento.escopo;
+                dtInicio.Value = evento.data_inicio;
+                dtFim.Value = evento.data_fim;
+                ckbImportante.Checked = evento.importante;
+                if (evento.escopo == "Disciplina")
+                {
+                    cmbDisciplina.Visible = true;
+                    cmbDisciplina.SelectedItem = evento.Disciplina_nome;
+                }
+                else
+                {
+                    cmbDisciplina.Visible = false;
+                }
+
             }
-            catch (System.Exception ex)
+            catch
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+
+            }
+        }
+
+        private void rdbDia_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbDia.Checked == true)
+            {
+                try
+                {
+                    this.eventosTableAdapter1.ClearBeforeFill = true;
+                    this.eventosTableAdapter1.FillByDay(this.dbEventosDataSet.Eventos);
+                    loadFromListToFields();
+                }catch { }
             }
 
         }
 
-        private void fillBy1ToolStripButton_Click_1(object sender, EventArgs e)
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
+            loadFromListToFields();
         }
 
-        private void fillByMonthToolStripButton_Click(object sender, EventArgs e)
+        private void rdbSemana_CheckedChanged(object sender, EventArgs e)
         {
-            try
+            if (rdbSemana.Checked == true)
             {
-                //this.eventoTableAdapter.FillByMonth(this.dbEventosDataSet.Evento);
+                try
+                {
+                    this.eventosTableAdapter1.ClearBeforeFill = true;
+                    this.eventosTableAdapter1.FillByWeek(this.dbEventosDataSet.Eventos);
+                    loadFromListToFields();
+                }catch { }
             }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
         }
 
-        private void fillByMONTH2ToolStripButton_Click(object sender, EventArgs e)
+        private void rdbMes_CheckedChanged(object sender, EventArgs e)
         {
-            try
+            if (rdbMes.Checked == true)
             {
-                //this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
+                try
+                {
+                    this.eventosTableAdapter1.ClearBeforeFill = true;
+                    this.eventosTableAdapter1.FillByMONTH2(this.dbEventosDataSet.Eventos);
+                    loadFromListToFields();
+                }catch { }
             }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByMONTH2ToolStripButton1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByMONTH2ToolStripButton_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByMONTH2ToolStripButton1_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventoTableAdapter.FillByMONTH2(this.dbEventosDataSet.Evento);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void fillByEmailToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //this.eventoTableAdapter.FillByEmail(this.dbEventosDataSet.Evento, emailToolStripTextBox.Text);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
         }
     }
 }

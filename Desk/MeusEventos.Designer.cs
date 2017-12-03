@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.title = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.eventosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.eventosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dbEventosDataSet = new Desk.dbEventosDataSet();
+            this.eventosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eventosTableAdapter = new Desk.dbEventosDataSetTableAdapters.EventosTableAdapter();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnAlterar = new System.Windows.Forms.Button();
             this.dtInicio = new System.Windows.Forms.DateTimePicker();
             this.dtFim = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,11 +50,10 @@
             this.cmbEscopo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbDisciplina = new System.Windows.Forms.ComboBox();
-            this.eventosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).BeginInit();
             this.SuspendLayout();
             // 
             // title
@@ -80,15 +79,20 @@
             this.listBox1.ValueMember = "id";
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // eventosBindingSource
+            // eventosBindingSource1
             // 
-            this.eventosBindingSource.DataMember = "Eventos";
-            this.eventosBindingSource.DataSource = this.dbEventosDataSet;
+            this.eventosBindingSource1.DataMember = "Eventos";
+            this.eventosBindingSource1.DataSource = this.dbEventosDataSet;
             // 
             // dbEventosDataSet
             // 
             this.dbEventosDataSet.DataSetName = "dbEventosDataSet";
             this.dbEventosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // eventosBindingSource
+            // 
+            this.eventosBindingSource.DataMember = "Eventos";
+            this.eventosBindingSource.DataSource = this.dbEventosDataSet;
             // 
             // eventosTableAdapter
             // 
@@ -102,16 +106,6 @@
             this.label7.Size = new System.Drawing.Size(87, 13);
             this.label7.TabIndex = 43;
             this.label7.Text = "Eventos Criados:";
-            // 
-            // btnAlterar
-            // 
-            this.btnAlterar.Location = new System.Drawing.Point(290, 253);
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(212, 23);
-            this.btnAlterar.TabIndex = 28;
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.UseVisualStyleBackColor = true;
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // dtInicio
             // 
@@ -252,11 +246,6 @@
             this.cmbDisciplina.TabIndex = 42;
             this.cmbDisciplina.Visible = false;
             // 
-            // eventosBindingSource1
-            // 
-            this.eventosBindingSource1.DataMember = "Eventos";
-            this.eventosBindingSource1.DataSource = this.dbEventosDataSet;
-            // 
             // MeusEventos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,17 +266,16 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtFim);
             this.Controls.Add(this.dtInicio);
-            this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MeusEventos";
             this.Text = "MeusEventos";
             this.Load += new System.EventHandler(this.MeusEventos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,7 +289,6 @@
         private System.Windows.Forms.BindingSource eventosBindingSource;
         private dbEventosDataSetTableAdapters.EventosTableAdapter eventosTableAdapter;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.DateTimePicker dtInicio;
         private System.Windows.Forms.DateTimePicker dtFim;
         private System.Windows.Forms.Label label1;
