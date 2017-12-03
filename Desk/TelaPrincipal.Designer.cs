@@ -31,12 +31,11 @@
             this.utEventos = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grpCategorias = new System.Windows.Forms.GroupBox();
+            this.lnkMuseu = new System.Windows.Forms.LinkLabel();
             this.lnkCategoriaCad = new System.Windows.Forms.LinkLabel();
             this.lblTipoConta = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lnkCalSem = new System.Windows.Forms.LinkLabel();
-            this.lnkCalMen = new System.Windows.Forms.LinkLabel();
-            this.lnkCalDia = new System.Windows.Forms.LinkLabel();
+            this.lnkCalendario = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lnkSugestoes = new System.Windows.Forms.LinkLabel();
             this.lnkFeedback = new System.Windows.Forms.LinkLabel();
@@ -86,14 +85,31 @@
             // 
             // grpCategorias
             // 
+            this.grpCategorias.Controls.Add(this.lnkMuseu);
             this.grpCategorias.Controls.Add(this.lnkCategoriaCad);
-            this.grpCategorias.Location = new System.Drawing.Point(3, 463);
+            this.grpCategorias.Location = new System.Drawing.Point(3, 434);
             this.grpCategorias.Name = "grpCategorias";
             this.grpCategorias.Size = new System.Drawing.Size(171, 65);
             this.grpCategorias.TabIndex = 14;
             this.grpCategorias.TabStop = false;
-            this.grpCategorias.Text = "Categorias";
+            this.grpCategorias.Text = "Área do Administrador";
             this.grpCategorias.Visible = false;
+            // 
+            // lnkMuseu
+            // 
+            this.lnkMuseu.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkMuseu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lnkMuseu.AutoSize = true;
+            this.lnkMuseu.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lnkMuseu.LinkColor = System.Drawing.Color.Black;
+            this.lnkMuseu.Location = new System.Drawing.Point(20, 42);
+            this.lnkMuseu.Name = "lnkMuseu";
+            this.lnkMuseu.Size = new System.Drawing.Size(96, 13);
+            this.lnkMuseu.TabIndex = 9;
+            this.lnkMuseu.TabStop = true;
+            this.lnkMuseu.Text = "Museu de Eventos";
+            this.lnkMuseu.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkMuseu.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkMuseu_LinkClicked);
             // 
             // lnkCategoriaCad
             // 
@@ -102,12 +118,12 @@
             this.lnkCategoriaCad.AutoSize = true;
             this.lnkCategoriaCad.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.lnkCategoriaCad.LinkColor = System.Drawing.Color.Black;
-            this.lnkCategoriaCad.Location = new System.Drawing.Point(20, 30);
+            this.lnkCategoriaCad.Location = new System.Drawing.Point(20, 21);
             this.lnkCategoriaCad.Name = "lnkCategoriaCad";
-            this.lnkCategoriaCad.Size = new System.Drawing.Size(53, 13);
+            this.lnkCategoriaCad.Size = new System.Drawing.Size(57, 13);
             this.lnkCategoriaCad.TabIndex = 8;
             this.lnkCategoriaCad.TabStop = true;
-            this.lnkCategoriaCad.Text = "Gerenciar";
+            this.lnkCategoriaCad.Text = "Categorias";
             this.lnkCategoriaCad.VisitedLinkColor = System.Drawing.Color.Black;
             this.lnkCategoriaCad.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCategoriaCad_LinkClicked);
             // 
@@ -126,57 +142,27 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.lnkCalSem);
-            this.groupBox3.Controls.Add(this.lnkCalMen);
-            this.groupBox3.Controls.Add(this.lnkCalDia);
+            this.groupBox3.Controls.Add(this.lnkCalendario);
             this.groupBox3.Location = new System.Drawing.Point(3, 357);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(171, 100);
+            this.groupBox3.Size = new System.Drawing.Size(171, 71);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Calendário";
             // 
-            // lnkCalSem
+            // lnkCalendario
             // 
-            this.lnkCalSem.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkCalSem.AutoSize = true;
-            this.lnkCalSem.LinkColor = System.Drawing.Color.Black;
-            this.lnkCalSem.Location = new System.Drawing.Point(20, 48);
-            this.lnkCalSem.Name = "lnkCalSem";
-            this.lnkCalSem.Size = new System.Drawing.Size(48, 13);
-            this.lnkCalSem.TabIndex = 9;
-            this.lnkCalSem.TabStop = true;
-            this.lnkCalSem.Text = "Semanal";
-            this.lnkCalSem.VisitedLinkColor = System.Drawing.Color.Black;
-            this.lnkCalSem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCalSem_LinkClicked);
-            // 
-            // lnkCalMen
-            // 
-            this.lnkCalMen.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkCalMen.AutoSize = true;
-            this.lnkCalMen.LinkColor = System.Drawing.Color.Black;
-            this.lnkCalMen.Location = new System.Drawing.Point(20, 71);
-            this.lnkCalMen.Name = "lnkCalMen";
-            this.lnkCalMen.Size = new System.Drawing.Size(41, 13);
-            this.lnkCalMen.TabIndex = 10;
-            this.lnkCalMen.TabStop = true;
-            this.lnkCalMen.Text = "Mensal";
-            this.lnkCalMen.VisitedLinkColor = System.Drawing.Color.Black;
-            this.lnkCalMen.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCalMen_LinkClicked);
-            // 
-            // lnkCalDia
-            // 
-            this.lnkCalDia.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkCalDia.AutoSize = true;
-            this.lnkCalDia.LinkColor = System.Drawing.Color.Black;
-            this.lnkCalDia.Location = new System.Drawing.Point(20, 26);
-            this.lnkCalDia.Name = "lnkCalDia";
-            this.lnkCalDia.Size = new System.Drawing.Size(34, 13);
-            this.lnkCalDia.TabIndex = 8;
-            this.lnkCalDia.TabStop = true;
-            this.lnkCalDia.Text = "Diário";
-            this.lnkCalDia.VisitedLinkColor = System.Drawing.Color.Black;
-            this.lnkCalDia.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCalDia_LinkClicked);
+            this.lnkCalendario.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkCalendario.AutoSize = true;
+            this.lnkCalendario.LinkColor = System.Drawing.Color.Black;
+            this.lnkCalendario.Location = new System.Drawing.Point(18, 29);
+            this.lnkCalendario.Name = "lnkCalendario";
+            this.lnkCalendario.Size = new System.Drawing.Size(57, 13);
+            this.lnkCalendario.TabIndex = 8;
+            this.lnkCalendario.TabStop = true;
+            this.lnkCalendario.Text = "Calendário";
+            this.lnkCalendario.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkCalendario.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCalDia_LinkClicked);
             // 
             // groupBox2
             // 
@@ -398,9 +384,7 @@
         private System.Windows.Forms.LinkLabel lnkVerPerfil;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.LinkLabel lnkCalSem;
-        private System.Windows.Forms.LinkLabel lnkCalMen;
-        private System.Windows.Forms.LinkLabel lnkCalDia;
+        private System.Windows.Forms.LinkLabel lnkCalendario;
         private System.Windows.Forms.LinkLabel lnkEvenGlo;
         private System.Windows.Forms.LinkLabel lnkEvenPes;
         private System.Windows.Forms.LinkLabel lnkEvenDis;
@@ -411,5 +395,6 @@
         private System.Windows.Forms.LinkLabel lnkCategoriaCad;
         private System.Windows.Forms.LinkLabel lnkFeedback;
         private System.Windows.Forms.LinkLabel lnkSugestoes;
+        private System.Windows.Forms.LinkLabel lnkMuseu;
     }
 }

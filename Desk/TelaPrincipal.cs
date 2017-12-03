@@ -115,28 +115,28 @@ namespace Desk
 
         private void lnkCalMen_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            mainPanel.Controls.Remove(embeddedForm);
+            /*mainPanel.Controls.Remove(embeddedForm);
             embeddedForm = new VisualizarCalendario(currentUser, "mes");
             embeddedForm.TopLevel = false;
             embeddedForm.Visible = true;
             mainPanel.Controls.Add(embeddedForm);
-            this.Invalidate();
+            this.Invalidate();*/
         }
 
         private void lnkCalSem_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            mainPanel.Controls.Remove(embeddedForm);
+            /*mainPanel.Controls.Remove(embeddedForm);
             embeddedForm = new VisualizarCalendario(currentUser, "semana");
             embeddedForm.TopLevel = false;
             embeddedForm.Visible = true;
             mainPanel.Controls.Add(embeddedForm);
-            this.Invalidate();
+            this.Invalidate();*/
         }
 
         private void lnkCalDia_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             mainPanel.Controls.Remove(embeddedForm);
-            embeddedForm = new VisualizarCalendario(currentUser, "dia");
+            embeddedForm = new VisualizarCalendario(currentUser);
             embeddedForm.TopLevel = false;
             embeddedForm.Visible = true;
             mainPanel.Controls.Add(embeddedForm);
@@ -174,6 +174,20 @@ namespace Desk
         private void lnkEvenGlo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
+        }
+
+        private void lnkMuseu_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            dbEventosEntities db = new dbEventosEntities();
+            Evento t = new Evento();
+            t.Id = 1;
+
+            mainPanel.Controls.Remove(embeddedForm);
+            embeddedForm = new frmMuseu();
+            embeddedForm.TopLevel = false;
+            embeddedForm.Visible = true;
+            mainPanel.Controls.Add(embeddedForm);
+            this.Invalidate();
         }
     }
 }

@@ -12,31 +12,31 @@ using Modelo.PN;
 
 namespace Desk
 {
-    public partial class VisualizarCalendario : Form
+    public partial class frmMuseu : Form
     {
-        //String filterBy;
 
         List<Categoria> lista_categorias = pnCategorias.Listar();
         List<Disciplina> lista_disciplinas = pnDisciplinas.Listar();
 
-        public VisualizarCalendario(Usuario u)
+        public frmMuseu()
         {
             InitializeComponent();
 
-            loadCmbCategorias();
-            loadCmbDisciplinas();
-
-        }
-
-        private void VisualizarCalendario_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'dbEventosDataSet.Evento' table. You can move, or remove it, as needed.
-
             try
             {
-                this.eventosTableAdapter1.FillByDay(this.dbEventosDataSet.Eventos);
+                this.eventosTableAdapter.FillByEventosPassados(this.dbEventosDataSet.Eventos);
+                loadCmbCategorias();
+                loadCmbDisciplinas();
                 loadFromListToFields();
-            }catch { }
+            } catch
+            {
+
+            }
+            
+        }
+
+        private void frmMuseu_Load(object sender, EventArgs e)
+        {
 
         }
 
@@ -101,49 +101,9 @@ namespace Desk
             }
         }
 
-        private void rdbDia_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdbDia.Checked == true)
-            {
-                try
-                {
-                    this.eventosTableAdapter1.ClearBeforeFill = true;
-                    this.eventosTableAdapter1.FillByDay(this.dbEventosDataSet.Eventos);
-                    loadFromListToFields();
-                }catch { }
-            }
-
-        }
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadFromListToFields();
-        }
-
-        private void rdbSemana_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdbSemana.Checked == true)
-            {
-                try
-                {
-                    this.eventosTableAdapter1.ClearBeforeFill = true;
-                    this.eventosTableAdapter1.FillByWeek(this.dbEventosDataSet.Eventos);
-                    loadFromListToFields();
-                }catch { }
-            }
-        }
-
-        private void rdbMes_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdbMes.Checked == true)
-            {
-                try
-                {
-                    this.eventosTableAdapter1.ClearBeforeFill = true;
-                    this.eventosTableAdapter1.FillByMONTH2(this.dbEventosDataSet.Eventos);
-                    loadFromListToFields();
-                }catch { }
-            }
         }
     }
 }

@@ -39,6 +39,11 @@ namespace Desk
                 //eventosTableAdapter1.FillByEmail(eventoDT, current_user.email.ToString());
             }
 
+            if (u.tipo != "Administrador")
+            {
+                cmbEscopo.Items.Remove("Global");
+            }
+
         }
 
         private void MeusEventos_Load(object sender, EventArgs e)
@@ -190,6 +195,8 @@ namespace Desk
                     MessageBox.Show("Cadastro realizado com sucesso.");
                     this.Hide();
                 }
+
+
             }
 
             catch (Exception ex)
