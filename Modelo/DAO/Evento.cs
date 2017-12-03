@@ -19,6 +19,7 @@ namespace Modelo.DAO
         {
             this.Feedbacks = new HashSet<Feedback>();
             this.Inscricoes = new HashSet<Inscricao>();
+            this.Checkins = new HashSet<Checkin>();
         }
     
         public int Id { get; set; }
@@ -40,5 +41,7 @@ namespace Modelo.DAO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inscricao> Inscricoes { get; set; }
         public virtual Disciplina Disciplina { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Checkin> Checkins { get; set; }
     }
 }

@@ -13,6 +13,7 @@
     <EntitySet Name="Sugestoes" EntityType="dbEventosModel.Store.Sugestoes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Inscricoes" EntityType="dbEventosModel.Store.Inscricoes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Disciplinas" EntityType="dbEventosModel.Store.Disciplinas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Checkin" EntityType="dbEventosModel.Store.Checkin" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Evento_Usuarios" Association="dbEventosModel.Store.FK_Evento_Usuarios">
       <End Role="Usuario" EntitySet="Usuarios" />
       <End Role="Evento" EntitySet="Eventoes" />
@@ -45,6 +46,14 @@
       <End Role="Disciplina" EntitySet="Disciplinas" />
       <End Role="Evento" EntitySet="Eventoes" />
     </AssociationSet>
+    <AssociationSet Name="CheckinEvento" Association="dbEventosModel.Store.CheckinEvento">
+      <End Role="Checkin" EntitySet="Checkin" />
+      <End Role="Evento" EntitySet="Eventoes" />
+    </AssociationSet>
+    <AssociationSet Name="CheckinUsuario" Association="dbEventosModel.Store.CheckinUsuario">
+      <End Role="Checkin" EntitySet="Checkin" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Eventoes">
     <Key>
@@ -60,7 +69,7 @@
     <Property Name="criador" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Categoria_nome" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="capacidade" Type="int" Nullable="true" />
-    <Property Name="Disciplina_nome" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Disciplina_nome" Type="varchar" Nullable="true" MaxLength="50" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
@@ -111,7 +120,16 @@
     <Key>
       <PropertyRef Name="nome" />
     </Key>
-    <Property Name="nome" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
+    <Property Name="nome" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Checkin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="data_criacao" Type="datetime" Nullable="false" />
+    <Property Name="EventoId" Type="int" Nullable="false" />
+    <Property Name="Usuario_email" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <Association Name="FK_Evento_Usuarios">
     <End Role="Usuario" Type="dbEventosModel.Store.Usuarios" Multiplicity="1" />
@@ -209,6 +227,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="CheckinEvento">
+    <End Role="Checkin" Type="dbEventosModel.Store.Checkin" Multiplicity="*" />
+    <End Role="Evento" Type="dbEventosModel.Store.Eventoes" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Evento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Checkin">
+        <PropertyRef Name="EventoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CheckinUsuario">
+    <End Role="Checkin" Type="dbEventosModel.Store.Checkin" Multiplicity="*" />
+    <End Role="Usuario" Type="dbEventosModel.Store.Usuarios" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="email" />
+      </Principal>
+      <Dependent Role="Checkin">
+        <PropertyRef Name="Usuario_email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -232,7 +274,8 @@
           <NavigationProperty Name="Inscricoes" Relationship="dbEventosModel.InscricaoEvento" FromRole="Evento" ToRole="Inscricao" />
           <Property Name="capacidade" Type="Int32" Nullable="true" ConcurrencyMode="None" />
           <NavigationProperty Name="Disciplina" Relationship="dbEventosModel.DisciplinaEvento" FromRole="Evento" ToRole="Disciplina" />
-          <Property Name="Disciplina_nome" Type="String" Nullable="true" MaxLength="50" />
+          <Property Name="Disciplina_nome" Type="String" Nullable="true" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Checkins" Relationship="dbEventosModel.CheckinEvento" FromRole="Evento" ToRole="Checkin" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -247,6 +290,7 @@
           <NavigationProperty Name="Feedbacks" Relationship="dbEventosModel.FeedbackUsuario" FromRole="Usuario" ToRole="Feedback" />
           <NavigationProperty Name="Sugestoes" Relationship="dbEventosModel.SugestoUsuario" FromRole="Usuario" ToRole="Sugesto" />
           <NavigationProperty Name="Inscricoes" Relationship="dbEventosModel.InscricaoUsuario" FromRole="Usuario" ToRole="Inscricao" />
+          <NavigationProperty Name="Checkins" Relationship="dbEventosModel.CheckinUsuario" FromRole="Usuario" ToRole="Checkin" />
         </EntityType>
         <EntityContainer Name="dbEventosEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Eventoes" EntityType="Self.Evento" />
@@ -287,6 +331,15 @@
           <AssociationSet Name="DisciplinaEvento" Association="dbEventosModel.DisciplinaEvento">
             <End Role="Disciplina" EntitySet="Disciplinas" />
             <End Role="Evento" EntitySet="Eventoes" />
+          </AssociationSet>
+          <EntitySet Name="Checkin" EntityType="dbEventosModel.Checkin" />
+          <AssociationSet Name="CheckinEvento" Association="dbEventosModel.CheckinEvento">
+            <End Role="Checkin" EntitySet="Checkin" />
+            <End Role="Evento" EntitySet="Eventoes" />
+          </AssociationSet>
+          <AssociationSet Name="CheckinUsuario" Association="dbEventosModel.CheckinUsuario">
+            <End Role="Checkin" EntitySet="Checkin" />
+            <End Role="Usuario" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Evento_Usuarios">
@@ -418,7 +471,7 @@
           <Key>
             <PropertyRef Name="nome" />
           </Key>
-          <Property Name="nome" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="50" />
+          <Property Name="nome" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Eventos" Relationship="dbEventosModel.DisciplinaEvento" FromRole="Disciplina" ToRole="Evento" />
         </EntityType>
         <Association Name="DisciplinaEvento">
@@ -430,6 +483,41 @@
             </Principal>
             <Dependent Role="Evento">
               <PropertyRef Name="Disciplina_nome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Checkin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="data_criacao" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Evento" Relationship="dbEventosModel.CheckinEvento" FromRole="Checkin" ToRole="Evento" />
+          <Property Name="EventoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="dbEventosModel.CheckinUsuario" FromRole="Checkin" ToRole="Usuario" />
+          <Property Name="Usuario_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="CheckinEvento">
+          <End Type="dbEventosModel.Checkin" Role="Checkin" Multiplicity="*" />
+          <End Type="dbEventosModel.Evento" Role="Evento" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checkin">
+              <PropertyRef Name="EventoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CheckinUsuario">
+          <End Type="dbEventosModel.Checkin" Role="Checkin" Multiplicity="*" />
+          <End Type="dbEventosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Checkin">
+              <PropertyRef Name="Usuario_email" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -510,6 +598,16 @@
       <EntityTypeMapping TypeName="IsTypeOf(dbEventosModel.Disciplina)">
         <MappingFragment StoreEntitySet="Disciplinas">
           <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Checkin">
+      <EntityTypeMapping TypeName="IsTypeOf(dbEventosModel.Checkin)">
+        <MappingFragment StoreEntitySet="Checkin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="data_criacao" ColumnName="data_criacao" />
+          <ScalarProperty Name="EventoId" ColumnName="EventoId" />
+          <ScalarProperty Name="Usuario_email" ColumnName="Usuario_email" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

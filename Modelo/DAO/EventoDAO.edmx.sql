@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/02/2017 17:58:09
--- Generated from EDMX file: C:\Users\Guilherme Pontes\Source\Repos\utEventos\Modelo\DAO\EventoDAO.edmx
+-- Date Created: 12/03/2017 14:54:54
+-- Generated from EDMX file: C:\Users\l_ass\source\repos\utEventos\Modelo\DAO\EventoDAO.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -41,6 +41,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_DisciplinaEvento]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Eventoes] DROP CONSTRAINT [FK_DisciplinaEvento];
 GO
+IF OBJECT_ID(N'[dbo].[FK_CheckinEvento]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Checkin] DROP CONSTRAINT [FK_CheckinEvento];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CheckinUsuario]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Checkin] DROP CONSTRAINT [FK_CheckinUsuario];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -67,6 +73,9 @@ GO
 IF OBJECT_ID(N'[dbo].[Disciplinas]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Disciplinas];
 GO
+IF OBJECT_ID(N'[dbo].[Checkin]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Checkin];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -84,7 +93,7 @@ CREATE TABLE [dbo].[Eventoes] (
     [criador] nvarchar(50)  NOT NULL,
     [Categoria_nome] varchar(50)  NOT NULL,
     [capacidade] int  NULL,
-    [Disciplina_nome] nvarchar(50)  NULL
+    [Disciplina_nome] varchar(50)  NULL
 );
 GO
 
@@ -135,7 +144,16 @@ GO
 
 -- Creating table 'Disciplinas'
 CREATE TABLE [dbo].[Disciplinas] (
-    [nome] nvarchar(50)  NOT NULL
+    [nome] varchar(50)  NOT NULL
+);
+GO
+
+-- Creating table 'Checkin'
+CREATE TABLE [dbo].[Checkin] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [data_criacao] datetime  NOT NULL,
+    [EventoId] int  NOT NULL,
+    [Usuario_email] nvarchar(50)  NOT NULL
 );
 GO
 
@@ -183,6 +201,12 @@ GO
 ALTER TABLE [dbo].[Disciplinas]
 ADD CONSTRAINT [PK_Disciplinas]
     PRIMARY KEY CLUSTERED ([nome] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Checkin'
+ALTER TABLE [dbo].[Checkin]
+ADD CONSTRAINT [PK_Checkin]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -307,6 +331,36 @@ GO
 CREATE INDEX [IX_FK_DisciplinaEvento]
 ON [dbo].[Eventoes]
     ([Disciplina_nome]);
+GO
+
+-- Creating foreign key on [EventoId] in table 'Checkin'
+ALTER TABLE [dbo].[Checkin]
+ADD CONSTRAINT [FK_CheckinEvento]
+    FOREIGN KEY ([EventoId])
+    REFERENCES [dbo].[Eventoes]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CheckinEvento'
+CREATE INDEX [IX_FK_CheckinEvento]
+ON [dbo].[Checkin]
+    ([EventoId]);
+GO
+
+-- Creating foreign key on [Usuario_email] in table 'Checkin'
+ALTER TABLE [dbo].[Checkin]
+ADD CONSTRAINT [FK_CheckinUsuario]
+    FOREIGN KEY ([Usuario_email])
+    REFERENCES [dbo].[Usuarios]
+        ([email])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CheckinUsuario'
+CREATE INDEX [IX_FK_CheckinUsuario]
+ON [dbo].[Checkin]
+    ([Usuario_email]);
 GO
 
 -- --------------------------------------------------

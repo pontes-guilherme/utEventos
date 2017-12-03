@@ -52,5 +52,24 @@ namespace Modelo.PN
             return 0;
         }
 
+        public static bool Excluir(Sugesto c)
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                Sugesto cat = new Sugesto();
+
+                cat = db.Sugestoes.Find(c.Id);
+                db.Sugestoes.Remove(cat);
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

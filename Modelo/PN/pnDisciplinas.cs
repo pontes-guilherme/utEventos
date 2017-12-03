@@ -40,5 +40,48 @@ namespace Modelo.PN
             }
         }
 
+        public static bool Inserir(Disciplina s, dbEventosEntities db)
+        {
+            try
+            {
+                if (db == null)
+                {
+                    db = new dbEventosEntities();
+                }
+
+                if (Pesquisar(s.nome) == null)
+                {
+                    Disciplina d = new Disciplina();
+                    d.nome = s.nome;
+                    db.Disciplinas.Add(d);
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static bool Excluir(Disciplina c)
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                Disciplina cat = new Disciplina();
+
+                cat = db.Disciplinas.Find(c.nome);
+                db.Disciplinas.Remove(cat);
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

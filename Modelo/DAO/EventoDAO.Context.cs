@@ -32,5 +32,6 @@ namespace Modelo.DAO
         public virtual DbSet<Sugesto> Sugestoes { get; set; }
         public virtual DbSet<Inscricao> Inscricoes { get; set; }
         public virtual DbSet<Disciplina> Disciplinas { get; set; }
+        public virtual DbSet<Checkin> Checkin { get; set; }
     }
 }
