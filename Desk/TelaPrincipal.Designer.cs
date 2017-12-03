@@ -50,6 +50,7 @@
             this.lnkEditarPerfil = new System.Windows.Forms.LinkLabel();
             this.lnkSair = new System.Windows.Forms.LinkLabel();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.lnkMuseu = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.grpCategorias.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -86,13 +87,14 @@
             // 
             // grpCategorias
             // 
+            this.grpCategorias.Controls.Add(this.lnkMuseu);
             this.grpCategorias.Controls.Add(this.lnkCategoriaCad);
             this.grpCategorias.Location = new System.Drawing.Point(3, 463);
             this.grpCategorias.Name = "grpCategorias";
             this.grpCategorias.Size = new System.Drawing.Size(171, 65);
             this.grpCategorias.TabIndex = 14;
             this.grpCategorias.TabStop = false;
-            this.grpCategorias.Text = "Categorias";
+            this.grpCategorias.Text = "Área do Administrador";
             this.grpCategorias.Visible = false;
             // 
             // lnkCategoriaCad
@@ -102,12 +104,12 @@
             this.lnkCategoriaCad.AutoSize = true;
             this.lnkCategoriaCad.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.lnkCategoriaCad.LinkColor = System.Drawing.Color.Black;
-            this.lnkCategoriaCad.Location = new System.Drawing.Point(20, 30);
+            this.lnkCategoriaCad.Location = new System.Drawing.Point(20, 21);
             this.lnkCategoriaCad.Name = "lnkCategoriaCad";
-            this.lnkCategoriaCad.Size = new System.Drawing.Size(53, 13);
+            this.lnkCategoriaCad.Size = new System.Drawing.Size(57, 13);
             this.lnkCategoriaCad.TabIndex = 8;
             this.lnkCategoriaCad.TabStop = true;
-            this.lnkCategoriaCad.Text = "Gerenciar";
+            this.lnkCategoriaCad.Text = "Categorias";
             this.lnkCategoriaCad.VisitedLinkColor = System.Drawing.Color.Black;
             this.lnkCategoriaCad.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCategoriaCad_LinkClicked);
             // 
@@ -359,6 +361,22 @@
             this.mainPanel.TabIndex = 11;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
+            // lnkMuseu
+            // 
+            this.lnkMuseu.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkMuseu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lnkMuseu.AutoSize = true;
+            this.lnkMuseu.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lnkMuseu.LinkColor = System.Drawing.Color.Black;
+            this.lnkMuseu.Location = new System.Drawing.Point(20, 42);
+            this.lnkMuseu.Name = "lnkMuseu";
+            this.lnkMuseu.Size = new System.Drawing.Size(96, 13);
+            this.lnkMuseu.TabIndex = 9;
+            this.lnkMuseu.TabStop = true;
+            this.lnkMuseu.Text = "Museu de Eventos";
+            this.lnkMuseu.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkMuseu.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkMuseu_LinkClicked);
+            // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,5 +429,6 @@
         private System.Windows.Forms.LinkLabel lnkCategoriaCad;
         private System.Windows.Forms.LinkLabel lnkFeedback;
         private System.Windows.Forms.LinkLabel lnkSugestoes;
+        private System.Windows.Forms.LinkLabel lnkMuseu;
     }
 }

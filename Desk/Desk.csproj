@@ -119,6 +119,12 @@
     <Compile Include="formSugestoes.Designer.cs">
       <DependentUpon>formSugestoes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMuseu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMuseu.Designer.cs">
+      <DependentUpon>frmMuseu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRecuperar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formSugestoes.resx">
       <DependentUpon>formSugestoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMuseu.resx">
+      <DependentUpon>frmMuseu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRecuperar.resx">
       <DependentUpon>frmRecuperar.cs</DependentUpon>

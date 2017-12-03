@@ -56,6 +56,15 @@
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="dbEventosConnectionString (Settings)" DbObjectName="dbEventos.dbo.Eventoes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByEventosPassados" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByEventosPassados" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="FillByEventosPassados">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, importante, data_criacao FROM Eventoes
+WHERE (data_fim &lt; GETDATE())</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="dbEventosConnectionString (Settings)" DbObjectName="dbEventos.dbo.Eventoes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByMonth" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByMonth" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="FillByMonth">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -133,7 +142,7 @@ SELECT nome FROM Categorias WHERE (nome = @nome)</CommandText>
   <xs:element name="dbEventosDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dbEventosDataSet" msprop:Generator_UserDSName="dbEventosDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Eventos" msprop:Generator_TableClassName="EventosDataTable" msprop:Generator_TableVarName="tableEventos" msprop:Generator_RowChangedName="EventosRowChanged" msprop:Generator_TablePropName="Eventos" msprop:Generator_RowDeletingName="EventosRowDeleting" msprop:Generator_RowChangingName="EventosRowChanging" msprop:Generator_RowEvHandlerName="EventosRowChangeEventHandler" msprop:Generator_RowDeletedName="EventosRowDeleted" msprop:Generator_RowClassName="EventosRow" msprop:Generator_UserTableName="Eventos" msprop:Generator_RowEvArgName="EventosRowChangeEvent">
+        <xs:element name="Eventos" msprop:Generator_TableClassName="EventosDataTable" msprop:Generator_TableVarName="tableEventos" msprop:Generator_TablePropName="Eventos" msprop:Generator_RowDeletingName="EventosRowDeleting" msprop:Generator_RowChangingName="EventosRowChanging" msprop:Generator_RowEvHandlerName="EventosRowChangeEventHandler" msprop:Generator_RowDeletedName="EventosRowDeleted" msprop:Generator_UserTableName="Eventos" msprop:Generator_RowChangedName="EventosRowChanged" msprop:Generator_RowEvArgName="EventosRowChangeEvent" msprop:Generator_RowClassName="EventosRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="nome" msprop:Generator_ColumnVarNameInTable="columnnome" msprop:Generator_ColumnPropNameInRow="nome" msprop:Generator_ColumnPropNameInTable="nomeColumn" msprop:Generator_UserColumnName="nome">
@@ -166,7 +175,7 @@ SELECT nome FROM Categorias WHERE (nome = @nome)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Categorias" msprop:Generator_TableClassName="CategoriasDataTable" msprop:Generator_TableVarName="tableCategorias" msprop:Generator_TablePropName="Categorias" msprop:Generator_RowDeletingName="CategoriasRowDeleting" msprop:Generator_RowChangingName="CategoriasRowChanging" msprop:Generator_RowEvHandlerName="CategoriasRowChangeEventHandler" msprop:Generator_RowDeletedName="CategoriasRowDeleted" msprop:Generator_UserTableName="Categorias" msprop:Generator_RowChangedName="CategoriasRowChanged" msprop:Generator_RowEvArgName="CategoriasRowChangeEvent" msprop:Generator_RowClassName="CategoriasRow">
+        <xs:element name="Categorias" msprop:Generator_TableClassName="CategoriasDataTable" msprop:Generator_TableVarName="tableCategorias" msprop:Generator_RowChangedName="CategoriasRowChanged" msprop:Generator_TablePropName="Categorias" msprop:Generator_RowDeletingName="CategoriasRowDeleting" msprop:Generator_RowChangingName="CategoriasRowChanging" msprop:Generator_RowEvHandlerName="CategoriasRowChangeEventHandler" msprop:Generator_RowDeletedName="CategoriasRowDeleted" msprop:Generator_RowClassName="CategoriasRow" msprop:Generator_UserTableName="Categorias" msprop:Generator_RowEvArgName="CategoriasRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="nome" msprop:Generator_ColumnVarNameInTable="columnnome" msprop:Generator_ColumnPropNameInRow="nome" msprop:Generator_ColumnPropNameInTable="nomeColumn" msprop:Generator_UserColumnName="nome">
@@ -192,7 +201,7 @@ SELECT nome FROM Categorias WHERE (nome = @nome)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_CategoriaEvento1" msdata:parent="Categorias" msdata:child="Eventos" msdata:parentkey="nome" msdata:childkey="data_criacao" msprop:Generator_UserChildTable="Eventos" msprop:Generator_ChildPropName="GetEventosRowsByFK_CategoriaEvento1" msprop:Generator_UserRelationName="FK_CategoriaEvento1" msprop:Generator_ParentPropName="CategoriasRowByFK_CategoriaEvento1" msprop:Generator_RelationVarName="relationFK_CategoriaEvento1" msprop:Generator_UserParentTable="Categorias" />
+      <msdata:Relationship name="FK_CategoriaEvento1" msdata:parent="Categorias" msdata:child="Eventos" msdata:parentkey="nome" msdata:childkey="data_criacao" msprop:Generator_UserChildTable="Eventos" msprop:Generator_ChildPropName="GetEventosRowsByFK_CategoriaEvento1" msprop:Generator_UserRelationName="FK_CategoriaEvento1" msprop:Generator_RelationVarName="relationFK_CategoriaEvento1" msprop:Generator_UserParentTable="Categorias" msprop:Generator_ParentPropName="CategoriasRowByFK_CategoriaEvento1" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
