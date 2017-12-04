@@ -247,6 +247,7 @@
             this.lnkEvenDis.TabStop = true;
             this.lnkEvenDis.Text = "Eventos de Disciplinas";
             this.lnkEvenDis.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkEvenDis.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEvenDis_LinkClicked);
             // 
             // lnkEvenNovo
             // 

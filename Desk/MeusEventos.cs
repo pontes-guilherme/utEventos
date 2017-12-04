@@ -30,6 +30,9 @@ namespace Desk
             this.cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbEscopo.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbDisciplina.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbPesquisar.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            cmbPesquisar.SelectedIndex = 0;
 
             loadCmbCategorias();
             loadCmbDisciplinas();
@@ -50,7 +53,7 @@ namespace Desk
         {
             // TODO: This line of code loads data into the 'dbEventosDataSet.Eventos' table. You can move, or remove it, as needed.
             this.eventosTableAdapter.FillByEmail(this.dbEventosDataSet.Eventos, current_user.email);
-            loadFromDb();
+            //loadFromDb();
             //loadFromListToFields();
         }
 
@@ -140,10 +143,22 @@ namespace Desk
             }
         }
 
-        private void btnAlterar_Click(object sender, EventArgs e)
-        {
-        
 
+        private void cmbEscopo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbEscopo.SelectedIndex == 2)
+            {
+                cmbDisciplina.Visible = true;
+                cmbDisciplina.SelectedIndex = 0;
+            }
+            else
+            {
+                cmbDisciplina.Visible = false;
+            }
+        }
+
+        private void btnAlterar_Click_1(object sender, EventArgs e)
+        {
             DateTime data_inicio = DateTime.Parse(dtInicio.Text);
             DateTime data_fim = DateTime.Parse(dtFim.Text);
 
@@ -203,19 +218,6 @@ namespace Desk
             {
                 //throw;
                 MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private void cmbEscopo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbEscopo.SelectedIndex == 2)
-            {
-                cmbDisciplina.Visible = true;
-                cmbDisciplina.SelectedIndex = 0;
-            }
-            else
-            {
-                cmbDisciplina.Visible = false;
             }
         }
     }

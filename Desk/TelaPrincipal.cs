@@ -189,5 +189,10 @@ namespace Desk
             mainPanel.Controls.Add(embeddedForm);
             this.Invalidate();
         }
+
+        private void lnkEvenDis_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }
