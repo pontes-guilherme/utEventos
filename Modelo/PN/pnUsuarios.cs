@@ -147,40 +147,34 @@ namespace Modelo.PN
             }
         }
 
+        public static SmtpClient setMail()
+        {
+            SmtpClient client = new SmtpClient();
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential("suporte.uteventos@gmail.com", "sodargetni");
+            client.EnableSsl = true;
+
+            return client;
+        }
+
+
         public static bool sendMail(Usuario u)
         {
             try
             {
+                SmtpClient client = setMail();
                 MailMessage mail = new MailMessage("suporte.uteventos@gmail.com", "suporte.uteventos@gmail.com");
-                SmtpClient client = new SmtpClient();
-                client.Host = "smtp.gmail.com";
-                client.Port = 587;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-                client.UseDefaultCredentials = false;
-                client.Credentials = new System.Net.NetworkCredential("suporte.uteventos@gmail.com", "sodargetni");
-                client.EnableSsl = true;
-
                 mail.Subject = "Redefinição de senha";
                 mail.IsBodyHtml = true;
 
                 string link = "http://localhost:50699/Account/AlterarSenha?email=" + u.email.ToString() + "&codigo=" + CreateMD5(u.email.ToString() + u.senha.ToString());
-
                 mail.Body = "<html><body><h1>utEventos - Redefinir Senha</h1><br><a href =" + link + ">Clique Aqui</a></body></html>";
 
                 client.Send(mail);
-
-                //var mailMessage = new MailMessage();
-                //mailMessage.To.Add("suporte.uteventos@gmail.com");
-                //mailMessage.Subject = "Redefinição de Senha";
-                //string r = "localhost:50699/Account/AlterarSenha?email=" + u.email.ToString() + "&codigo=" + CreateMD5(u.email.ToString() + u.senha.ToString());
-                //string link = "<a href='" + r + "'>clique aqui</a>";
-                //string body = "Link para redefinir senha: " + link;
-                //mailMessage.Body = body;
-                //mailMessage.IsBodyHtml = true;
-
-                //var smtpClient = new SmtpClient { EnableSsl = false };
-                //smtpClient.Send(mailMessage);
 
                 return true;
             }
@@ -189,5 +183,32 @@ namespace Modelo.PN
             }
         }
 
+        public static bool sendReminder(Usuario u)
+        {
+            try
+            {
+                SmtpClient client = setMail();
+                MailMessage mail = new MailMessage("suporte.uteventos@gmail.com", "suporte.uteventos@gmail.com");
+                mail.Subject = "Lembrete de Eventos Importantes";
+                mail.IsBodyHtml = true;
+
+                IEnumerable<Inscricao> inscricoes = u.Inscricoes.Where(x => (x.Evento.importante == true) && (DateTime.Compare(x.Evento.data_inicio,DateTime.Now) > 0)).OrderBy(x => x.Evento.data_inicio);
+                
+                string body = "";
+                foreach(Inscricao i in inscricoes)
+                {
+                    body += i.Evento.data_inicio + ": " + i.Evento.nome + "\n";
+                }
+                mail.Body = "<html><body><h1>utEventos - Lembrete de Eventos Importantes</h1><br><p>"+body+"</p></body></html>";
+
+                client.Send(mail);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -96,6 +96,8 @@ namespace Web.Controllers
         [AllowAnonymous]
         public ActionResult Logout(string returnUrl)
         {
+            Usuario u = pnUsuarios.Pesquisar(System.Web.HttpContext.Current.Session["email"].ToString());
+            pnUsuarios.sendReminder(u);
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
