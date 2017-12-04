@@ -19,7 +19,51 @@ namespace Web.Controllers
         // GET: Eventoes
         public ActionResult Index()
         {
+            System.Diagnostics.Debug.WriteLine("normal");
             return View(pnEventos.Listar("atuais"));
+        }
+
+        [HttpPost]
+        public ActionResult Index(string Tipo, string Query = "")
+        {
+            System.Diagnostics.Debug.WriteLine("params");
+            System.Diagnostics.Debug.WriteLine(Tipo);
+            System.Diagnostics.Debug.WriteLine(Query);
+            List<Evento> eventos = pnEventos.Listar();
+            IEnumerable<Evento> resultado;
+
+            if (Query.Length > 0)
+            {
+                if (Tipo == "Disciplina")
+                {
+                    resultado = eventos.Where(x => x.Disciplina_nome != null && x.Disciplina_nome.ToLower().Contains(Query.ToLower()));
+                }
+                else if (Tipo == "Nome")
+                {
+                    resultado = eventos.Where(x => x.nome.ToLower().Contains(Query.ToLower()));
+                }
+                else
+                {
+                    DateTime parsed;
+                    if (DateTime.TryParse("1." + Query + " 2000", out parsed))
+                    {
+                        int month = parsed.Month;
+                        resultado = eventos.Where(x => x.data_inicio.Month == month);
+                    }
+                    else
+                    {
+                        TempData["msg"] = "<script>alert('Formato inadequado');</script>";
+                        resultado = eventos.AsEnumerable();
+                    }
+                    
+                }
+            }
+            else
+            {
+                resultado = eventos.AsEnumerable();
+            }
+
+            return View(resultado);
         }
 
         public ActionResult Museu()

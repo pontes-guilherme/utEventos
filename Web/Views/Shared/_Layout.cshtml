@@ -37,6 +37,17 @@
                             <li>@Html.ActionLink("Gerenciar", "Main", "Administrador")</li>
                         }
                     }
+                    <li style="margin-left:10px;margin-top:5px">
+                        @using (Html.BeginForm("Index", "Eventoes", FormMethod.Post, new { @class = "form-inline" }))
+                        {
+                            string myBoxStyle = "height: 34px; font-size: 14px; line-height: 1.428571429; color: #555555; vertical-align: middle; background-color: #ffffff; border: 1px solid #cccccc; border-radius: 4px;";
+                            @Html.DropDownList("Tipo", new SelectList(new string[] { "Nome", "Disciplina", "Mês" }), new { @name="Tipo", @style=myBoxStyle, @required="required" })
+                            @Html.TextBox("Query", null, new { name = "Query", @style = myBoxStyle })
+                            <button type="submit" style="height:35px;margin-left:-5px;font-size: 14px; line-height: 1.428571429; color: #555555; vertical-align: middle;">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                         }
+                    </li>
                 </ul>
                 @Html.Partial("_MyLoginPartial")
             </div>

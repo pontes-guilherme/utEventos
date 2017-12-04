@@ -9,6 +9,9 @@
 <p>
     @Html.ActionLink("Novo evento", "Create") | @Html.ActionLink("Sugerir Evento", "Create", "Sugestoes", null, null)
 </p>
+
+@Html.Raw(TempData["msg"])
+
 <table class="table">
     <tr>
         <th>
@@ -68,3 +71,4 @@
 }
 
 </table>
+

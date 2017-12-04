@@ -75,7 +75,7 @@
                 }
             }
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.escopo, listItems, "-- Selecione um tipo --", new { @class = "form-control", @required = "required" })
+                @Html.DropDownListFor(model => model.escopo, listItems, null, new { @class = "form-control", @required = "required" })
                 @Html.ValidationMessageFor(model => model.escopo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -83,7 +83,7 @@
         <div class="form-group" id="disciplinaDropdown" style="display:none">
             @Html.Label("Disciplina", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Disciplina_nome", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Disciplina_nome", (SelectList)ViewBag.Disciplina_nome, "", htmlAttributes: new { @class = "form-control", @required="required" })
                 @Html.ValidationMessageFor(model => model.Disciplina_nome, "", new { @class = "text-danger" })
             </div>
         </div>
