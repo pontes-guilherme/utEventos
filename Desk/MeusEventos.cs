@@ -52,7 +52,13 @@ namespace Desk
         private void MeusEventos_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'dbEventosDataSet.Eventos' table. You can move, or remove it, as needed.
-            this.eventosTableAdapter.FillByEmail(this.dbEventosDataSet.Eventos, current_user.email);
+            if (this.current_user.tipo == "Administrador")
+            {
+                this.eventosTableAdapter.Fill(this.dbEventosDataSet.Eventos);
+            } else
+            {
+                this.eventosTableAdapter.FillByEmail(this.dbEventosDataSet.Eventos, current_user.email);
+            }
             //loadFromDb();
             //loadFromListToFields();
         }
@@ -146,7 +152,7 @@ namespace Desk
 
         private void cmbEscopo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbEscopo.SelectedIndex == 2)
+            if (cmbEscopo.SelectedItem == "Disciplina")
             {
                 cmbDisciplina.Visible = true;
                 cmbDisciplina.SelectedIndex = 0;
@@ -219,6 +225,120 @@ namespace Desk
                 //throw;
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            if (txtPesquisar.Text == "") {MessageBox.Show("Preencha o campo de pesquisa"); return; }
+            if (current_user.tipo == "Administrador")
+            {
+                try
+                {
+                    if (cmbPesquisar.SelectedIndex == 0) //nome
+                    {
+                        eventosTableAdapter.FillByNameAdmin(this.dbEventosDataSet.Eventos, txtPesquisar.Text);
+                    }
+                    else if (cmbPesquisar.SelectedIndex == 1) //mes
+                    {
+                        eventosTableAdapter.FillByMonthAdmin(this.dbEventosDataSet.Eventos, decimal.Parse(txtPesquisar.Text));
+                    }
+                    else if (cmbPesquisar.SelectedIndex == 2) //mes
+                    {
+                        eventosTableAdapter.FillByClassAdmin(this.dbEventosDataSet.Eventos, txtPesquisar.Text);
+                    }
+                }
+                catch
+                {
+                }
+            }
+            else
+            {
+                try
+                {
+                    if (cmbPesquisar.SelectedIndex == 0) //nome
+                    {
+                        eventosTableAdapter.FillByName(this.dbEventosDataSet.Eventos, txtPesquisar.Text, current_user.email);
+                    }
+                    else if (cmbPesquisar.SelectedIndex == 1) //mes
+                    {
+                        eventosTableAdapter.FillByMonthSearch(this.dbEventosDataSet.Eventos, decimal.Parse(txtPesquisar.Text), current_user.email);
+                    }
+                    else if (cmbPesquisar.SelectedIndex == 2) //mes
+                    {
+                        eventosTableAdapter.FillByClassSearch(this.dbEventosDataSet.Eventos, txtPesquisar.Text, current_user.email);
+                    }
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        
+
+        private void fillByNameToolStripButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.eventosTableAdapter.FillByName(this.dbEventosDataSet.Eventos, nomeToolStripTextBox1.Text, current_user.nome);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillByMonthSearchToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //this.eventosTableAdapter.FillByMonthSearch(this.dbEventosDataSet.Eventos, ((decimal)(System.Convert.ChangeType(mesToolStripTextBox.Text, typeof(decimal)))));
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillByNameAdminToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.eventosTableAdapter.FillByNameAdmin(this.dbEventosDataSet.Eventos, nomeToolStripTextBox.Text);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillByMonthAdminToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.eventosTableAdapter.FillByMonthAdmin(this.dbEventosDataSet.Eventos, ((decimal)(System.Convert.ChangeType(mesToolStripTextBox1.Text, typeof(decimal)))));
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillByClassAdminToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.eventosTableAdapter.FillByClassAdmin(this.dbEventosDataSet.Eventos, disciplinaToolStripTextBox.Text);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

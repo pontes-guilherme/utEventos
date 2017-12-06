@@ -154,7 +154,7 @@ namespace Desk
 
         private void cmbEscopo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbEscopo.SelectedIndex == 2)
+            if (cmbEscopo.SelectedItem == "Disciplina")
             {
                 cmbDisciplina.Visible = true;
                 cmbDisciplina.SelectedIndex = 0;

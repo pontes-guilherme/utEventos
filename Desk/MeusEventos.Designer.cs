@@ -52,12 +52,37 @@
             this.cmbDisciplina = new System.Windows.Forms.ComboBox();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.cmbPesquisar = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.btnPesquisar = new System.Windows.Forms.Button();
+            this.fillByNameToolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.nomeToolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.nomeToolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.fillByNameToolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.fillByMonthSearchToolStrip = new System.Windows.Forms.ToolStrip();
+            this.mesToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.mesToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.fillByMonthSearchToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.fillByNameAdminToolStrip = new System.Windows.Forms.ToolStrip();
+            this.nomeToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.nomeToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.fillByNameAdminToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.fillByMonthAdminToolStrip = new System.Windows.Forms.ToolStrip();
+            this.mesToolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.mesToolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.fillByMonthAdminToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.fillByClassAdminToolStrip = new System.Windows.Forms.ToolStrip();
+            this.disciplinaToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.disciplinaToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.fillByClassAdminToolStripButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).BeginInit();
+            this.fillByNameToolStrip1.SuspendLayout();
+            this.fillByMonthSearchToolStrip.SuspendLayout();
+            this.fillByNameAdminToolStrip.SuspendLayout();
+            this.fillByMonthAdminToolStrip.SuspendLayout();
+            this.fillByClassAdminToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // title
@@ -265,18 +290,19 @@
             this.cmbPesquisar.FormattingEnabled = true;
             this.cmbPesquisar.Items.AddRange(new object[] {
             "Nome",
-            "Mês"});
+            "Mês",
+            "Disciplina"});
             this.cmbPesquisar.Location = new System.Drawing.Point(34, 88);
             this.cmbPesquisar.Name = "cmbPesquisar";
             this.cmbPesquisar.Size = new System.Drawing.Size(58, 21);
             this.cmbPesquisar.TabIndex = 45;
             // 
-            // textBox1
+            // txtPesquisar
             // 
-            this.textBox1.Location = new System.Drawing.Point(98, 88);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(101, 20);
-            this.textBox1.TabIndex = 46;
+            this.txtPesquisar.Location = new System.Drawing.Point(98, 88);
+            this.txtPesquisar.Name = "txtPesquisar";
+            this.txtPesquisar.Size = new System.Drawing.Size(101, 20);
+            this.txtPesquisar.TabIndex = 46;
             // 
             // btnPesquisar
             // 
@@ -286,14 +312,180 @@
             this.btnPesquisar.TabIndex = 47;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
+            // 
+            // fillByNameToolStrip1
+            // 
+            this.fillByNameToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nomeToolStripLabel1,
+            this.nomeToolStripTextBox1,
+            this.fillByNameToolStripButton1});
+            this.fillByNameToolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.fillByNameToolStrip1.Name = "fillByNameToolStrip1";
+            this.fillByNameToolStrip1.Size = new System.Drawing.Size(697, 25);
+            this.fillByNameToolStrip1.TabIndex = 49;
+            this.fillByNameToolStrip1.Text = "fillByNameToolStrip1";
+            this.fillByNameToolStrip1.Visible = false;
+            // 
+            // nomeToolStripLabel1
+            // 
+            this.nomeToolStripLabel1.Name = "nomeToolStripLabel1";
+            this.nomeToolStripLabel1.Size = new System.Drawing.Size(41, 22);
+            this.nomeToolStripLabel1.Text = "nome:";
+            // 
+            // nomeToolStripTextBox1
+            // 
+            this.nomeToolStripTextBox1.Name = "nomeToolStripTextBox1";
+            this.nomeToolStripTextBox1.Size = new System.Drawing.Size(100, 25);
+            // 
+            // fillByNameToolStripButton1
+            // 
+            this.fillByNameToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fillByNameToolStripButton1.Name = "fillByNameToolStripButton1";
+            this.fillByNameToolStripButton1.Size = new System.Drawing.Size(71, 22);
+            this.fillByNameToolStripButton1.Text = "FillByName";
+            this.fillByNameToolStripButton1.Click += new System.EventHandler(this.fillByNameToolStripButton1_Click);
+            // 
+            // fillByMonthSearchToolStrip
+            // 
+            this.fillByMonthSearchToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mesToolStripLabel,
+            this.mesToolStripTextBox,
+            this.fillByMonthSearchToolStripButton});
+            this.fillByMonthSearchToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.fillByMonthSearchToolStrip.Name = "fillByMonthSearchToolStrip";
+            this.fillByMonthSearchToolStrip.Size = new System.Drawing.Size(697, 25);
+            this.fillByMonthSearchToolStrip.TabIndex = 50;
+            this.fillByMonthSearchToolStrip.Text = "fillByMonthSearchToolStrip";
+            this.fillByMonthSearchToolStrip.Visible = false;
+            // 
+            // mesToolStripLabel
+            // 
+            this.mesToolStripLabel.Name = "mesToolStripLabel";
+            this.mesToolStripLabel.Size = new System.Drawing.Size(32, 22);
+            this.mesToolStripLabel.Text = "mes:";
+            // 
+            // mesToolStripTextBox
+            // 
+            this.mesToolStripTextBox.Name = "mesToolStripTextBox";
+            this.mesToolStripTextBox.Size = new System.Drawing.Size(100, 25);
+            // 
+            // fillByMonthSearchToolStripButton
+            // 
+            this.fillByMonthSearchToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fillByMonthSearchToolStripButton.Name = "fillByMonthSearchToolStripButton";
+            this.fillByMonthSearchToolStripButton.Size = new System.Drawing.Size(110, 22);
+            this.fillByMonthSearchToolStripButton.Text = "FillByMonthSearch";
+            this.fillByMonthSearchToolStripButton.Click += new System.EventHandler(this.fillByMonthSearchToolStripButton_Click);
+            // 
+            // fillByNameAdminToolStrip
+            // 
+            this.fillByNameAdminToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nomeToolStripLabel,
+            this.nomeToolStripTextBox,
+            this.fillByNameAdminToolStripButton});
+            this.fillByNameAdminToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.fillByNameAdminToolStrip.Name = "fillByNameAdminToolStrip";
+            this.fillByNameAdminToolStrip.Size = new System.Drawing.Size(697, 25);
+            this.fillByNameAdminToolStrip.TabIndex = 51;
+            this.fillByNameAdminToolStrip.Text = "fillByNameAdminToolStrip";
+            this.fillByNameAdminToolStrip.Visible = false;
+            // 
+            // nomeToolStripLabel
+            // 
+            this.nomeToolStripLabel.Name = "nomeToolStripLabel";
+            this.nomeToolStripLabel.Size = new System.Drawing.Size(41, 22);
+            this.nomeToolStripLabel.Text = "nome:";
+            // 
+            // nomeToolStripTextBox
+            // 
+            this.nomeToolStripTextBox.Name = "nomeToolStripTextBox";
+            this.nomeToolStripTextBox.Size = new System.Drawing.Size(100, 25);
+            // 
+            // fillByNameAdminToolStripButton
+            // 
+            this.fillByNameAdminToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fillByNameAdminToolStripButton.Name = "fillByNameAdminToolStripButton";
+            this.fillByNameAdminToolStripButton.Size = new System.Drawing.Size(107, 22);
+            this.fillByNameAdminToolStripButton.Text = "FillByNameAdmin";
+            this.fillByNameAdminToolStripButton.Click += new System.EventHandler(this.fillByNameAdminToolStripButton_Click);
+            // 
+            // fillByMonthAdminToolStrip
+            // 
+            this.fillByMonthAdminToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mesToolStripLabel1,
+            this.mesToolStripTextBox1,
+            this.fillByMonthAdminToolStripButton});
+            this.fillByMonthAdminToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.fillByMonthAdminToolStrip.Name = "fillByMonthAdminToolStrip";
+            this.fillByMonthAdminToolStrip.Size = new System.Drawing.Size(697, 25);
+            this.fillByMonthAdminToolStrip.TabIndex = 52;
+            this.fillByMonthAdminToolStrip.Text = "fillByMonthAdminToolStrip";
+            this.fillByMonthAdminToolStrip.Visible = false;
+            // 
+            // mesToolStripLabel1
+            // 
+            this.mesToolStripLabel1.Name = "mesToolStripLabel1";
+            this.mesToolStripLabel1.Size = new System.Drawing.Size(32, 22);
+            this.mesToolStripLabel1.Text = "mes:";
+            // 
+            // mesToolStripTextBox1
+            // 
+            this.mesToolStripTextBox1.Name = "mesToolStripTextBox1";
+            this.mesToolStripTextBox1.Size = new System.Drawing.Size(100, 25);
+            // 
+            // fillByMonthAdminToolStripButton
+            // 
+            this.fillByMonthAdminToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fillByMonthAdminToolStripButton.Name = "fillByMonthAdminToolStripButton";
+            this.fillByMonthAdminToolStripButton.Size = new System.Drawing.Size(111, 22);
+            this.fillByMonthAdminToolStripButton.Text = "FillByMonthAdmin";
+            this.fillByMonthAdminToolStripButton.Click += new System.EventHandler(this.fillByMonthAdminToolStripButton_Click);
+            // 
+            // fillByClassAdminToolStrip
+            // 
+            this.fillByClassAdminToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.disciplinaToolStripLabel,
+            this.disciplinaToolStripTextBox,
+            this.fillByClassAdminToolStripButton});
+            this.fillByClassAdminToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.fillByClassAdminToolStrip.Name = "fillByClassAdminToolStrip";
+            this.fillByClassAdminToolStrip.Size = new System.Drawing.Size(697, 25);
+            this.fillByClassAdminToolStrip.TabIndex = 53;
+            this.fillByClassAdminToolStrip.Text = "fillByClassAdminToolStrip";
+            this.fillByClassAdminToolStrip.Visible = false;
+            // 
+            // disciplinaToolStripLabel
+            // 
+            this.disciplinaToolStripLabel.Name = "disciplinaToolStripLabel";
+            this.disciplinaToolStripLabel.Size = new System.Drawing.Size(60, 22);
+            this.disciplinaToolStripLabel.Text = "disciplina:";
+            // 
+            // disciplinaToolStripTextBox
+            // 
+            this.disciplinaToolStripTextBox.Name = "disciplinaToolStripTextBox";
+            this.disciplinaToolStripTextBox.Size = new System.Drawing.Size(100, 23);
+            // 
+            // fillByClassAdminToolStripButton
+            // 
+            this.fillByClassAdminToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fillByClassAdminToolStripButton.Name = "fillByClassAdminToolStripButton";
+            this.fillByClassAdminToolStripButton.Size = new System.Drawing.Size(102, 19);
+            this.fillByClassAdminToolStripButton.Text = "FillByClassAdmin";
+            this.fillByClassAdminToolStripButton.Click += new System.EventHandler(this.fillByClassAdminToolStripButton_Click);
             // 
             // MeusEventos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(697, 483);
+            this.ClientSize = new System.Drawing.Size(697, 487);
+            this.Controls.Add(this.fillByClassAdminToolStrip);
+            this.Controls.Add(this.fillByMonthAdminToolStrip);
+            this.Controls.Add(this.fillByNameAdminToolStrip);
+            this.Controls.Add(this.fillByMonthSearchToolStrip);
+            this.Controls.Add(this.fillByNameToolStrip1);
             this.Controls.Add(this.btnPesquisar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.cmbPesquisar);
             this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.label7);
@@ -321,6 +513,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).EndInit();
+            this.fillByNameToolStrip1.ResumeLayout(false);
+            this.fillByNameToolStrip1.PerformLayout();
+            this.fillByMonthSearchToolStrip.ResumeLayout(false);
+            this.fillByMonthSearchToolStrip.PerformLayout();
+            this.fillByNameAdminToolStrip.ResumeLayout(false);
+            this.fillByNameAdminToolStrip.PerformLayout();
+            this.fillByMonthAdminToolStrip.ResumeLayout(false);
+            this.fillByMonthAdminToolStrip.PerformLayout();
+            this.fillByClassAdminToolStrip.ResumeLayout(false);
+            this.fillByClassAdminToolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,7 +553,27 @@
         private System.Windows.Forms.BindingSource eventosBindingSource1;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.ComboBox cmbPesquisar;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPesquisar;
         private System.Windows.Forms.Button btnPesquisar;
+        private System.Windows.Forms.ToolStrip fillByNameToolStrip1;
+        private System.Windows.Forms.ToolStripLabel nomeToolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox nomeToolStripTextBox1;
+        private System.Windows.Forms.ToolStripButton fillByNameToolStripButton1;
+        private System.Windows.Forms.ToolStrip fillByMonthSearchToolStrip;
+        private System.Windows.Forms.ToolStripLabel mesToolStripLabel;
+        private System.Windows.Forms.ToolStripTextBox mesToolStripTextBox;
+        private System.Windows.Forms.ToolStripButton fillByMonthSearchToolStripButton;
+        private System.Windows.Forms.ToolStrip fillByNameAdminToolStrip;
+        private System.Windows.Forms.ToolStripLabel nomeToolStripLabel;
+        private System.Windows.Forms.ToolStripTextBox nomeToolStripTextBox;
+        private System.Windows.Forms.ToolStripButton fillByNameAdminToolStripButton;
+        private System.Windows.Forms.ToolStrip fillByMonthAdminToolStrip;
+        private System.Windows.Forms.ToolStripLabel mesToolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox mesToolStripTextBox1;
+        private System.Windows.Forms.ToolStripButton fillByMonthAdminToolStripButton;
+        private System.Windows.Forms.ToolStrip fillByClassAdminToolStrip;
+        private System.Windows.Forms.ToolStripLabel disciplinaToolStripLabel;
+        private System.Windows.Forms.ToolStripTextBox disciplinaToolStripTextBox;
+        private System.Windows.Forms.ToolStripButton fillByClassAdminToolStripButton;
     }
 }

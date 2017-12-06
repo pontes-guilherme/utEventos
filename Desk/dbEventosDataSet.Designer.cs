@@ -1366,7 +1366,7 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[8];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[14];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
@@ -1379,37 +1379,81 @@ namespace Desk.dbEventosDataSetTableAdapters {
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
-                "o, importante, nome FROM Eventoes WHERE (data_inicio <= GETDATE()) AND (data_fim" +
-                " >= GETDATE())";
+            this._commandCollection[2].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
+                "ante, data_criacao FROM Eventoes\r\nWHERE Disciplina_nome LIKE \'%\'+@disciplina+\'%\'" +
+                "";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@disciplina", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Disciplina_nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
-                "o, importante, nome FROM Eventoes WHERE (criador = @email)";
+            this._commandCollection[3].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
+                "ante, data_criacao FROM Eventoes\r\nWHERE Disciplina_nome LIKE \'%\'+@disciplina+\'%\'" +
+                " AND criador = @criador";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@email", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "criador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@disciplina", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Disciplina_nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@criador", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "criador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
-                "ante, data_criacao FROM Eventoes\r\nWHERE (data_fim < GETDATE())";
+            this._commandCollection[4].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
+                "o, importante, nome FROM Eventoes WHERE (data_inicio <= GETDATE()) AND (data_fim" +
+                " >= GETDATE())";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
             this._commandCollection[5].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
-                "o, importante, nome FROM Eventoes WHERE (MONTH(data_inicio) = MONTH(GETDATE()))";
+                "o, importante, nome FROM Eventoes WHERE (criador = @email)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@email", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "criador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
-                "o, importante, nome FROM Eventoes WHERE (YEAR(data_inicio) = YEAR(GETDATE())) AN" +
-                "D (MONTH(data_inicio) >= MONTH(GETDATE())) AND (MONTH(data_fim) <= MONTH(GETDATE" +
-                "()))";
+            this._commandCollection[6].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
+                "ante, data_criacao FROM Eventoes\r\nWHERE (data_fim < GETDATE())";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[7] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[7].Connection = this.Connection;
-            this._commandCollection[7].CommandText = @"SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escopo, importante, nome FROM Eventoes WHERE (YEAR(data_inicio) = YEAR(GETDATE())) AND (DATEPART(wk, data_inicio) >= DATEPART(wk, GETDATE())) AND (DATEPART(wk, data_fim) <= DATEPART(wk, GETDATE()))";
+            this._commandCollection[7].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
+                "o, importante, nome FROM Eventoes WHERE (MONTH(data_inicio) = MONTH(GETDATE()))";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[8] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[8].Connection = this.Connection;
+            this._commandCollection[8].CommandText = "SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escop" +
+                "o, importante, nome FROM Eventoes WHERE (YEAR(data_inicio) = YEAR(GETDATE())) AN" +
+                "D (MONTH(data_inicio) >= MONTH(GETDATE())) AND (MONTH(data_fim) <= MONTH(GETDATE" +
+                "()))";
+            this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[9] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[9].Connection = this.Connection;
+            this._commandCollection[9].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
+                "ante, data_criacao\r\nFROM Eventoes \r\nWHERE  (MONTH(data_inicio) >= @mes) AND (MON" +
+                "TH(data_fim) <= @mes) ";
+            this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@mes", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[10] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[10].Connection = this.Connection;
+            this._commandCollection[10].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
+                "ante, data_criacao\r\nFROM Eventoes \r\nWHERE  (MONTH(data_inicio) >= @mes) AND (MON" +
+                "TH(data_fim) <= @mes) AND criador = @criador";
+            this._commandCollection[10].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[10].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@mes", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[10].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@criador", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "criador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[11] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[11].Connection = this.Connection;
+            this._commandCollection[11].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
+                "ante, data_criacao \r\nFROM Eventoes\r\nWHERE        (nome LIKE \'%\' + @nome + \'%\') a" +
+                "nd criador = @criador";
+            this._commandCollection[11].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[11].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nome", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[11].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@criador", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "criador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[12] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[12].Connection = this.Connection;
+            this._commandCollection[12].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
+                "ante, data_criacao \r\nFROM Eventoes\r\nWHERE        (nome LIKE \'%\' + @nome + \'%\')";
+            this._commandCollection[12].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[12].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nome", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[13] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[13].Connection = this.Connection;
+            this._commandCollection[13].CommandText = @"SELECT Categoria_nome, Id, capacidade, data_criacao, data_fim, data_inicio, escopo, importante, nome FROM Eventoes WHERE (YEAR(data_inicio) = YEAR(GETDATE())) AND (DATEPART(wk, data_inicio) >= DATEPART(wk, GETDATE())) AND (DATEPART(wk, data_fim) <= DATEPART(wk, GETDATE()))";
+            this._commandCollection[13].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1453,8 +1497,52 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByDay(dbEventosDataSet.EventosDataTable dataTable) {
+        public virtual int FillByClassAdmin(dbEventosDataSet.EventosDataTable dataTable, string disciplina) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((disciplina == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(disciplina));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByClassSearch(dbEventosDataSet.EventosDataTable dataTable, string disciplina, string criador) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((disciplina == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(disciplina));
+            }
+            if ((criador == null)) {
+                throw new global::System.ArgumentNullException("criador");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(criador));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByDay(dbEventosDataSet.EventosDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -1467,7 +1555,7 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByEmail(dbEventosDataSet.EventosDataTable dataTable, string email) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[5];
             if ((email == null)) {
                 throw new global::System.ArgumentNullException("email");
             }
@@ -1486,32 +1574,6 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByEventosPassados(dbEventosDataSet.EventosDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByMonth(dbEventosDataSet.EventosDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[5];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByMONTH2(dbEventosDataSet.EventosDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[6];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1524,8 +1586,112 @@ namespace Desk.dbEventosDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByWeek(dbEventosDataSet.EventosDataTable dataTable) {
+        public virtual int FillByMonth(dbEventosDataSet.EventosDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[7];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByMONTH2(dbEventosDataSet.EventosDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[8];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByMonthAdmin(dbEventosDataSet.EventosDataTable dataTable, decimal mes) {
+            this.Adapter.SelectCommand = this.CommandCollection[9];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(mes));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByMonthSearch(dbEventosDataSet.EventosDataTable dataTable, decimal mes, string criador) {
+            this.Adapter.SelectCommand = this.CommandCollection[10];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(mes));
+            if ((criador == null)) {
+                throw new global::System.ArgumentNullException("criador");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(criador));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByName(dbEventosDataSet.EventosDataTable dataTable, string nome, string criador) {
+            this.Adapter.SelectCommand = this.CommandCollection[11];
+            if ((nome == null)) {
+                throw new global::System.ArgumentNullException("nome");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(nome));
+            }
+            if ((criador == null)) {
+                throw new global::System.ArgumentNullException("criador");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(criador));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByNameAdmin(dbEventosDataSet.EventosDataTable dataTable, string nome) {
+            this.Adapter.SelectCommand = this.CommandCollection[12];
+            if ((nome == null)) {
+                throw new global::System.ArgumentNullException("nome");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(nome));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByWeek(dbEventosDataSet.EventosDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[13];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
