@@ -14,8 +14,8 @@
     <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery-ui-1.10.4.min.js")"></script>
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body style="padding-top:0;margin-top:0;top:0;margin-bottom:0;padding-bottom:0;">
+    <div class="navbar navbar-inverse navbar-static-top" style="position:relative;padding-top:0;margin-top:0;top:0;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,26 +28,31 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Início", "Index", "Home")</li>*@
-                    <li>@Html.ActionLink("Próximos Eventos", "Index", "Eventoes")</li>
-                    <li>@Html.ActionLink("Museu de Eventos", "Museu", "Eventoes")</li>
-                    <li>@Html.ActionLink("Usuários", "Index", "Usuarios")</li>
                     @{
-                        if (object.Equals(System.Web.HttpContext.Current.Session["tipo"],"Administrador"))
-                         {
-                            <li>@Html.ActionLink("Gerenciar", "Main", "Administrador")</li>
+                        if (System.Web.HttpContext.Current.Session["email"] != null)
+                        {
+                            <li>@Html.ActionLink("Próximos Eventos", "Index", "Eventoes")</li>
+                            <li>@Html.ActionLink("Museu de Eventos", "Museu", "Eventoes")</li>
+                            <li>@Html.ActionLink("Usuários", "Index", "Usuarios")</li>
+                            
+                            if (object.Equals(System.Web.HttpContext.Current.Session["tipo"], "Administrador"))
+                            {
+                                <li>@Html.ActionLink("Gerenciar", "Main", "Administrador")</li>
+                            }
+                            
+                            <li style="margin-left:10px;margin-top:5px">
+                                @using (Html.BeginForm("Index", "Eventoes", FormMethod.Post, new { @class = "form-inline" }))
+                                {
+                                    string myBoxStyle = "height: 34px; font-size: 14px; line-height: 1.428571429; color: #555555; vertical-align: middle; background-color: #ffffff; border: 1px solid #cccccc; border-radius: 4px;";
+                                    @Html.DropDownList("Tipo", new SelectList(new string[] { "Nome", "Disciplina", "Mês" }), new { @name = "Tipo", @style = myBoxStyle, @required = "required" })
+                                    @Html.TextBox("Query", null, new { name = "Query", @style = myBoxStyle })
+                                    <button type="submit" style="height:35px;margin-left:-5px;font-size: 14px; line-height: 1.428571429; color: #555555; vertical-align: middle;">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                }
+                            </li>
                         }
                     }
-                    <li style="margin-left:10px;margin-top:5px">
-                        @using (Html.BeginForm("Index", "Eventoes", FormMethod.Post, new { @class = "form-inline" }))
-                        {
-                            string myBoxStyle = "height: 34px; font-size: 14px; line-height: 1.428571429; color: #555555; vertical-align: middle; background-color: #ffffff; border: 1px solid #cccccc; border-radius: 4px;";
-                            @Html.DropDownList("Tipo", new SelectList(new string[] { "Nome", "Disciplina", "Mês" }), new { @name="Tipo", @style=myBoxStyle, @required="required" })
-                            @Html.TextBox("Query", null, new { name = "Query", @style = myBoxStyle })
-                            <button type="submit" style="height:35px;margin-left:-5px;font-size: 14px; line-height: 1.428571429; color: #555555; vertical-align: middle;">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                         }
-                    </li>
                 </ul>
                 @Html.Partial("_MyLoginPartial")
             </div>

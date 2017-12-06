@@ -100,7 +100,7 @@ namespace Desk
 
         private void loadFromDb()
         {
-            List<Evento> lista_eventos = pnEventos.Listar();
+            List<Evento> lista_eventos = pnEventos.Listar(current_user.email);
 
 
             try

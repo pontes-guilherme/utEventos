@@ -17,19 +17,49 @@ namespace Web.Controllers
         private dbEventosEntities db = new dbEventosEntities();
 
         // GET: Eventoes
-        public ActionResult Index()
+        public ActionResult Index(List<string> filterValues = null)
         {
-            System.Diagnostics.Debug.WriteLine("normal");
-            return View(pnEventos.Listar("atuais"));
+            if (System.Web.HttpContext.Current.Session["email"] != null)
+            {
+                List<Evento> eventos = pnEventos.Listar(System.Web.HttpContext.Current.Session["email"].ToString(), "atuais");
+
+                //Ordem e filtro padrão
+                eventos = eventos.Where(x => object.Equals(x.escopo, "Pessoal")).ToList();
+                eventos = eventos.OrderByDescending(x => x.Inscricoes.Count()).ToList();
+
+                return View(eventos);
+            }
+            return View(pnEventos.Listar());
+        }
+
+        [HttpPost]
+        public ActionResult FilterPartial(string filterValue, string orderValue)
+        {
+            List<Evento> eventos = pnEventos.Listar(System.Web.HttpContext.Current.Session["email"].ToString(), "atuais");
+            eventos = eventos.Where(x => object.Equals(x.escopo,filterValue)).ToList();
+            
+            if(orderValue == "Popularidade")
+            {
+                eventos = eventos.OrderByDescending(x => x.Inscricoes.Count()).ToList();
+            }
+            else if(orderValue == "Proximidade")
+            {
+                eventos = eventos.OrderBy(x => x.data_inicio).ToList();
+            }
+            else
+            {
+                eventos = eventos.OrderByDescending(x => x.data_criacao).ToList();
+            }
+
+
+            return PartialView("EventoesList", eventos);
         }
 
         [HttpPost]
         public ActionResult Index(string Tipo, string Query = "")
         {
-            System.Diagnostics.Debug.WriteLine("params");
-            System.Diagnostics.Debug.WriteLine(Tipo);
-            System.Diagnostics.Debug.WriteLine(Query);
-            List<Evento> eventos = pnEventos.Listar();
+           
+            List<Evento> eventos = pnEventos.Listar(System.Web.HttpContext.Current.Session["email"].ToString());
             IEnumerable<Evento> resultado;
 
             if (Query.Length > 0)
@@ -68,7 +98,7 @@ namespace Web.Controllers
 
         public ActionResult Museu()
         {
-            return View(pnEventos.Listar("passados"));
+            return View(pnEventos.Listar(System.Web.HttpContext.Current.Session["email"].ToString(), "passados"));
         }
 
         // GET: Eventoes/Details/5

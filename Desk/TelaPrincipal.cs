@@ -49,6 +49,7 @@ namespace Desk
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("Sessão finalizada.");
+            pnUsuarios.sendReminder(currentUser);
             this.Hide();
             Login nextForm = new Login();
             nextForm.Closed += (s, args) => this.Close();

@@ -6,69 +6,80 @@
 
 <h2>Próximos Eventos</h2>
 
-<p>
-    @Html.ActionLink("Novo evento", "Create") | @Html.ActionLink("Sugerir Evento", "Create", "Sugestoes", null, null)
-</p>
+<ul class="nav navbar-nav" style="width:100%">
+    <li>
+        @Html.ActionLink("Novo evento", "Create")
+    </li>
+    <li>
+        @Html.ActionLink("Sugerir Evento", "Create", "Sugestoes", null, null)
+    </li>
+    <li style="position:relative;float:right">
+        <div id="escopoBtns" data-toggle="buttons" class="btn-group">
+            <label id="Pessoal" onchange="reply(this.id)"  value="Pessoal" class="btn btn-primary active">
+                <input id="PessoalRadio" checked name="escopoValue" type="radio" value="Pessoal" required="required"><i class="glyphicon glyphicon-filter"></i> Pessoal
+            </label>
+            <label id="Disciplina" onchange="reply(this.id)" value="Disciplina" class="btn btn-primary">
+                <input id="DisciplinaRadio" name="escopoValue" type="radio" value="Disciplina" required="required"><i class="glyphicon glyphicon-filter"></i> Disciplina
+            </label>
+            <label id="Global" onchange="reply(this.id)"  value="Global" class="btn btn-primary">
+                <input id="GlobalRadio" name="escopoValue" type="radio" value="Global" required="required"><i class="glyphicon glyphicon-filter"></i> Global
+            </label>
+        </div>
+    </li>
+    <li style="position:relative;float:right;margin-right:10px">
+        <select id="order" onchange="orderAndFilterList()" class="form-control glyphicon">
+            <option value="Popularidade">&#xe150; Popularidade</option>
+            <option value="Proximidade">&#xe150; Proximidade</option>
+            <option value="Recentes">&#xe150; Recentes</option>
+        </select>
+    </li>
+</ul>
+
+<table id="div-items" class="table" style="position:relative; margin-top:10px;">
+    @Html.Partial("EventoesList", Model)
+</table>
+
 
 @Html.Raw(TempData["msg"])
 
-<table class="table">
-    <tr>
-        <th>
-            Evento
-        </th>
-        <th>
-            Importante
-        </th>
-        <th>
-            Inicio
-        </th>
-        <th>
-            Fim
-        </th>
-        <th>
-           Escopo
-        </th>
-        <th>
-            Categoria
-        </th>
-        <th></th>
-    </tr>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.importante)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.data_inicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.data_fim)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.escopo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria.nome)
-        </td>
-        <td>
-            @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) 
-            @{
-                if (object.Equals(System.Web.HttpContext.Current.Session["tipo"], "Administrador"))
-                { 
-                    @: | 
-                    @Html.ActionLink("Editar", "Edit", new { id=item.Id }) 
-                    @: | 
-                    @Html.ActionLink("Deletar", "Delete", new { id=item.Id })
-                }
+
+    <script>
+        function reply(next) {
+            var previous = document.getElementsByClassName("active")[0].id;
+            if (previous != next) {
+                //alert(next);
+                document.getElementById(previous+"Radio").checked = false;
+                document.getElementById(next+"Radio").checked = true;
+                orderAndFilterList(); 
             }
-        </td>
-    </tr>
+            else {
+                //alert(previous + "->" + next);
+            }
+        }
+
+        function orderAndFilterList() {
+            var selectOrder = document.getElementById('order');
+            var order = selectOrder.options[selectOrder.selectedIndex].value;
+            var escopo = $("input[name=escopoValue]:checked").val();
+
+            //alert(escopo + ' - ' + order);
+
+            $.ajax({
+                url: '@Url.Action("FilterPartial", "Eventoes")',//controller name and action
+                type: 'POST',
+                data: { 'filterValue': escopo, 'orderValue': order }, //information for search
+                success: function (response) {
+                    $('#div-items').html(response);
+                    //alert(response);
+                },
+                error: function (xhr, status, error) {
+                    alert(status + " : " + error);
+                }
+
+            });
+        }
+    </script>
 }
-
-</table>
-

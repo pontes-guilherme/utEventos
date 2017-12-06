@@ -443,6 +443,7 @@
     <Content Include="Views\Feedbacks\Details.cshtml" />
     <Content Include="Views\Feedbacks\Edit.cshtml" />
     <Content Include="Views\Feedbacks\Index.cshtml" />
+    <Content Include="Views\Eventoes\EventoesList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
