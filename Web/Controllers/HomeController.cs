@@ -16,49 +16,9 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Eventoes");
+
+            //return View();
         }
-
-        //public ActionResult About()
-        //{
-        //    ViewBag.Message = "Página de descrição da aplicação.";
-
-        //    return View();
-        //}
-
-        //public ActionResult Contact()
-        //{
-        //    ViewBag.Message = "Página de Contatos.";
-
-        //    return View();
-        //}
-
-        //public ActionResult Sugestoes()
-        //{
-        //    ViewBag.Message = "Página de Sugestões.";
-
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Sugestoes([Bind(Include = "titulo,descricao")] Sugesto s)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            //"Id,titulo,descricao,Usuario_email,data_criacao"
-        //            //db.Usuarios.Add(usuario);
-        //            //db.SaveChanges();
-        //            s.Usuario_email = System.Web.HttpContext.Current.Session["email"].ToString();
-        //            pnSugestoes.Inserir(s);
-        //            return RedirectToAction("Index");
-        //        }
-        //        catch (Exception) { }
-        //    }
-
-        //    return View();
-        //}
     }
 }

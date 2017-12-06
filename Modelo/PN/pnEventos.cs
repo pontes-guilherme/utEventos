@@ -25,7 +25,7 @@ namespace Modelo.PN
                     db = new dbEventosEntities();
                 }
                 e.Id = getLasId();
-                e.data_criacao = (DateTime.Now).Date;
+                e.data_criacao = DateTime.Now;
                 db.Eventoes.Add(e);
                 db.SaveChanges();
 
@@ -64,25 +64,34 @@ namespace Modelo.PN
             }
         }
 
-        public static List<Evento> Listar(string tipo = "")
+        public static List<Evento> Listar(string email_usuario="", string tipo = "")
         {
             try
             {
                 dbEventosEntities db = new dbEventosEntities();
                 List<Evento> eventos;
 
-                if (tipo == "atuais") {
-                    eventos = db.Eventoes.Where(x => DateTime.Compare(x.data_fim, DateTime.Now) > 0).ToList();
-                }
-                else if(tipo == "passados")
+                if (email_usuario.Length > 0)
                 {
-                    eventos = db.Eventoes.Where(x => DateTime.Compare(x.data_fim, DateTime.Now) <= 0).ToList();
+                    List<Evento> remover = db.Eventoes.Where(x => x.escopo == "Pessoal" && x.criador != email_usuario).ToList();
+
+                    if (tipo == "atuais")
+                    {
+                        eventos = db.Eventoes.Where(x => DateTime.Compare(x.data_fim, DateTime.Now) > 0).Except(remover).ToList();
+                    }
+                    else if (tipo == "passados")
+                    {
+                        eventos = db.Eventoes.Where(x => DateTime.Compare(x.data_fim, DateTime.Now) <= 0).Except(remover).ToList();
+                    }
+                    else
+                    {
+                        eventos = db.Eventoes.Except(remover).ToList();
+                    }
                 }
                 else
                 {
                     eventos = db.Eventoes.ToList();
                 }
-                
                 
                 return (eventos);
             }
