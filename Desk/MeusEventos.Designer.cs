@@ -50,6 +50,10 @@
             this.cmbEscopo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbDisciplina = new System.Windows.Forms.ComboBox();
+            this.btnAlterar = new System.Windows.Forms.Button();
+            this.cmbPesquisar = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnPesquisar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource)).BeginInit();
@@ -72,7 +76,7 @@
             this.listBox1.DataSource = this.eventosBindingSource1;
             this.listBox1.DisplayMember = "nome";
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(34, 85);
+            this.listBox1.Location = new System.Drawing.Point(34, 138);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(165, 329);
             this.listBox1.TabIndex = 13;
@@ -246,11 +250,52 @@
             this.cmbDisciplina.TabIndex = 42;
             this.cmbDisciplina.Visible = false;
             // 
+            // btnAlterar
+            // 
+            this.btnAlterar.Location = new System.Drawing.Point(290, 252);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(212, 23);
+            this.btnAlterar.TabIndex = 44;
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click_1);
+            // 
+            // cmbPesquisar
+            // 
+            this.cmbPesquisar.FormattingEnabled = true;
+            this.cmbPesquisar.Items.AddRange(new object[] {
+            "Nome",
+            "Mês"});
+            this.cmbPesquisar.Location = new System.Drawing.Point(34, 88);
+            this.cmbPesquisar.Name = "cmbPesquisar";
+            this.cmbPesquisar.Size = new System.Drawing.Size(58, 21);
+            this.cmbPesquisar.TabIndex = 45;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(98, 88);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(101, 20);
+            this.textBox1.TabIndex = 46;
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.Location = new System.Drawing.Point(34, 111);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(165, 21);
+            this.btnPesquisar.TabIndex = 47;
+            this.btnPesquisar.Text = "Pesquisar";
+            this.btnPesquisar.UseVisualStyleBackColor = true;
+            // 
             // MeusEventos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 483);
+            this.Controls.Add(this.btnPesquisar);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cmbPesquisar);
+            this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cmbDisciplina);
             this.Controls.Add(this.label6);
@@ -304,5 +349,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbDisciplina;
         private System.Windows.Forms.BindingSource eventosBindingSource1;
+        private System.Windows.Forms.Button btnAlterar;
+        private System.Windows.Forms.ComboBox cmbPesquisar;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnPesquisar;
     }
 }

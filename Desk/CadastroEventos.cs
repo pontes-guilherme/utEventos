@@ -132,7 +132,7 @@ namespace Desk
                 }
 
                 evento.escopo = cmbEscopo.SelectedItem.ToString();
-
+                
                 if (!pnEventos.Inserir(evento, db))
                 {
                     MessageBox.Show("Problema na inserção de evento!");
