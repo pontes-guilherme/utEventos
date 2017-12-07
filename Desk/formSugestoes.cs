@@ -36,7 +36,8 @@ namespace Desk
                 sugestao.titulo = txtTitulo.Text;
                 sugestao.descricao = txtDescricao.Text;
                 sugestao.Usuario = atual;
-                sugestao.Usuario_email = atual.email;
+                //sugestao.Usuario_email = atual.email;
+      
                 //fb.Evento = this.evento;
 
                 if (!pnSugestoes.Inserir(sugestao, db))

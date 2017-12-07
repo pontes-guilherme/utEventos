@@ -198,7 +198,7 @@ namespace Desk
                 evento.Categoria = c;
                 evento.Categoria_nome = c.nome;
 
-                if (cmbEscopo.SelectedIndex == 2)
+                if (cmbEscopo.SelectedItem == "Disciplina")
                 {
                     Disciplina d = db.Disciplinas.Find(cmbDisciplina.SelectedItem);
                     evento.Disciplina = d;

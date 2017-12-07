@@ -1381,14 +1381,14 @@ namespace Desk.dbEventosDataSetTableAdapters {
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
                 "ante, data_criacao FROM Eventoes\r\nWHERE Disciplina_nome LIKE \'%\'+@disciplina+\'%\'" +
-                "";
+                "  and escopo = \'Disciplina\'";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@disciplina", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Disciplina_nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "SELECT id,nome, capacidade, Categoria_nome, escopo, data_inicio, data_fim, import" +
                 "ante, data_criacao FROM Eventoes\r\nWHERE Disciplina_nome LIKE \'%\'+@disciplina+\'%\'" +
-                " AND criador = @criador";
+                " AND criador = @criador  and escopo = \'Disciplina\'";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@disciplina", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Disciplina_nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@criador", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "criador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
