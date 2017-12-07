@@ -340,5 +340,23 @@ namespace Desk
             }
 
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Deseja excluir?", "Excluir?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    dbEventosEntities db = new dbEventosEntities();
+                    Evento evento = db.Eventoes.Find(listBox1.SelectedValue);
+
+                    if (pnEventos.Excluir(evento))
+                    {
+                        MessageBox.Show("Evento excluido!");
+                    }
+                }
+            }catch { }
+            
+        }
     }
 }
