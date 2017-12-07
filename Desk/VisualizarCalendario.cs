@@ -72,11 +72,11 @@ namespace Desk
 
         private void loadFromListToFields()
         {
-            dbEventosEntities db = new dbEventosEntities();
+            //dbEventosEntities db = new dbEventosEntities();
 
             try
             {
-                Evento evento = db.Eventoes.Find(listBox1.SelectedValue);
+                Evento evento = pnEventos.Pesquisar(Int32.Parse(listBox1.SelectedValue.ToString()));
 
                 txtNome.Text = evento.nome;
                 txtCapacidade.Text = evento.capacidade.ToString();
@@ -85,6 +85,14 @@ namespace Desk
                 dtInicio.Value = evento.data_inicio;
                 dtFim.Value = evento.data_fim;
                 ckbImportante.Checked = evento.importante;
+                if (evento.capacidade == 0)
+                {
+                    txtVagas.Visible = false;
+                }
+                else
+                {
+                    txtVagas.Value = (decimal)(evento.capacidade - evento.Inscricoes.Count());
+                }
                 if (evento.escopo == "Disciplina")
                 {
                     cmbDisciplina.Visible = true;
@@ -93,6 +101,40 @@ namespace Desk
                 else
                 {
                     cmbDisciplina.Visible = false;
+                }
+
+                btnInscricao.Enabled = true;
+                if (DateTime.Compare(evento.data_inicio, DateTime.Now) > 0)
+                {
+                    if (pnInscricoes.Pesquisar(evento.Id, current_user.email) != null)
+                    {
+                        btnInscricao.Text = "Cancelar inscrição";
+                    }
+                    else if(evento.capacidade == 0 || evento.capacidade > evento.Inscricoes.Count())
+                    {
+                        btnInscricao.Text = "Inscrever-se";
+                    }
+                    else
+                    {
+                        btnInscricao.Text = "Vagas esgotadas";
+                        btnInscricao.Enabled = false;
+                    }
+                }
+                else if (DateTime.Compare(evento.data_fim, DateTime.Now) > 0)
+                {
+                    if (pnCheckin.Pesquisar(evento.Id, current_user.email) != null)
+                    {
+                        btnInscricao.Text = "Cancelar checkin";
+                    }
+                    else
+                    {
+                        btnInscricao.Text = "Checkin";
+                    }
+                }
+                else
+                {
+                    btnInscricao.Text = "Evento finalizado";
+                    btnInscricao.Enabled = false;
                 }
 
             }
@@ -118,7 +160,8 @@ namespace Desk
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadFromListToFields();
+            UpdateForm();
+            //loadFromListToFields();
         }
 
         private void rdbSemana_CheckedChanged(object sender, EventArgs e)
@@ -149,20 +192,89 @@ namespace Desk
 
         private void btnInscricao_Click(object sender, EventArgs e)
         {
-            dbEventosEntities db = new dbEventosEntities();
+            //dbEventosEntities db = new dbEventosEntities();
             Inscricao i = new Inscricao();
-            Evento evento = db.Eventoes.Find(listBox1.SelectedValue);
+            Evento evento = pnEventos.Pesquisar(Int32.Parse(listBox1.SelectedValue.ToString()));
 
-           
-            
-            if (!pnInscricoes.Inserir(evento.Id, current_user.email))
+            if (DateTime.Compare(evento.data_inicio, DateTime.Now) > 0)
+            { 
+                if (pnInscricoes.Pesquisar(evento.Id, current_user.email) != null)
+                {
+                    if (!pnInscricoes.Excluir(pnInscricoes.Pesquisar(evento.Id, current_user.email)))
+                    {
+                        MessageBox.Show("Erro ao realizar procedimento!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cancelada!");
+                        UpdateForm();
+                    }
+                }
+                else
+                {
+                    if (!pnInscricoes.Inserir(evento.Id, current_user.email))
+                    {
+                        MessageBox.Show("Erro ao inscrever-se!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Inscrito!");
+                        UpdateForm();
+                    }
+                }
+             }
+            else if (DateTime.Compare(evento.data_fim, DateTime.Now) > 0)
             {
-                MessageBox.Show("Erro ao inscrever-se!");
-            } else
+                if (pnCheckin.Pesquisar(evento.Id, current_user.email) != null)
+                {
+                    if (!pnCheckin.Excluir(pnCheckin.Pesquisar(evento.Id, current_user.email)))
+                    {
+                        MessageBox.Show("Erro ao realizar procedimento!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cancelado!");
+                        UpdateForm();
+                    }
+                }
+                else
+                {
+                    if (!pnCheckin.Inserir(evento.Id, current_user.email))
+                    {
+                        MessageBox.Show("Erro ao registrar presença!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Checked in!");
+                        UpdateForm();
+                    }
+                }
+            }
+            else
             {
-                MessageBox.Show("Inscrito!");
+
             }
 
+        }
+
+        private void ClearForm()
+        {
+            txtNome.Text = null;
+            txtCapacidade.Text = null;
+            cmbCategoria.SelectedItem = "Outro";
+            cmbEscopo.SelectedItem = "Global";
+            dtInicio.Value = DateTime.Now.Date;
+            dtFim.Value = DateTime.Now.Date;
+            ckbImportante.Checked = false;
+            txtVagas.Value = 0;
+            txtVagas.Visible = true;
+            btnInscricao.Enabled = true;
+        }
+
+        private void UpdateForm()
+        {
+            ClearForm();
+            loadFromListToFields();
         }
     }
 }

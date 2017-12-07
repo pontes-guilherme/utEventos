@@ -152,11 +152,6 @@
             0,
             0,
             0});
-            this.txtCapacidade.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.txtCapacidade.Name = "txtCapacidade";
             this.txtCapacidade.Size = new System.Drawing.Size(120, 20);
             this.txtCapacidade.TabIndex = 22;

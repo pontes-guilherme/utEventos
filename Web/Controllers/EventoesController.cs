@@ -116,6 +116,30 @@ namespace Web.Controllers
             return View(evento);
         }
 
+        public ActionResult Checkin(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Evento evento = pnEventos.Pesquisar(id);
+            if (evento == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (pnCheckin.Pesquisar(id, System.Web.HttpContext.Current.Session["email"].ToString()) == null)
+            {
+                pnCheckin.Inserir(id, System.Web.HttpContext.Current.Session["email"].ToString());
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("checked in already");
+            }
+
+            return RedirectToAction("Details", new { id = evento.Id });
+        }
+
         public ActionResult SignUp(int id)
         {
             if (id == null)

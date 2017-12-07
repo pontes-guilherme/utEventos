@@ -125,7 +125,7 @@
     @{
         if (DateTime.Compare(Model.data_inicio, DateTime.Now) > 0)
         {
-            if (Model.Inscricoes.Count() > 0 && Model.Inscricoes.ToList().Exists(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) != null)
+            if (Model.Inscricoes.Count() > 0 && Model.Inscricoes.Any(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())))
             {
                     @Html.ActionLink("Deixa de participar", "SignOut", "Eventoes", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default" });
                     @: | 
@@ -144,23 +144,23 @@
         }
         else if (DateTime.Compare(Model.data_fim, DateTime.Now) > 0)
         {
-            if (Model.Inscricoes.Count() > 0 && Model.Inscricoes.ToList().Exists(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) != null
-                && Model.Checkins.Count() > 0 && !Model.Checkins.ToList().Any(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) != null)
+            if (Model.Inscricoes.Count() > 0 && Model.Inscricoes.Any(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString()))
+                && (Model.Checkins.Count() == 0 || (Model.Checkins.Count() > 0 && !Model.Checkins.Any(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())))) )
             {
-                    @Html.ActionLink("Check In", "Create", "Checkin", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default" });
-                    @: |
-                }
-            else if (Model.Inscricoes.Count() > 0 && !Model.Inscricoes.ToList().Any(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) != null)
+                @Html.ActionLink("Check In", "Checkin", "Eventoes", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default" });
+                @: |
+            }
+            else if (Model.Inscricoes.Count() == 0 || (Model.Inscricoes.Count() > 0 && Model.Inscricoes.Where(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) == null))
             {
                 //Html.ActionLink("Esgotado", "SignUp", "Eventos", htmlAttributes: new { @class = "btn btn-default" });
-                    <input type="button" value="Inscrições Encerradas" class="btn btn-default" disabled />
-                    @: |
-                    }
+                <input type="button" value="Inscrições Encerradas" class="btn btn-default" disabled />
+                @: |
+            }
             else
             {
                     <input type="button" value="Checked In" class="btn btn-default" disabled />
                     @: |
-                }
+             }
         }
         else
         {
