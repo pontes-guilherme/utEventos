@@ -53,9 +53,12 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.eventosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnInscricao = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtVagas = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVagas)).BeginInit();
             this.SuspendLayout();
             // 
             // title
@@ -300,7 +303,7 @@
             // 
             // btnInscricao
             // 
-            this.btnInscricao.Location = new System.Drawing.Point(268, 289);
+            this.btnInscricao.Location = new System.Drawing.Point(268, 308);
             this.btnInscricao.Name = "btnInscricao";
             this.btnInscricao.Size = new System.Drawing.Size(212, 23);
             this.btnInscricao.TabIndex = 61;
@@ -308,11 +311,42 @@
             this.btnInscricao.UseVisualStyleBackColor = true;
             this.btnInscricao.Click += new System.EventHandler(this.btnInscricao_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Enabled = false;
+            this.label8.Location = new System.Drawing.Point(219, 274);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(43, 13);
+            this.label8.TabIndex = 62;
+            this.label8.Text = "Vagas: ";
+            // 
+            // txtVagas
+            // 
+            this.txtVagas.Enabled = false;
+            this.txtVagas.Location = new System.Drawing.Point(268, 272);
+            this.txtVagas.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.txtVagas.Name = "txtVagas";
+            this.txtVagas.ReadOnly = true;
+            this.txtVagas.Size = new System.Drawing.Size(120, 20);
+            this.txtVagas.TabIndex = 63;
+            this.txtVagas.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // VisualizarCalendario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 452);
+            this.Controls.Add(this.txtVagas);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnInscricao);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cmbDisciplina);
@@ -341,6 +375,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVagas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -372,5 +407,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.BindingSource eventosBindingSource1;
         private System.Windows.Forms.Button btnInscricao;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown txtVagas;
     }
 }

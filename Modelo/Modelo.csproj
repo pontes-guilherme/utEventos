@@ -101,6 +101,7 @@
     <Compile Include="PN\pnCategorias.cs" />
     <Compile Include="PN\pnEventos.cs" />
     <Compile Include="PN\pnFeedback.cs" />
+    <Compile Include="PN\pnCheckin.cs" />
     <Compile Include="PN\pnInscricoes.cs" />
     <Compile Include="PN\pnSugestoes.cs" />
     <Compile Include="PN\pnDisciplinas.cs" />
