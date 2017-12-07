@@ -13,7 +13,7 @@ namespace Web.Controllers
 {
     public class UsuariosController : Controller
     {
-        private dbEventosEntities db = new dbEventosEntities();
+        //private dbEventosEntities db = new dbEventosEntities();
 
         // GET: Usuarios
         public ActionResult Index()
@@ -29,9 +29,7 @@ namespace Web.Controllers
                 System.Diagnostics.Debug.WriteLine("null parameter");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            System.Diagnostics.Debug.WriteLine(id);
             id = HttpUtility.UrlDecode(id);
-            System.Diagnostics.Debug.WriteLine(id);
             Usuario usuario = pnUsuarios.Pesquisar(id);
             if (usuario == null)
             {
@@ -57,8 +55,7 @@ namespace Web.Controllers
             {
                 try
                 {
-                    db.Usuarios.Add(usuario);
-                    db.SaveChanges();
+                    pnUsuarios.Inserir(usuario);
                     return RedirectToAction("Index");
                 }
                catch (Exception) { }
@@ -74,7 +71,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Find(id);
+            Usuario usuario = pnUsuarios.Pesquisar(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -91,10 +88,11 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(usuario).State = EntityState.Modified;
+                //db.SaveChanges();
+                pnUsuarios.Alterar(usuario);
 
-                if (object.Equals(usuario.email, System.Web.HttpContext.Current.Session["email"])) {
+                if (object.Equals(usuario.email, System.Web.HttpContext.Current.Session["email"].ToString())){
                     Usuario u = pnUsuarios.Pesquisar(usuario.email);
                     System.Web.HttpContext.Current.Session["nome"] = u.nome;
                     System.Web.HttpContext.Current.Session["email"] = u.email;
@@ -113,7 +111,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Find(id);
+            Usuario usuario = pnUsuarios.Pesquisar(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -126,19 +124,18 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Usuario usuario = db.Usuarios.Find(id);
-            db.Usuarios.Remove(usuario);
-            db.SaveChanges();
+            Usuario usuario = pnUsuarios.Pesquisar(id);
+            pnUsuarios.Excluir(usuario);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

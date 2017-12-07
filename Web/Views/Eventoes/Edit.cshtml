@@ -19,7 +19,7 @@
         <div class="form-group">
             @Html.Label("Nome do evento", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", @required="required" } })
                 @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.Label("Inicio", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.data_inicio, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control datepicker " } })
+                @Html.EditorFor(model => model.data_inicio, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control datepicker ", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.data_inicio, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.Label("Fim", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.data_fim, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control datepicker" } })
+                @Html.EditorFor(model => model.data_fim, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control datepicker", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.data_fim, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -65,15 +65,23 @@
                 }
             }
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.escopo, listItems, "-- Selecione um tipo --", new { @class = "form-control" } )
+                @Html.DropDownListFor(model => model.escopo, listItems, "-- Selecione um tipo --", new { @class = "form-control", @required = "required" } )
                 @Html.ValidationMessageFor(model => model.escopo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" id="disciplinaDropdown" style="display:none">
+            @Html.Label("Disciplina", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Disciplina_nome", (SelectList)ViewBag.Disciplina_nome, "", htmlAttributes: new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(model => model.Disciplina_nome, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.Label("Categoria", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Categoria_nome", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Categoria_nome", null, htmlAttributes: new { @class = "form-control", @required = "required" })
                 @Html.ValidationMessageFor(model => model.Categoria_nome, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -104,10 +112,20 @@
     @Scripts.Render("~/bundles/jqueryval")
 
 
-<script type="text/javascript">
-    $(function () { // will trigger when the document is ready
-        $('.datepicker').datepicker(); //Initialise any date pickers
-    });
-</script>
+    <script type="text/javascript">
+        $(function () { // will trigger when the document is ready
+            $('.datepicker').datepicker(); //Initialise any date pickers
+        });
+    </script>
+
+    <script>
+            $('select[name=escopo]').change(function () {
+                if ($(this).val() == 'Disciplina') {
+                    $('#disciplinaDropdown').show();
+                } else {
+                    $('#disciplinaDropdown').hide();
+                }
+            });
+    </script> 
 }
 

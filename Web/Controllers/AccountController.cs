@@ -17,44 +17,11 @@ namespace Web.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
-        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -81,7 +48,6 @@ namespace Web.Controllers
             {
                 System.Diagnostics.Debug.WriteLine("sim");
                 Usuario u = pnUsuarios.Pesquisar(model.Email);
-                //System.Web.HttpContext.Current.Session["user"] = u;
                 System.Web.HttpContext.Current.Session["nome"] = u.nome;
                 System.Web.HttpContext.Current.Session["email"] = u.email;
                 System.Web.HttpContext.Current.Session["tipo"] = u.tipo;
@@ -96,10 +62,13 @@ namespace Web.Controllers
         [AllowAnonymous]
         public ActionResult Logout(string returnUrl)
         {
-            Usuario u = pnUsuarios.Pesquisar(System.Web.HttpContext.Current.Session["email"].ToString());
-            pnUsuarios.sendReminder(u);
-            Session.Abandon();
-            return RedirectToAction("Index", "Home");
+            if (System.Web.HttpContext.Current.Session["email"] != null)
+            {
+                Usuario u = pnUsuarios.Pesquisar(System.Web.HttpContext.Current.Session["email"].ToString());
+                pnUsuarios.sendReminder(u);
+                Session.Abandon();
+            }
+            return RedirectToAction("Index", "Eventoes");
         }
 
 
@@ -152,7 +121,7 @@ namespace Web.Controllers
             {
                 return View();
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Eventoes");
         }
 
         [AllowAnonymous]
@@ -167,7 +136,7 @@ namespace Web.Controllers
                     return View();
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Eventoes");
         }
 
         [HttpPost]
@@ -190,7 +159,7 @@ namespace Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Eventoes");
         }
     }
 }

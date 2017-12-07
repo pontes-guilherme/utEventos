@@ -72,6 +72,12 @@ namespace Modelo.PN
                 Disciplina cat = new Disciplina();
 
                 cat = db.Disciplinas.Find(c.nome);
+                //foreach(Evento e in cat.Eventos)
+                //{
+                //    e.Disciplina_nome = cat.nome;
+                //    e.Disciplina = null;
+                //}
+
                 db.Disciplinas.Remove(cat);
                 db.SaveChanges();
 

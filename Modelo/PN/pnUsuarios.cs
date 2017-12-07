@@ -79,6 +79,12 @@ namespace Modelo.PN
                 Usuario user = new Usuario();
 
                 user = db.Usuarios.Find(u.email);
+
+                foreach(Evento e in user.Eventoes)
+                {
+                    pnEventos.Excluir(e);
+                }
+
                 db.Usuarios.Remove(user);
                 db.SaveChanges();
 

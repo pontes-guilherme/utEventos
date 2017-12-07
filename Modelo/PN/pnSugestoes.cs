@@ -71,5 +71,34 @@ namespace Modelo.PN
             }
         }
 
+        public static Sugesto Pesquisar(int id)
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                Sugesto cat = new Sugesto();
+                //u.email = email;
+
+                cat = db.Sugestoes.Find(id);
+                return cat;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<Sugesto> Listar()
+        {
+            try
+            {
+                dbEventosEntities db = new dbEventosEntities();
+                return (db.Sugestoes.ToList());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -45,7 +45,6 @@ namespace Modelo.PN
             }
         }
 
-        //PROBLEMA
         public static Categoria Pesquisar(string nome)
         {
             try

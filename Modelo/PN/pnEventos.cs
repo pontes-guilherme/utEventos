@@ -69,28 +69,21 @@ namespace Modelo.PN
             try
             {
                 dbEventosEntities db = new dbEventosEntities();
-                List<Evento> eventos;
+                List<Evento> eventos = db.Eventoes.Where(x => x.escopo != "Pessoal").ToList();
 
-                if (email_usuario.Length > 0)
+                if (email_usuario != "")
                 {
-                    List<Evento> remover = db.Eventoes.Where(x => x.escopo == "Pessoal" && x.criador != email_usuario).ToList();
+                    List<Evento> pessoais = db.Eventoes.Where(x => x.escopo == "Pessoal" && x.criador == email_usuario).ToList();
+                    eventos.AddRange(pessoais);
 
                     if (tipo == "atuais")
                     {
-                        eventos = db.Eventoes.Where(x => DateTime.Compare(x.data_fim, DateTime.Now) > 0).Except(remover).ToList();
+                        eventos = eventos.Where(x => DateTime.Compare(x.data_fim, DateTime.Now) > 0).ToList();
                     }
                     else if (tipo == "passados")
                     {
-                        eventos = db.Eventoes.Where(x => DateTime.Compare(x.data_fim, DateTime.Now) <= 0).Except(remover).ToList();
+                        eventos = eventos.Where(x => DateTime.Compare(x.data_fim, DateTime.Now) <= 0).ToList();
                     }
-                    else
-                    {
-                        eventos = db.Eventoes.Except(remover).ToList();
-                    }
-                }
-                else
-                {
-                    eventos = db.Eventoes.ToList();
                 }
                 
                 return (eventos);
@@ -155,10 +148,10 @@ namespace Modelo.PN
             try
             {
                 dbEventosEntities db = new dbEventosEntities();
-                Evento user = new Evento();
+                Evento e = new Evento();
 
-                user = db.Eventoes.Find(u.Id);
-                db.Eventoes.Remove(user);
+                e = db.Eventoes.Find(u.Id);
+                db.Eventoes.Remove(e);
                 db.SaveChanges();
 
                 return true;

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/04/2017 17:45:16
--- Generated from EDMX file: C:\Users\Guilherme Pontes\Source\Repos\utEventos\Modelo\DAO\EventoDAO.edmx
+-- Date Created: 12/07/2017 18:21:47
+-- Generated from EDMX file: C:\Users\l_ass\source\repos\utEventos\Modelo\DAO\EventoDAO.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -136,7 +136,7 @@ GO
 
 -- Creating table 'Inscricoes'
 CREATE TABLE [dbo].[Inscricoes] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [Id] int  NOT NULL,
     [Usuario_email] nvarchar(50)  NOT NULL,
     [EventoId] int  NOT NULL
 );
@@ -234,7 +234,7 @@ ADD CONSTRAINT [FK_FeedbackEvento]
     FOREIGN KEY ([EventoId])
     REFERENCES [dbo].[Eventoes]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_FeedbackEvento'
@@ -249,7 +249,7 @@ ADD CONSTRAINT [FK_FeedbackUsuario]
     FOREIGN KEY ([Usuario_email])
     REFERENCES [dbo].[Usuarios]
         ([email])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_FeedbackUsuario'
@@ -264,7 +264,7 @@ ADD CONSTRAINT [FK_SugestoUsuario]
     FOREIGN KEY ([Usuario_email])
     REFERENCES [dbo].[Usuarios]
         ([email])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SugestoUsuario'
@@ -279,7 +279,7 @@ ADD CONSTRAINT [FK_CategoriaEvento]
     FOREIGN KEY ([Categoria_nome])
     REFERENCES [dbo].[Categorias]
         ([nome])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CategoriaEvento'
@@ -294,7 +294,7 @@ ADD CONSTRAINT [FK_InscricaoUsuario]
     FOREIGN KEY ([Usuario_email])
     REFERENCES [dbo].[Usuarios]
         ([email])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_InscricaoUsuario'
@@ -309,7 +309,7 @@ ADD CONSTRAINT [FK_InscricaoEvento]
     FOREIGN KEY ([EventoId])
     REFERENCES [dbo].[Eventoes]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_InscricaoEvento'
@@ -324,7 +324,7 @@ ADD CONSTRAINT [FK_DisciplinaEvento]
     FOREIGN KEY ([Disciplina_nome])
     REFERENCES [dbo].[Disciplinas]
         ([nome])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_DisciplinaEvento'
@@ -339,7 +339,7 @@ ADD CONSTRAINT [FK_CheckinEvento]
     FOREIGN KEY ([EventoId])
     REFERENCES [dbo].[Eventoes]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CheckinEvento'
@@ -354,7 +354,7 @@ ADD CONSTRAINT [FK_CheckinUsuario]
     FOREIGN KEY ([Usuario_email])
     REFERENCES [dbo].[Usuarios]
         ([email])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CheckinUsuario'

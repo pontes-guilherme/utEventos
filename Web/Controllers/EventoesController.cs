@@ -29,7 +29,7 @@ namespace Web.Controllers
 
                 return View(eventos);
             }
-            return View(pnEventos.Listar());
+            return View(pnEventos.Listar("",""));
         }
 
         [HttpPost]
@@ -52,14 +52,14 @@ namespace Web.Controllers
             }
 
 
-            return PartialView("EventoesList", eventos);
+            return PartialView("_EventoesList", eventos);
         }
 
         [HttpPost]
         public ActionResult Index(string Tipo, string Query = "")
         {
            
-            List<Evento> eventos = pnEventos.Listar(System.Web.HttpContext.Current.Session["email"].ToString());
+            List<Evento> eventos = pnEventos.Listar(System.Web.HttpContext.Current.Session["email"].ToString(),"");
             IEnumerable<Evento> resultado;
 
             if (Query.Length > 0)
@@ -94,26 +94,6 @@ namespace Web.Controllers
             }
 
             return View(resultado);
-        }
-
-        public ActionResult Museu()
-        {
-            return View(pnEventos.Listar(System.Web.HttpContext.Current.Session["email"].ToString(), "passados"));
-        }
-
-        // GET: Eventoes/Details/5
-        public ActionResult Details(int id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Evento evento = pnEventos.Pesquisar(id);
-            if (evento == null)
-            {
-                return HttpNotFound();
-            }
-            return View(evento);
         }
 
         public ActionResult Checkin(int id)
@@ -185,19 +165,48 @@ namespace Web.Controllers
             return RedirectToAction("Details", new { id = evento.Id });
         }
 
+        public ActionResult Museu()
+        {
+            return View(pnEventos.Listar(System.Web.HttpContext.Current.Session["email"].ToString(), "passados"));
+        }
+
+        // GET: Eventoes/Details/5
+        public ActionResult Details(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Evento evento = pnEventos.Pesquisar(id);
+            if (evento == null)
+            {
+                return HttpNotFound();
+            }
+            return View(evento);
+        }
+
         // GET: Eventoes/Create
         public ActionResult Create()
         {
-            //ViewBag.criador = new SelectList(db.Usuarios, "email", "nome");
             ViewBag.Categoria_nome = new SelectList(db.Categorias, "nome", "nome");
             ViewBag.Disciplina_nome = new SelectList(db.Disciplinas, "nome", "nome");
+
+            if (ViewBag.Disciplina_nome == null)
+            {
+                ViewBag.Disciplina_nome = new SelectList("Outros", "nome");
+            }
+            if (ViewBag.Categoria_nome == null)
+            {
+                ViewBag.Categoria_nome = new SelectList("Outros", "nome");
+            }
+
+
             Evento evento = new Evento();
             string inicio = (DateTime.Now).AddDays(1).ToString("yyyy-MM-ddThh:mm");
             string fim = (DateTime.Now).AddDays(1).ToString("yyyy-MM-ddThhmm");
             evento.data_inicio = DateTime.ParseExact(inicio, "yyyy-MM-ddThh:mm", CultureInfo.InvariantCulture);
             evento.data_fim = DateTime.ParseExact(fim, "yyyy-MM-ddThhmm", CultureInfo.InvariantCulture);
-            //System.Diagnostics.Debug.WriteLine(evento.data_inicio.ToString());
-            //System.Diagnostics.Debug.WriteLine(evento.data_fim.ToString());
+
             return View(evento);
         }
 
@@ -239,6 +248,7 @@ namespace Web.Controllers
             }
             ViewBag.criador = new SelectList(db.Usuarios, "email", "nome", evento.criador);
             ViewBag.Categoria_nome = new SelectList(db.Categorias, "nome", "nome", evento.Categoria_nome);
+            ViewBag.Disciplina_nome = new SelectList(db.Disciplinas, "nome", "nome");
             return View(evento);
         }
 
@@ -252,8 +262,6 @@ namespace Web.Controllers
             if (ModelState.IsValid)
             {
                 evento.criador = System.Web.HttpContext.Current.Session["email"].ToString();
-                //db.Entry(evento).State = EntityState.Modified;
-                //db.SaveChanges();
                 pnEventos.Alterar(evento, null);
                 return RedirectToAction("Index");
             }
@@ -287,13 +295,13 @@ namespace Web.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }
