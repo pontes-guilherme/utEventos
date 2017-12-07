@@ -220,11 +220,6 @@
             0,
             0,
             0});
-            this.txtCapacidade.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.txtCapacidade.Name = "txtCapacidade";
             this.txtCapacidade.Size = new System.Drawing.Size(120, 20);
             this.txtCapacidade.TabIndex = 38;
@@ -464,13 +459,13 @@
             // disciplinaToolStripTextBox
             // 
             this.disciplinaToolStripTextBox.Name = "disciplinaToolStripTextBox";
-            this.disciplinaToolStripTextBox.Size = new System.Drawing.Size(100, 23);
+            this.disciplinaToolStripTextBox.Size = new System.Drawing.Size(100, 25);
             // 
             // fillByClassAdminToolStripButton
             // 
             this.fillByClassAdminToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.fillByClassAdminToolStripButton.Name = "fillByClassAdminToolStripButton";
-            this.fillByClassAdminToolStripButton.Size = new System.Drawing.Size(102, 19);
+            this.fillByClassAdminToolStripButton.Size = new System.Drawing.Size(102, 22);
             this.fillByClassAdminToolStripButton.Text = "FillByClassAdmin";
             this.fillByClassAdminToolStripButton.Click += new System.EventHandler(this.fillByClassAdminToolStripButton_Click);
             // 
@@ -479,11 +474,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 487);
-            this.Controls.Add(this.fillByClassAdminToolStrip);
-            this.Controls.Add(this.fillByMonthAdminToolStrip);
-            this.Controls.Add(this.fillByNameAdminToolStrip);
-            this.Controls.Add(this.fillByMonthSearchToolStrip);
             this.Controls.Add(this.fillByNameToolStrip1);
+            this.Controls.Add(this.fillByMonthSearchToolStrip);
+            this.Controls.Add(this.fillByNameAdminToolStrip);
+            this.Controls.Add(this.fillByMonthAdminToolStrip);
+            this.Controls.Add(this.fillByClassAdminToolStrip);
             this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.cmbPesquisar);

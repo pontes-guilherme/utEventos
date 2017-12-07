@@ -125,7 +125,7 @@
     @{
         if (DateTime.Compare(Model.data_inicio, DateTime.Now) > 0)
         {
-            if (Model.Inscricoes.Count() > 0 && Model.Inscricoes.ToList().Exists(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())) != null)
+            if (Model.Inscricoes.Count() > 0 && Model.Inscricoes.Any(x => object.Equals(x.Usuario_email, System.Web.HttpContext.Current.Session["email"].ToString())))
             {
                     @Html.ActionLink("Deixa de participar", "SignOut", "Eventoes", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default" });
                     @: | 

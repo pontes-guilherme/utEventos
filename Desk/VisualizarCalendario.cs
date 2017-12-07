@@ -85,7 +85,14 @@ namespace Desk
                 dtInicio.Value = evento.data_inicio;
                 dtFim.Value = evento.data_fim;
                 ckbImportante.Checked = evento.importante;
-                txtVagas.Value = (decimal)(evento.capacidade - evento.Inscricoes.Count());
+                if (evento.capacidade == 0)
+                {
+                    txtVagas.Visible = false;
+                }
+                else
+                {
+                    txtVagas.Value = (decimal)(evento.capacidade - evento.Inscricoes.Count());
+                }
                 if (evento.escopo == "Disciplina")
                 {
                     cmbDisciplina.Visible = true;
@@ -96,28 +103,38 @@ namespace Desk
                     cmbDisciplina.Visible = false;
                 }
 
-
+                btnInscricao.Enabled = true;
                 if (DateTime.Compare(evento.data_inicio, DateTime.Now) > 0)
                 {
                     if (pnInscricoes.Pesquisar(evento.Id, current_user.email) != null)
                     {
                         btnInscricao.Text = "Cancelar inscrição";
                     }
-                    else
+                    else if(evento.capacidade == 0 || evento.capacidade > evento.Inscricoes.Count())
                     {
                         btnInscricao.Text = "Inscrever-se";
+                    }
+                    else
+                    {
+                        btnInscricao.Text = "Vagas esgotadas";
+                        btnInscricao.Enabled = false;
+                    }
+                }
+                else if (DateTime.Compare(evento.data_fim, DateTime.Now) > 0)
+                {
+                    if (pnCheckin.Pesquisar(evento.Id, current_user.email) != null)
+                    {
+                        btnInscricao.Text = "Cancelar checkin";
+                    }
+                    else
+                    {
+                        btnInscricao.Text = "Checkin";
                     }
                 }
                 else
                 {
-                    if (pnInscricoes.Pesquisar(evento.Id, current_user.email) != null)
-                    {
-                        btnInscricao.Text = "Cancelar inscrição";
-                    }
-                    else
-                    {
-                        btnInscricao.Text = "Inscrever-se";
-                    }
+                    btnInscricao.Text = "Evento finalizado";
+                    btnInscricao.Enabled = false;
                 }
 
             }
@@ -179,30 +196,63 @@ namespace Desk
             Inscricao i = new Inscricao();
             Evento evento = pnEventos.Pesquisar(Int32.Parse(listBox1.SelectedValue.ToString()));
 
-
-            if (pnInscricoes.Pesquisar(evento.Id, current_user.email) != null)
-            {
-                if (!pnInscricoes.Excluir(pnInscricoes.Pesquisar(evento.Id, current_user.email)))
+            if (DateTime.Compare(evento.data_inicio, DateTime.Now) > 0)
+            { 
+                if (pnInscricoes.Pesquisar(evento.Id, current_user.email) != null)
                 {
-                    MessageBox.Show("Erro ao realizar procedimento!");
+                    if (!pnInscricoes.Excluir(pnInscricoes.Pesquisar(evento.Id, current_user.email)))
+                    {
+                        MessageBox.Show("Erro ao realizar procedimento!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cancelada!");
+                        UpdateForm();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Cancelada!");
-                    UpdateForm();
+                    if (!pnInscricoes.Inserir(evento.Id, current_user.email))
+                    {
+                        MessageBox.Show("Erro ao inscrever-se!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Inscrito!");
+                        UpdateForm();
+                    }
+                }
+             }
+            else if (DateTime.Compare(evento.data_fim, DateTime.Now) > 0)
+            {
+                if (pnCheckin.Pesquisar(evento.Id, current_user.email) != null)
+                {
+                    if (!pnCheckin.Excluir(pnCheckin.Pesquisar(evento.Id, current_user.email)))
+                    {
+                        MessageBox.Show("Erro ao realizar procedimento!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cancelado!");
+                        UpdateForm();
+                    }
+                }
+                else
+                {
+                    if (!pnCheckin.Inserir(evento.Id, current_user.email))
+                    {
+                        MessageBox.Show("Erro ao registrar presença!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Checked in!");
+                        UpdateForm();
+                    }
                 }
             }
             else
             {
-                if (!pnInscricoes.Inserir(evento.Id, current_user.email))
-                {
-                    MessageBox.Show("Erro ao inscrever-se!");
-                }
-                else
-                {
-                    MessageBox.Show("Inscrito!");
-                    UpdateForm();
-                }
+
             }
 
         }
@@ -217,7 +267,8 @@ namespace Desk
             dtFim.Value = DateTime.Now.Date;
             ckbImportante.Checked = false;
             txtVagas.Value = 0;
-            
+            txtVagas.Visible = true;
+            btnInscricao.Enabled = true;
         }
 
         private void UpdateForm()
