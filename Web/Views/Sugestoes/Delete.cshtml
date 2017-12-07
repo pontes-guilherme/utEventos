@@ -4,53 +4,63 @@
     ViewBag.Title = "Exclusão de Sugestão";
 }
 
-<h2>Exclusão de Sugestão</h2>
+@{
+    if (object.Equals(System.Web.HttpContext.Current.Session["tipo"], "Administrador"))
+    {
+        <h2>Exclusão de Sugestão</h2>
 
-<h3>Você tem certeza que deseja excluir esta sugestão?</h3>
-<div>
-    <h4>Sugestão</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Título
-        </dt>
+        <h3>Você tem certeza que deseja excluir esta sugestão?</h3>
+        <div>
+            <h4>Sugestão</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Título
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.titulo)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.titulo)
+                </dd>
 
-        <dt>
-            Data de Criação
-        </dt>
+                <dt>
+                    Data de Criação
+                </dt>
 
-        <dd>
-            @{
-                var data = Html.DisplayFor(model => model.data_criacao);
-                var str = "-";
-                if (data.ToString().Length > 0)
-                {
-                    str = data.ToString().Substring(0, 10);
-                }
+                <dd>
+                    @{
+                        var data = Html.DisplayFor(model => model.data_criacao);
+                        var str = "-";
+                        if (data.ToString().Length > 0)
+                        {
+                            str = data.ToString().Substring(0, 10);
+                        }
+                    }
+                    @str
+                </dd>
+
+                <dt>
+                    Criado por
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Usuario.nome)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm()) {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Excluir" class="btn btn-default" /> |
+                    @Html.ActionLink("Voltar à lista de Sugestões", "Index")
+                </div>
             }
-            @str
-        </dd>
-
-        <dt>
-            Criado por
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Usuario.nome)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Excluir" class="btn btn-default" /> |
-            @Html.ActionLink("Voltar à lista de Sugestões", "Index")
         </div>
     }
-</div>
+    else
+    {
+        @RenderPage("~/Views/Shared/_NotAuthorized.cshtml")
+    }
+
+}    

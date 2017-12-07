@@ -4,28 +4,39 @@
     ViewBag.Title = "Exclusão de Categoria";
 }
 
-<h2>Exclusão de Categoria</h2>
+@{
+    if (object.Equals(System.Web.HttpContext.Current.Session["tipo"], "Administrador"))
+    {
+        <h2>Exclusão de Categoria</h2>
 
-<h3>Você tem certeza que deseja excluir esta categoria?</h3>
-<div>
-    <h4>Categoria</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Nome da Categoria
-        </dt>
+        <h3>Você tem certeza que deseja excluir esta categoria?</h3>
+        <div>
+            <h4>Categoria</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Nome da Categoria
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nome)
-        </dd>
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.nome)
+                </dd>
+            </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+            @using (Html.BeginForm()) {
+                @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Excluir" class="btn btn-default" /> |
-            @Html.ActionLink("Voltar à lista de Categorias", "Index")
+                <div class="form-actions no-color">
+                    <input type="submit" value="Excluir" class="btn btn-default" /> |
+                    @Html.ActionLink("Voltar à lista de Categorias", "Index")
+                </div>
+            }
         </div>
     }
-</div>
+    else
+    {
+        @RenderPage("~/Views/Shared/_NotAuthorized.cshtml")
+    }
+
+}
+ 
