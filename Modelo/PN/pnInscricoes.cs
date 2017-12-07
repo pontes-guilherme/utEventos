@@ -14,12 +14,18 @@ namespace Modelo.PN
             try
             {
                 dbEventosEntities db = new dbEventosEntities();
-
                 Inscricao i = new Inscricao();
+
+                /*Evento e = db.Eventoes.Find(evento);
+                Usuario u = db.Usuarios.Find(usuario);
+                i.Evento = e;
+                i.Usuario = u;
+                i.notificado = true;*/
+
                 i.Id = getLasId();
                 i.EventoId = evento;
                 i.Usuario_email = usuario;
-
+                
                 db.Inscricoes.Add(i);
                 db.SaveChanges();
 

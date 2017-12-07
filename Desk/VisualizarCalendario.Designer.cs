@@ -52,6 +52,7 @@
             this.dtInicio = new System.Windows.Forms.DateTimePicker();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.eventosBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnInscricao = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dbEventosDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCapacidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventosBindingSource1)).BeginInit();
@@ -297,11 +298,22 @@
             this.eventosBindingSource1.DataMember = "Eventos";
             this.eventosBindingSource1.DataSource = this.dbEventosDataSet;
             // 
+            // btnInscricao
+            // 
+            this.btnInscricao.Location = new System.Drawing.Point(268, 289);
+            this.btnInscricao.Name = "btnInscricao";
+            this.btnInscricao.Size = new System.Drawing.Size(212, 23);
+            this.btnInscricao.TabIndex = 61;
+            this.btnInscricao.Text = "Inscrever-se";
+            this.btnInscricao.UseVisualStyleBackColor = true;
+            this.btnInscricao.Click += new System.EventHandler(this.btnInscricao_Click);
+            // 
             // VisualizarCalendario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 452);
+            this.Controls.Add(this.btnInscricao);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cmbDisciplina);
             this.Controls.Add(this.label6);
@@ -359,5 +371,6 @@
         private System.Windows.Forms.DateTimePicker dtInicio;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.BindingSource eventosBindingSource1;
+        private System.Windows.Forms.Button btnInscricao;
     }
 }

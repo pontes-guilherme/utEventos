@@ -15,7 +15,7 @@ namespace Desk
     public partial class VisualizarCalendario : Form
     {
         //String filterBy;
-
+        Usuario current_user;
         List<Categoria> lista_categorias = pnCategorias.Listar();
         List<Disciplina> lista_disciplinas = pnDisciplinas.Listar();
 
@@ -26,6 +26,7 @@ namespace Desk
             loadCmbCategorias();
             loadCmbDisciplinas();
 
+            this.current_user = u;
         }
 
         private void VisualizarCalendario_Load(object sender, EventArgs e)
@@ -144,6 +145,24 @@ namespace Desk
                     loadFromListToFields();
                 }catch { }
             }
+        }
+
+        private void btnInscricao_Click(object sender, EventArgs e)
+        {
+            dbEventosEntities db = new dbEventosEntities();
+            Inscricao i = new Inscricao();
+            Evento evento = db.Eventoes.Find(listBox1.SelectedValue);
+
+           
+            
+            if (!pnInscricoes.Inserir(evento.Id, current_user.email))
+            {
+                MessageBox.Show("Erro ao inscrever-se!");
+            } else
+            {
+                MessageBox.Show("Inscrito!");
+            }
+
         }
     }
 }

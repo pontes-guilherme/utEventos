@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [dbo].[Inscricoes]
 (
 	[Id] INT NOT NULL PRIMARY KEY, 
-    [Evento] INT NOT NULL, 
-    [Usuario] NVARCHAR(50) NOT NULL, 
-    [notificado] BIT NULL, 
-    CONSTRAINT [FK_Inscricoes_Eventos] FOREIGN KEY ([Evento]) REFERENCES [Eventoes]([Id]), 
-    CONSTRAINT [FK_Inscricoes_Usuarios] FOREIGN KEY ([Usuario]) REFERENCES [Usuarios]([email])
+    [EventoId] INT NOT NULL, 
+    [Usuario_email] NVARCHAR(50) NOT NULL, 
+    [notificado] BIT NOT NULL, 
+    CONSTRAINT [FK_Inscricoes_Eventos] FOREIGN KEY ([EventoId]) REFERENCES [Eventoes]([Id]), 
+    CONSTRAINT [FK_Inscricoes_Usuarios] FOREIGN KEY ([Usuario_email]) REFERENCES [Usuarios]([email])
 )

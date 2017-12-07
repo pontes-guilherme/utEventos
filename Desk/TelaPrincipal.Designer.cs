@@ -87,7 +87,7 @@
             this.grpCategorias.Controls.Add(this.lnkCategoriaCad);
             this.grpCategorias.Location = new System.Drawing.Point(3, 421);
             this.grpCategorias.Name = "grpCategorias";
-            this.grpCategorias.Size = new System.Drawing.Size(171, 99);
+            this.grpCategorias.Size = new System.Drawing.Size(171, 107);
             this.grpCategorias.TabIndex = 14;
             this.grpCategorias.TabStop = false;
             this.grpCategorias.Text = "Área do Administrador";
@@ -100,7 +100,7 @@
             this.lnkMuseu.AutoSize = true;
             this.lnkMuseu.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.lnkMuseu.LinkColor = System.Drawing.Color.Black;
-            this.lnkMuseu.Location = new System.Drawing.Point(17, 53);
+            this.lnkMuseu.Location = new System.Drawing.Point(17, 61);
             this.lnkMuseu.Name = "lnkMuseu";
             this.lnkMuseu.Size = new System.Drawing.Size(96, 13);
             this.lnkMuseu.TabIndex = 9;
@@ -116,7 +116,7 @@
             this.lnkCategoriaCad.AutoSize = true;
             this.lnkCategoriaCad.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.lnkCategoriaCad.LinkColor = System.Drawing.Color.Black;
-            this.lnkCategoriaCad.Location = new System.Drawing.Point(17, 32);
+            this.lnkCategoriaCad.Location = new System.Drawing.Point(17, 40);
             this.lnkCategoriaCad.Name = "lnkCategoriaCad";
             this.lnkCategoriaCad.Size = new System.Drawing.Size(57, 13);
             this.lnkCategoriaCad.TabIndex = 8;
