@@ -26,6 +26,7 @@ namespace Modelo.PN
                 i.EventoId = evento;
                 i.Usuario_email = usuario;
                 
+                
                 db.Inscricoes.Add(i);
                 db.SaveChanges();
 

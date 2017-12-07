@@ -112,7 +112,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="None" Nullable="false" />
     <Property Name="Usuario_email" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="EventoId" Type="int" Nullable="false" />
   </EntityType>
@@ -437,7 +437,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <NavigationProperty Name="Usuario" Relationship="dbEventosModel.InscricaoUsuario" FromRole="Inscricao" ToRole="Usuario" />
           <Property Name="Usuario_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Evento" Relationship="dbEventosModel.InscricaoEvento" FromRole="Inscricao" ToRole="Evento" />
