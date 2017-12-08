@@ -35,7 +35,8 @@ namespace Web.Controllers
                                 id = e.Id,
                                 title = e.nome,
                                 start = e.data_inicio,
-                                end = e.data_fim
+                                end = e.data_fim,
+                                vagas = e.capacidade - e.Inscricoes.Count()
                             };
             var rows = eventList.ToArray();
 
