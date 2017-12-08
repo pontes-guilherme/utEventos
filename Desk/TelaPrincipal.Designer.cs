@@ -39,7 +39,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lnkSugestoes = new System.Windows.Forms.LinkLabel();
             this.lnkFeedback = new System.Windows.Forms.LinkLabel();
-            this.lnkEvenGlo = new System.Windows.Forms.LinkLabel();
+            this.lnkEvenPart = new System.Windows.Forms.LinkLabel();
             this.lnkEvenPes = new System.Windows.Forms.LinkLabel();
             this.lnkEvenNovo = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -166,7 +166,7 @@
             // 
             this.groupBox2.Controls.Add(this.lnkSugestoes);
             this.groupBox2.Controls.Add(this.lnkFeedback);
-            this.groupBox2.Controls.Add(this.lnkEvenGlo);
+            this.groupBox2.Controls.Add(this.lnkEvenPart);
             this.groupBox2.Controls.Add(this.lnkEvenPes);
             this.groupBox2.Controls.Add(this.lnkEvenNovo);
             this.groupBox2.Location = new System.Drawing.Point(2, 164);
@@ -204,19 +204,19 @@
             this.lnkFeedback.VisitedLinkColor = System.Drawing.Color.Black;
             this.lnkFeedback.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkFeedback_LinkClicked);
             // 
-            // lnkEvenGlo
+            // lnkEvenPart
             // 
-            this.lnkEvenGlo.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.lnkEvenGlo.AutoSize = true;
-            this.lnkEvenGlo.LinkColor = System.Drawing.Color.Black;
-            this.lnkEvenGlo.Location = new System.Drawing.Point(19, 82);
-            this.lnkEvenGlo.Name = "lnkEvenGlo";
-            this.lnkEvenGlo.Size = new System.Drawing.Size(84, 13);
-            this.lnkEvenGlo.TabIndex = 7;
-            this.lnkEvenGlo.TabStop = true;
-            this.lnkEvenGlo.Text = "Eventos Globais";
-            this.lnkEvenGlo.VisitedLinkColor = System.Drawing.Color.Black;
-            this.lnkEvenGlo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEvenGlo_LinkClicked);
+            this.lnkEvenPart.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.lnkEvenPart.AutoSize = true;
+            this.lnkEvenPart.LinkColor = System.Drawing.Color.Black;
+            this.lnkEvenPart.Location = new System.Drawing.Point(19, 82);
+            this.lnkEvenPart.Name = "lnkEvenPart";
+            this.lnkEvenPart.Size = new System.Drawing.Size(107, 13);
+            this.lnkEvenPart.TabIndex = 7;
+            this.lnkEvenPart.TabStop = true;
+            this.lnkEvenPart.Text = "Eventos Participados";
+            this.lnkEvenPart.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lnkEvenPart.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkEvenGlo_LinkClicked);
             // 
             // lnkEvenPes
             // 
@@ -354,7 +354,7 @@
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.LinkLabel lnkCalendario;
-        private System.Windows.Forms.LinkLabel lnkEvenGlo;
+        private System.Windows.Forms.LinkLabel lnkEvenPart;
         private System.Windows.Forms.LinkLabel lnkEvenPes;
         private System.Windows.Forms.LinkLabel lnkEvenNovo;
         private System.Windows.Forms.Label lblTipoConta;

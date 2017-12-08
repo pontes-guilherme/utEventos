@@ -125,6 +125,12 @@
     <Compile Include="frmMuseu.Designer.cs">
       <DependentUpon>frmMuseu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmParticipados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmParticipados.Designer.cs">
+      <DependentUpon>frmParticipados.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRecuperar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMuseu.resx">
       <DependentUpon>frmMuseu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmParticipados.resx">
+      <DependentUpon>frmParticipados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRecuperar.resx">
       <DependentUpon>frmRecuperar.cs</DependentUpon>
