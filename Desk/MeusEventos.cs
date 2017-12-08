@@ -55,10 +55,12 @@ namespace Desk
             if (this.current_user.tipo == "Administrador")
             {
                 this.eventosTableAdapter.Fill(this.dbEventosDataSet.Eventos);
+                
             } else
             {
                 this.eventosTableAdapter.FillByEmail(this.dbEventosDataSet.Eventos, current_user.email);
             }
+            UpdateForm();
             //loadFromDb();
             //loadFromListToFields();
         }
@@ -94,8 +96,9 @@ namespace Desk
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadFromListToFields();
-            //this.Refresh();
+            UpdateForm();
+            //loadFromListToFields();
+            
         }
 
         private void loadFromDb()
@@ -242,7 +245,7 @@ namespace Desk
                     {
                         eventosTableAdapter.FillByMonthAdmin(this.dbEventosDataSet.Eventos, decimal.Parse(txtPesquisar.Text));
                     }
-                    else if (cmbPesquisar.SelectedIndex == 2) //mes
+                    else if (cmbPesquisar.SelectedIndex == 2) //disc
                     {
                         eventosTableAdapter.FillByClassAdmin(this.dbEventosDataSet.Eventos, txtPesquisar.Text);
                     }
@@ -263,7 +266,7 @@ namespace Desk
                     {
                         eventosTableAdapter.FillByMonthSearch(this.dbEventosDataSet.Eventos, decimal.Parse(txtPesquisar.Text), current_user.email);
                     }
-                    else if (cmbPesquisar.SelectedIndex == 2) //mes
+                    else if (cmbPesquisar.SelectedIndex == 2) //disc
                     {
                         eventosTableAdapter.FillByClassSearch(this.dbEventosDataSet.Eventos, txtPesquisar.Text, current_user.email);
                     }
@@ -272,6 +275,7 @@ namespace Desk
                 {
                 }
             }
+            UpdateForm();
         }
 
         
@@ -357,6 +361,24 @@ namespace Desk
                 }
             }catch { }
             
+        }
+
+        private void ClearForm()
+        {
+            txtNome.Text = null;
+            txtCapacidade.Text = null;
+            cmbCategoria.SelectedItem = "Outro";
+            cmbEscopo.SelectedItem = "Global";
+            dtInicio.Value = DateTime.Now.Date;
+            dtFim.Value = DateTime.Now.Date;
+            ckbImportante.Checked = false;
+            //btnInscricao.Enabled = true;
+        }
+
+        private void UpdateForm()
+        {
+            ClearForm();
+            loadFromListToFields();
         }
     }
 }
